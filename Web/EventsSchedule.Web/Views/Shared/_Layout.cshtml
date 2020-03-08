@@ -1,25 +1,31 @@
-﻿@using EventsSchedule.Common
-<!DOCTYPE html>
-<html>
+﻿<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@this.ViewData["Title"] - @GlobalConstants.SystemName</title>
+    <title>Event - Landing Page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="">
 
-    <environment names="Development">
-        <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" asp-append-version="true" />
-        <link href="~/css/site.css" rel="stylesheet" asp-append-version="true" />
-    </environment>
-    <environment names="Staging,Production">
-        <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" asp-append-version="true" />
-        <link href="~/css/site.min.css" rel="stylesheet" asp-append-version="true" />
-    </environment>
+    <!--== CSS Files ==-->
+    <link href="~/css/bootstrap.css" rel="stylesheet" media="screen">
+    <link href="~/css/style.css" rel="stylesheet" media="screen">
+    <link href="~/css/font-awesome.css" rel="stylesheet" media="screen">
+    <link href="~/css/owl.carousel.css" rel="stylesheet" media="screen">
+    <link href="~/css/flexslider.css" rel="stylesheet" media="screen">
+    <link href="~/css/fancySelect.css" rel="stylesheet" media="screen">
+    <link href="~/css/responsive.css" rel="stylesheet" media="screen">
+
+    <!--== Google Fonts ==-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Belgrano' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Dosis' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">@GlobalConstants.SystemName</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Events Schedule</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -28,48 +34,79 @@
                     <partial name="_LoginPartial" />
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <div class="nav-element">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Settings" asp-action="Index">Settings</a>
+                            <div class="nav-element">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            </div>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        <li>
+                            <div class="nav-element">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="About" title="За нас">За нас</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="nav-element">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Team" title="Нашият екип">Нашият екип</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="nav-element">
+                                <a class="about-us" asp-area="" asp-controller="Home" asp-action="Contacts" title="Контакти">Контакти</a>
+                            </div>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-    
     <div class="container">
-        <partial name="_CookieConsentPartial" />
         <main role="main" class="pb-3">
-            @this.RenderBody()
+            @RenderBody()
         </main>
     </div>
-    
+
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; @DateTime.Now.Year - @GlobalConstants.SystemName - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2020 - EventsForAll - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
 
-    <environment names="Development">
-        <script src="~/lib/jquery/dist/jquery.js" asp-append-version="true"></script>
-        <script src="~/lib/jquery-validation/dist/jquery.validate.js" asp-append-version="true"></script>
-        <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js" asp-append-version="true"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.js" asp-append-version="true"></script>
-        <script src="~/js/site.js" asp-append-version="true"></script>
-    </environment>
-    <environment names="Staging,Production">
-        <script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true"></script>
-        <script src="~/lib/jquery-validation/dist/jquery.validate.min.js" asp-append-version="true"></script>
-        <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js" asp-append-version="true"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.min.js" asp-append-version="true"></script>
-        <script src="~/js/site.min.js" asp-append-version="true"></script>
-    </environment>
 
-    @this.RenderSection("Scripts", required: false)
+    <!--== Javascript Files ==-->
+    <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script src="js/jquery-2.1.0.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.scrollTo.js"></script>
+    <script src="js/jquery.nav.js"></script>
+    <script src="js/jquery.flexslider.js"></script>
+    <script src="js/jquery.accordion.js"></script>
+    <script src="js/jquery.placeholder.js"></script>
+    <script src="js/jquery.fitvids.js"></script>
+    <script src="js/gmap3.js"></script>
+    <script src="js/fancySelect.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/main.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $("#testimonial-container").owlCarousel({
+
+                navigation: false, // Show next and prev buttons
+                slideSpeed: 700,
+                paginationSpeed: 400,
+                singleItem: true,
+            });
+
+        });
+    </script>
+    @RenderSection("Scripts", required: false)
 </body>
 </html>

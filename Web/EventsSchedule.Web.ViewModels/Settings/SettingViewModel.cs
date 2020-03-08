@@ -1,9 +1,8 @@
 ﻿namespace EventsSchedule.Web.ViewModels.Settings
 {
+    using AutoMapper;
     using EventsSchedule.Data.Models;
     using EventsSchedule.Services.Mapping;
-
-    using AutoMapper;
 
     public class SettingViewModel : IMapFrom<Setting>, IHaveCustomMappings
     {

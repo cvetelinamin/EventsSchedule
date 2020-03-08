@@ -1,0 +1,85 @@
+﻿@model EventsSchedule.Web.ViewModels.Events.EventInputModel
+@using EventsSchedule.Data.Models.Enums
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Създай своето събитие</h1>
+<div class="row">
+    <h2 class="col-sm-4">Данни за събитието</h2>
+    <h2 class="col-sm-6">Информация за организатора</h2>
+</div>
+<div class="row">
+    <div class="col">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="Title"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Performer"></label>
+                <input asp-for="Performer" class="form-control" />
+                <span asp-validation-for="Performer" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DoorTime"></label>
+                <input asp-for="DoorTime" class="form-control" />
+                <span asp-validation-for="DoorTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EndTime"></label>
+                <input asp-for="EndTime" class="form-control" />
+                <span asp-validation-for="EndTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Duration"></label>
+                <input asp-for="Duration" class="form-control" />
+                <span asp-validation-for="Duration" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EventSchedule"></label>
+                <textarea asp-for="EventSchedule" class="form-control"></textarea>
+                <span asp-validation-for="EventSchedule" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Status"></label>
+                <select asp-for="Status" asp-items="Html.GetEnumSelectList<EventStatusType>()">
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="IsAccessibleForFree"></label>
+                <input asp-for="IsAccessibleForFree" class="form-control" />
+                <span asp-validation-for="IsAccessibleForFree" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MaximumAttendeeCapacity"></label>
+                <input asp-for="MaximumAttendeeCapacity" class="form-control" />
+                <span asp-validation-for="MaximumAttendeeCapacity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price"></label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description"></label>
+                <textarea asp-for="Description" class="form-control"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AgeRange"></label>
+                <select asp-for="AgeRange" asp-items="Html.GetEnumSelectList<TypicalAgeRange>()">
+                </select>
+            </div>
+        </div>
+        <div>
+            <partial name="_AddOrganizer" />
+            <partial name="_AddAddress" />
+        </div>
+    </div>
+</div>
+        <button type="submit" class="btn btn-primary">Създай събитие</button>
+
