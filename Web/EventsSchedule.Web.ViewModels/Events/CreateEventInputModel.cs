@@ -1,5 +1,6 @@
 ﻿namespace EventsSchedule.Web.ViewModels.Events
 {
+    using EventsSchedule.Web.ViewModels.Addresses;
     using EventsSchedule.Web.ViewModels.Organizers;
 
     public class CreateEventInputModel
@@ -8,6 +9,6 @@
 
         public OrganizerInputModel OrganizerInputModel { get; set; }
 
-        public AdressInputModel AdressInputModel { get; set; }
+        public AddressInputModel AdressInputModel { get; set; }
     }
 }

@@ -5,15 +5,15 @@
     public class AddressInputModel
     {
         [Required]
-        public string Country { get; set; }
-
-        [Required]
+        [StringLength(100, MinimumLength = 3)]
         public string City { get; set; }
 
         [Required]
+        [StringLength(100, MinimumLength = 3)]
         public string Street { get; set; }
 
         [Required]
+        [Range(0, 1000)]
         public string Number { get; set; }
 
         public string Building { get; set; }
