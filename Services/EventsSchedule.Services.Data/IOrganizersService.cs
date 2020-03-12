@@ -6,11 +6,12 @@
     using System.Threading.Tasks;
 
     using EventsSchedule.Data.Models;
+    using EventsSchedule.Web.ViewModels;
     using EventsSchedule.Web.ViewModels.Events;
     using EventsSchedule.Web.ViewModels.Organizers;
 
     public interface IOrganizersService
     {
-        Organizer CreateOrganizer(OrganizerInputModel model);
+        Organizer CreateOrganizer(CreateEventModel model);
     }
 }

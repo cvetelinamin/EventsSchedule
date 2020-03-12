@@ -6,6 +6,7 @@
     using System.Threading.Tasks;
 
     using EventsSchedule.Data.Models;
+    using EventsSchedule.Web.ViewModels;
     using EventsSchedule.Web.ViewModels.Addresses;
     using EventsSchedule.Web.ViewModels.Events;
 
@@ -13,7 +14,7 @@
     {
         private readonly ICityService cityService;
 
-        public Address CreateAddress(AddressInputModel model, City city, Organizer organizer)
+        public Address CreateAddress(CreateEventModel model, City city, Organizer organizer)
         {
             var adress = new Address
             {

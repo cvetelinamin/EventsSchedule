@@ -1,4 +1,4 @@
-﻿@model EventsSchedule.Web.ViewModels.Events.EventInputModel
+﻿@model EventsSchedule.Web.ViewModels.CreateEventModel
 @using EventsSchedule.Data.Models.Enums
 
 <div class="form-group">
@@ -10,6 +10,13 @@
     <label asp-for="Performer"></label>
     <input asp-for="Performer" class="form-control" />
     <span asp-validation-for="Performer" class="text-danger"></span>
+</div>
+<div class="select form-group">
+    <label>Category</label>
+    <select asp-for="Category.Name" data-placeholder="Choose Category" class="chosen-select-no-single form-control">
+        <partial name="_ListCategories" />
+    </select>
+    <span asp-validation-for="Category.Name" class="text-danger"></span>
 </div>
 <div class="form-group">
     <label asp-for="DoorTime"></label>
@@ -52,9 +59,9 @@
     <span asp-validation-for="Price" class="text-danger"></span>
 </div>
 <div class="form-group">
-    <label asp-for="Description"></label>
-    <textarea asp-for="Description" class="form-control"></textarea>
-    <span asp-validation-for="Description" class="text-danger"></span>
+    <label asp-for="EventDescription"></label>
+    <textarea asp-for="EventDescription" class="form-control"></textarea>
+    <span asp-validation-for="EventDescription" class="text-danger"></span>
 </div>
 <div class="form-group">
     <label asp-for="AgeRange"></label>

@@ -6,10 +6,11 @@
     using System.Threading.Tasks;
 
     using EventsSchedule.Data.Models;
+    using EventsSchedule.Web.ViewModels;
     using EventsSchedule.Web.ViewModels.Events;
 
     public interface IEventsService
     {
-        Event CreatEvent(EventInputModel model, string userId, Organizer organizer);
+        Task<Event> CreatEvent(CreateEventModel model, string userId, Organizer organizer, Address address);
     }
 }

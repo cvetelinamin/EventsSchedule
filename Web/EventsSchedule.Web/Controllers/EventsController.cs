@@ -8,6 +8,7 @@
     using EventsSchedule.Data;
     using EventsSchedule.Data.Models;
     using EventsSchedule.Services.Data;
+    using EventsSchedule.Web.ViewModels;
     using EventsSchedule.Web.ViewModels.Events;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
@@ -22,8 +23,9 @@
         private readonly IOrganizersService organizersService;
         private readonly IAddressesService addressesService;
         private readonly ICityService cityService;
+        private readonly ICategoryService categoryService;
 
-        public EventsController(ApplicationDbContext dbContext, UserManager<ApplicationUser> userManager, IEventsService eventsService, IOrganizersService organizersService, IAddressesService addressesService, ICityService cityService)
+        public EventsController(ApplicationDbContext dbContext, UserManager<ApplicationUser> userManager, IEventsService eventsService, IOrganizersService organizersService, IAddressesService addressesService, ICityService cityService, ICategoryService categoryService)
         {
             this.dbContext = dbContext;
             this.userManager = userManager;
@@ -31,6 +33,7 @@
             this.organizersService = organizersService;
             this.addressesService = addressesService;
             this.cityService = cityService;
+            this.categoryService = categoryService;
         }
 
         public async Task<IActionResult> Create()
@@ -39,7 +42,7 @@
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(CreateEventInputModel model)
+        public async Task<IActionResult> Create(CreateEventModel model)
         {
             var user = this.userManager.GetUserId(this.User);
 
@@ -48,10 +51,10 @@
                 return this.View(model);
             }
 
-            var organizer = this.organizersService.CreateOrganizer(model.OrganizerInputModel);
-            var city = this.cityService.CreateCity(model.AdressInputModel.City);
-            var address = this.addressesService.CreateAddress(model.AdressInputModel, city, organizer);
-            var inputEvent = this.eventsService.CreatEvent(model.EventInputModel, user, organizer);
+            var organizer = this.organizersService.CreateOrganizer(model);
+            var city = this.cityService.CreateCity(model.City);
+            var address = this.addressesService.CreateAddress(model, city, organizer);
+            var inputEvent = await this.eventsService.CreatEvent(model, user, organizer, address);
 
             await this.dbContext.Cities.AddAsync(city);
             await this.dbContext.Addresses.AddAsync(address);

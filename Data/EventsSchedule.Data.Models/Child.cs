@@ -9,6 +9,11 @@
 
     public class Child : BaseDeletableModel<string>
     {
+        public Child()
+        {
+            this.Id = Guid.NewGuid().ToString();
+        }
+
         public int? Age { get; set; }
 
         public Gender? Gender { get; set; }

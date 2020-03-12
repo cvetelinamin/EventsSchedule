@@ -9,6 +9,11 @@
 
     public class EventCategory : BaseDeletableModel<string>
     {
+        public EventCategory()
+        {
+            this.Id = Guid.NewGuid().ToString();
+        }
+
         [Required]
         [MaxLength(30)]
         public string Name { get; set; }

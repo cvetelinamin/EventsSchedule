@@ -6,19 +6,20 @@
     using System.Threading.Tasks;
 
     using EventsSchedule.Data.Models;
+    using EventsSchedule.Web.ViewModels;
     using EventsSchedule.Web.ViewModels.Events;
     using EventsSchedule.Web.ViewModels.Organizers;
 
     public class OrganizersService : IOrganizersService
     {
-        public Organizer CreateOrganizer(OrganizerInputModel model)
+        public Organizer CreateOrganizer(CreateEventModel model)
         {
             var organizer = new Organizer
             {
                  Name = model.Name,
                  ContactName = model.ContactName,
                  WebSite = model.WebSite,
-                 Description = model.Description,
+                 Description = model.OrganizerDescription,
             };
 
             return organizer;
