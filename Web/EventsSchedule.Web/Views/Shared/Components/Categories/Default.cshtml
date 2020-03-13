@@ -1,0 +1,7 @@
+﻿@model EventsSchedule.Web.ViewComponents.Models.CategoriesViewModel
+
+<option selected disabled>Choose Category</option>
+@foreach (var categoryTitle in Model.Categories)
+{
+    <option value="@categoryTitle">@categoryTitle</option>
+}

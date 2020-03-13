@@ -14,7 +14,7 @@
 <div class="select form-group">
     <label>Category</label>
     <select asp-for="Category.Name" data-placeholder="Choose Category" class="chosen-select-no-single form-control">
-        <partial name="_ListCategories" />
+        <vc:categories></vc:categories>
     </select>
     <span asp-validation-for="Category.Name" class="text-danger"></span>
 </div>
