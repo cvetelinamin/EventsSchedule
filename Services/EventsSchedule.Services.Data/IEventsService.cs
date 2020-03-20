@@ -12,5 +12,9 @@
     public interface IEventsService
     {
         Task<Event> CreatEvent(CreateEventModel model, string userId, Organizer organizer, Address address);
+
+        //Task<TopEventViewModel> DetailsTopEvent();
+
+        //Task<ListTopEvents> GetAll();
     }
 }

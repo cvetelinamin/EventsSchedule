@@ -1,4 +1,11 @@
-﻿@{
+﻿@model ListTopEvents
+@using EventsSchedule.Web.ViewModels.Events
+
+@{
+    int countTopEvents = 6;
+}
+
+@{
     ViewData["Title"] = "Schedule";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -14,215 +21,79 @@
         <p class="sub-text text-center">Check out the event details</p>
     </div>
     <ul class="timeline">
-        <li>
-            <div class="timeline-badge">
-                <a><i class="fa fa-circle" id=""></i></a>
-            </div>
-            <div class="timeline-panel">
-                <div class="timeline-heading">
-                    <h4>Event One</h4>
-                </div>
-                <div class="timeline-body">
-                    <p class="timeline-desc col-md-6">Invitamus me testatur sed quod non dum animae tuae lacrimis ut libertatem deum rogus aegritudinis causet. Dicens hoc contra serpentibus isto.</p>
-                    <p class="timeline-other col-md-6">
-
-                        <em class="timeline-item">
-                            Venue : Adeleade
-                        </em>
-                        <em class="timeline-item">
-                            Seats : 25
-                        </em>
-                        <em class="timeline-item">
-                            Ticket: $35
-                        </em>
-                        <em class="timeline-item">
-                            Date : Feb-21-2014
-                        </em>
-                        <em class="timeline-item">
-                            Duration : 5days
-                        </em>
-
-                    </p>
-
-                </div>
-
-            </div>
-        </li>
-
-        <li class="timeline-inverted">
-            <div class="timeline-badge">
-                <a><i class="fa fa-circle" id=""></i></a>
-            </div>
-            <div class="timeline-panel">
-                <div class="timeline-heading">
-                    <h4>Event Two</h4>
-                </div>
-                <div class="timeline-body">
-                    <p class="timeline-desc col-md-6">Invitamus me testatur sed quod non dum animae tuae lacrimis ut libertatem deum rogus aegritudinis causet. Dicens hoc contra serpentibus isto.</p>
-                    <p class="timeline-other col-md-6">
-
-                        <em class="timeline-item">
-                            Venue : Adeleade
-                        </em>
-                        <em class="timeline-item">
-                            Seats : 25
-                        </em>
-                        <em class="timeline-item">
-                            Ticket: $35
-                        </em>
-                        <em class="timeline-item">
-                            Date : Feb-21-2014
-                        </em>
-                        <em class="timeline-item">
-                            Duration : 5days
-                        </em>
-
-                    </p>
-
-                </div>
-
-            </div>
-        </li>
-
-        <li>
-            <div class="timeline-badge">
-                <a><i class="fa fa-circle" id=""></i></a>
-            </div>
-            <div class="timeline-panel">
-                <div class="timeline-heading">
-                    <h4>Event Three</h4>
-                </div>
-                <div class="timeline-body">
-                    <p class="timeline-desc col-md-6">Invitamus me testatur sed quod non dum animae tuae lacrimis ut libertatem deum rogus aegritudinis causet. Dicens hoc contra serpentibus isto.</p>
-                    <p class="timeline-other col-md-6">
-
-                        <em class="timeline-item">
-                            Venue : Adeleade
-                        </em>
-                        <em class="timeline-item">
-                            Seats : 25
-                        </em>
-                        <em class="timeline-item">
-                            Ticket: $35
-                        </em>
-                        <em class="timeline-item">
-                            Date : Feb-21-2014
-                        </em>
-                        <em class="timeline-item">
-                            Duration : 5days
-                        </em>
-
-                    </p>
-
-                </div>
-            </div>
-        </li>
-
-        <li class="timeline-inverted">
-            <div class="timeline-badge">
-                <a><i class="fa fa-circle" id=""></i></a>
-            </div>
-            <div class="timeline-panel">
-                <div class="timeline-heading">
-                    <h4>Event Four</h4>
-                </div>
-                <div class="timeline-body">
-                    <p class="timeline-desc col-md-6">Invitamus me testatur sed quod non dum animae tuae lacrimis ut libertatem deum rogus aegritudinis causet. Dicens hoc contra serpentibus isto.</p>
-                    <p class="timeline-other col-md-6">
-
-                        <em class="timeline-item">
-                            Venue : Adeleade
-                        </em>
-                        <em class="timeline-item">
-                            Seats : 25
-                        </em>
-                        <em class="timeline-item">
-                            Ticket: $35
-                        </em>
-                        <em class="timeline-item">
-                            Date : Feb-21-2014
-                        </em>
-                        <em class="timeline-item">
-                            Duration : 5days
-                        </em>
-
-                    </p>
-
-                </div>
-
-            </div>
-        </li>
-
-        <li>
-            <div class="timeline-badge">
-                <a><i class="fa fa-circle" id=""></i></a>
-            </div>
-            <div class="timeline-panel">
-                <div class="timeline-heading">
-                    <h4>Event Five</h4>
-                </div>
-                <div class="timeline-body">
-                    <p class="timeline-desc col-md-6">Invitamus me testatur sed quod non dum animae tuae lacrimis ut libertatem deum rogus aegritudinis causet. Dicens hoc contra serpentibus isto.</p>
-                    <p class="timeline-other col-md-6">
-
-                        <em class="timeline-item">
-                            Venue : Adeleade
-                        </em>
-                        <em class="timeline-item">
-                            Seats : 25
-                        </em>
-                        <em class="timeline-item">
-                            Ticket: $35
-                        </em>
-                        <em class="timeline-item">
-                            Date : Feb-21-2014
-                        </em>
-                        <em class="timeline-item">
-                            Duration : 5days
-                        </em>
-
-                    </p>
-
-                </div>
-
-            </div>
-        </li>
-
-        <li class="timeline-inverted">
-            <div class="timeline-badge">
-                <a><i class="fa fa-circle" id=""></i></a>
-            </div>
-            <div class="timeline-panel">
-                <div class="timeline-heading">
-                    <h4>Event Six</h4>
-                </div>
-                <div class="timeline-body">
-                    <p class="timeline-desc col-md-6">Invitamus me testatur sed quod non dum animae tuae lacrimis ut libertatem deum rogus aegritudinis causet. Dicens hoc contra serpentibus isto.</p>
-                    <p class="timeline-other col-md-6">
-
-                        <em class="timeline-item">
-                            Venue : Adeleade
-                        </em>
-                        <em class="timeline-item">
-                            Seats : 25
-                        </em>
-                        <em class="timeline-item">
-                            Ticket: $35
-                        </em>
-                        <em class="timeline-item">
-                            Date : Feb-21-2014
-                        </em>
-                        <em class="timeline-item">
-                            Duration : 5days
-                        </em>
-
-                    </p>
-
-                </div>
-
-            </div>
-        </li>
-        <li class="clearfix no-float"></li>
+        @foreach (var eventToDisplay in Model.TopEvents)
+        {
+            countTopEvents++;
+            if (countTopEvents % 2 != 0)
+            {
+                <li>
+                    <div class="timeline-badge">
+                        <a><i class="fa fa-circle" id=""></i></a>
+                    </div>
+                    <div class="timeline-panel">
+                        <div class="timeline-heading">
+                            <a asp-controller="Events" asp-action="EventById">
+                                <h4>@eventToDisplay.Title</h4>
+                            </a>
+                        </div>
+                        <div class="timeline-body">
+                            <textarea class="timeline-desc col-md-6">@eventToDisplay.Description</textarea>
+                            <p class="timeline-other col-md-6">
+                                <em class="timeline-item">
+                                    Category : @eventToDisplay.EventCategory.Name
+                                </em>
+                                <em class="timeline-item">
+                                    Seats : @eventToDisplay.MaximumAttendeeCapacity
+                                </em>
+                                <em class="timeline-item">
+                                    Ticket: $@eventToDisplay.Price
+                                </em>
+                                <em class="timeline-item">
+                                    Date : @eventToDisplay.DoorTime
+                                </em>
+                                <em class="timeline-item">
+                                    Duration : @eventToDisplay.Duration
+                                </em>
+                            </p>
+                        </div>
+                    </div>
+                </li>
+            }
+            else
+            {
+                <li class="timeline-inverted">
+                    <div class="timeline-badge">
+                        <a><i class="fa fa-circle" id=""></i></a>
+                    </div>
+                    <div class="timeline-panel">
+                        <div class="timeline-heading">
+                            <h4>@eventToDisplay.Title</h4>
+                        </div>
+                        <div class="timeline-body">
+                            <textarea class="timeline-desc col-md-6">@eventToDisplay.Description</textarea>
+                            <p class="timeline-other col-md-6">
+                                <em class="timeline-item">
+                                    Category : @eventToDisplay.EventCategory.Name
+                                </em>
+                                <em class="timeline-item">
+                                    Seats : @eventToDisplay.MaximumAttendeeCapacity
+                                </em>
+                                <em class="timeline-item">
+                                    Ticket: $@eventToDisplay.Price
+                                </em>
+                                <em class="timeline-item">
+                                    Date : @eventToDisplay.DoorTime
+                                </em>
+                                <em class="timeline-item">
+                                    Duration : @eventToDisplay.Duration
+                                </em>
+                            </p>
+                        </div>
+                    </div>
+                </li>
+            }
+            <li class="clearfix no-float"></li>
+        }
     </ul>
 </section>
 

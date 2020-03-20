@@ -6,6 +6,7 @@
     using System.Threading.Tasks;
 
     using EventsSchedule.Data;
+    using EventsSchedule.Data.Common.Repositories;
     using EventsSchedule.Data.Models;
     using EventsSchedule.Services.Data;
     using EventsSchedule.Web.ViewModels;
@@ -24,8 +25,9 @@
         private readonly IAddressesService addressesService;
         private readonly ICityService cityService;
         private readonly ICategoryService categoryService;
+        private readonly IDeletableEntityRepository<Event> eventRepository;
 
-        public EventsController(ApplicationDbContext dbContext, UserManager<ApplicationUser> userManager, IEventsService eventsService, IOrganizersService organizersService, IAddressesService addressesService, ICityService cityService, ICategoryService categoryService)
+        public EventsController(ApplicationDbContext dbContext, UserManager<ApplicationUser> userManager, IEventsService eventsService, IOrganizersService organizersService, IAddressesService addressesService, ICityService cityService, ICategoryService categoryService, IDeletableEntityRepository<Event> eventRepository)
         {
             this.dbContext = dbContext;
             this.userManager = userManager;
@@ -34,14 +36,17 @@
             this.addressesService = addressesService;
             this.cityService = cityService;
             this.categoryService = categoryService;
+            this.eventRepository = eventRepository;
         }
 
+        [Authorize]
         public async Task<IActionResult> Create()
         {
             return this.View();
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> Create(CreateEventModel model)
         {
             var user = this.userManager.GetUserId(this.User);
@@ -61,16 +66,27 @@
             await this.dbContext.Organizers.AddAsync(organizer);
             await this.dbContext.Events.AddAsync(inputEvent);
 
-            var eventUser = new UserEvent
-            {
-                ApplicationUserId = user,
-                Event = inputEvent,
-            };
+            //var eventUser = new UserEvent
+            //{
+            //    ApplicationUserId = user,
+            //    Event = inputEvent,
+            //};
 
-            await this.dbContext.UsersEvents.AddAsync(eventUser);
+            //await this.dbContext.UsersEvents.AddAsync(eventUser);
             await this.dbContext.SaveChangesAsync();
 
             return this.View();
         }
+
+        //public async Task<IActionResult> EventById(string id)
+        //{
+        //    var eventViewModel = this.eventsService.GetById<PostViewModel>(id);
+        //    if (eventViewModel == null)
+        //    {
+        //        return this.NotFound();
+        //    }
+
+        //    return this.View(eventViewModel);
+        //}
     }
 }
