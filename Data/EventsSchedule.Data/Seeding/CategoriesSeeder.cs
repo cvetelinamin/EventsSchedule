@@ -22,11 +22,11 @@
             var categoryTitles = new string[]
             {
                 "Концерти",
-                "Snacks",
-                "Salads",
-                "Soups",
-                "Main Dishes",
-                "Desserts",
+                "Култура",
+                "Спорт",
+                "Семейство",
+                "Парти",
+                "Други",
             };
 
             foreach (var title in categoryTitles)

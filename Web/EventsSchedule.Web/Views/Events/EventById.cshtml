@@ -1,0 +1,32 @@
+﻿@model EventsSchedule.Web.ViewModels.Events.EventViewModel
+
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+<h1>@Model.Title</h1>
+
+<div>
+    @if (Model.IsAccessibleForFree == true)
+    {
+        <span class="badge badge-danger">Вход свободен</span>
+    }
+    <div>
+        @Model.Performer
+    </div>
+    <div>
+        @Model.DoorTime
+    </div>
+    <div>
+        @Model.Organizer.Name
+    </div>
+    <div>
+        @Model.EventCategory.Name
+    </div>
+    <div>
+        @Model.Description
+    </div>
+    <div>
+        @Model.Price
+    </div>
+</div>
