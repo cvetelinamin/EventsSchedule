@@ -32,7 +32,7 @@
                     </div>
                     <div class="timeline-panel">
                         <div class="timeline-heading">
-                            <a asp-controller="Events" asp-action="EventById">
+                            <a asp-controller="Events" asp-action="EventById" asp-route-id="@eventToDisplay.Id">
                                 <h4>@eventToDisplay.Title</h4>
                             </a>
                         </div>
@@ -67,7 +67,9 @@
                     </div>
                     <div class="timeline-panel">
                         <div class="timeline-heading">
-                            <h4>@eventToDisplay.Title</h4>
+                            <a asp-controller="Events" asp-action="EventById" asp-route-id="@eventToDisplay.Id">
+                                <h4>@eventToDisplay.Title</h4>
+                            </a>
                         </div>
                         <div class="timeline-body">
                             <textarea class="timeline-desc col-md-6">@eventToDisplay.Description</textarea>

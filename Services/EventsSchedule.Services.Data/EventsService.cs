@@ -7,6 +7,7 @@
     using System.Threading.Tasks;
     using EventsSchedule.Data.Common.Repositories;
     using EventsSchedule.Data.Models;
+    using EventsSchedule.Services.Mapping;
     using EventsSchedule.Web.ViewModels;
     using EventsSchedule.Web.ViewModels.Events;
 
@@ -46,12 +47,12 @@
             return eventToCreate;
         }
 
-        //public T GetById<T>(string id)
-        //{
-        //    var eventDetaisl = this.eventsRepository.AllAsNoTracking().Where(x => x.Id == id)
-        //        .To<T>().FirstOrDefault();
-        //    return eventDetaisl;
-        //}
+        public T GetById<T>(string id)
+        {
+            var eventDetails = this.eventsRepository.AllAsNoTracking().Where(x => x.Id == id)
+                .To<T>().FirstOrDefault();
+            return eventDetails;
+        }
 
         //public async Task<TopEventViewModel> DetailsTopEvent(Event @event)
         //{

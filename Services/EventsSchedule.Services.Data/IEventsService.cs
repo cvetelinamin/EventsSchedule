@@ -13,6 +13,8 @@
     {
         Task<Event> CreatEvent(CreateEventModel model, string userId, Organizer organizer, Address address);
 
+        T GetById<T>(string id);
+
         //Task<TopEventViewModel> DetailsTopEvent();
 
         //Task<ListTopEvents> GetAll();

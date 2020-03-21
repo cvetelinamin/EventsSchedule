@@ -11,15 +11,13 @@
 
     public class EventViewModel : IMapFrom<Event>, IMapTo<Event>
     {
+        public string Id { get; set; }
+
         public string Title { get; set; }
 
         public string Performer { get; set; }
 
-        public string OrganizerId { get; set; }
-
         public Organizer Organizer { get; set; }
-
-        public string EventCategoryId { get; set; }
 
         public EventCategory EventCategory { get; set; }
 
@@ -37,9 +35,7 @@
 
         public bool IsAccessibleForFree { get; set; }
 
-        public string AddressId { get; set; }
-
-        public Address Address { get; set; }
+        public string Address { get; set; }
 
         public int MaximumAttendeeCapacity { get; set; }
 
@@ -47,9 +43,7 @@
 
         public string Description { get; set; }
 
-        public string CreatorId { get; set; }
-
-        public ApplicationUser Creator { get; set; }
+        public ApplicationUser UserUserName { get; set; }
 
         public TypicalAgeRange AgeRange { get; set; }
 

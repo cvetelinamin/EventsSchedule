@@ -40,7 +40,7 @@
         public decimal Price { get; set; }
 
         [Required]
-        [MaxLength(500)]
+        [MaxLength(1500)]
         public string EventDescription { get; set; }
 
         public TypicalAgeRange AgeRange { get; set; }

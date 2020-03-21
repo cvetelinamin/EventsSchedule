@@ -75,18 +75,18 @@
             //await this.dbContext.UsersEvents.AddAsync(eventUser);
             await this.dbContext.SaveChangesAsync();
 
-            return this.View();
+            return this.RedirectToAction("EventById", "Events", new { id = inputEvent.Id });
         }
 
-        //public async Task<IActionResult> EventById(string id)
-        //{
-        //    var eventViewModel = this.eventsService.GetById<PostViewModel>(id);
-        //    if (eventViewModel == null)
-        //    {
-        //        return this.NotFound();
-        //    }
+        public IActionResult EventById(string id)
+        {
+            var eventViewModel = this.eventsService.GetById<EventViewModel>(id);
+            if (eventViewModel == null)
+            {
+                return this.NotFound();
+            }
 
-        //    return this.View(eventViewModel);
-        //}
+            return this.View(eventViewModel);
+        }
     }
 }

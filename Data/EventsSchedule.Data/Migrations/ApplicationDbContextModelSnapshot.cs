@@ -310,8 +310,8 @@ namespace EventsSchedule.Data.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(500)")
-                        .HasMaxLength(500);
+                        .HasColumnType("nvarchar(1500)")
+                        .HasMaxLength(1500);
 
                     b.Property<DateTime>("DoorTime")
                         .HasColumnType("datetime2");

@@ -60,7 +60,7 @@
         public decimal Price { get; set; }
 
         [Required]
-        [MaxLength(500)]
+        [MaxLength(1500)]
         public string Description { get; set; }
 
         public string CreatorId { get; set; }
