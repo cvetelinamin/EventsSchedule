@@ -4,23 +4,31 @@
     using System.Collections.Generic;
     using System.Text;
     using System.Threading.Tasks;
-
+    using EventsSchedule.Data.Common.Repositories;
     using EventsSchedule.Data.Models;
     using EventsSchedule.Web.ViewModels.Reviews;
 
     public class ReviewsService : IReviewsService
     {
-        public async Task<Review> Create(ReviewCreateInputModel model, string userId, string eventId)
+        private readonly IDeletableEntityRepository<Review> reviewRepository;
+
+        public ReviewsService(IDeletableEntityRepository<Review> reviewRepository)
+        {
+            this.reviewRepository = reviewRepository;
+        }
+
+        public async Task CreateAsync(string comment, int raiting, string userId, string eventId)
         {
             var review = new Review
             {
                 ApplicationUserId = userId,
                 EventId = eventId,
-                Comment = model.Comment,
-                Rating = model.Rating,
+                Comment = comment,
+                Rating = raiting,
             };
 
-            return review;
+            await this.reviewRepository.AddAsync(review);
+            await this.reviewRepository.SaveChangesAsync();
         }
     }
 }

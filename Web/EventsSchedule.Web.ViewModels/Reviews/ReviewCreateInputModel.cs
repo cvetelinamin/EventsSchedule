@@ -10,17 +10,11 @@
 
     public class ReviewCreateInputModel : IMapTo<Review>, IMapFrom<Review>
     {
-        [Required]
-        public string ApplicationUserId { get; set; }
-
         [Range(0, 5)]
         public int Rating { get; set; }
 
         [Required]
         [MaxLength(250)]
         public string Comment { get; set; }
-
-        [Required]
-        public string EventId { get; set; }
     }
 }

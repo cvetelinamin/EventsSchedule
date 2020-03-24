@@ -10,6 +10,6 @@
 
     public interface IReviewsService
     {
-        Task<Review> Create(ReviewCreateInputModel model, string userId, string eventId);
+        Task CreateAsync(string comment, int raiting, string userId, string eventId);
     }
 }

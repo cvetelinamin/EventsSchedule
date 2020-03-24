@@ -31,27 +31,26 @@
             this.dbContext = dbContext;
         }
 
+        [Route("Reviews/Add/{eventId}")]
         public IActionResult Add()
         {
             return this.View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(ReviewCreateInputModel reviewCreateInputModel)
+        [Route("Reviews/Add/{eventId}")]
+        public async Task<IActionResult> Add(ReviewCreateInputModel reviewCreateInputModel, [FromRoute] string eventId)
         {
             if (!this.ModelState.IsValid)
             {
-                return this.Redirect("/");
+                return this.View(reviewCreateInputModel);
             }
 
-            var userId = this.userManager.GetUserId(this.User);
-            var eventToReview = await this.eventRepository.GetByIdWithDeletedAsync(reviewCreateInputModel.EventId);
-            var review = await this.reviewsService.Create(reviewCreateInputModel, userId, eventToReview.Id);
+            var user = await this.userManager.GetUserAsync(this.User);
 
-            this.dbContext.Reviews.Add(review);
-            int result = this.dbContext.SaveChanges();
+            await this.reviewsService.CreateAsync(reviewCreateInputModel.Comment, reviewCreateInputModel.Rating, user.Id, eventId);
 
-            return this.Redirect($"/Products/Details/{reviewCreateInputModel.EventId}");
+            return this.View();
         }
     }
 }

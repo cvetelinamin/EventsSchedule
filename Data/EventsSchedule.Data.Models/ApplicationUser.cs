@@ -19,6 +19,7 @@ namespace EventsSchedule.Data.Models
             this.Logins = new HashSet<IdentityUserLogin<string>>();
             this.Children = new HashSet<Child>();
             this.UserEvents = new HashSet<UserEvent>();
+            this.Reviews = new HashSet<Review>();
         }
 
         [Required]
@@ -49,14 +50,16 @@ namespace EventsSchedule.Data.Models
 
         public DateTime? DeletedOn { get; set; }
 
-        public ICollection<Child> Children { get; set; }
+        public virtual ICollection<Child> Children { get; set; }
 
-        public ICollection<UserEvent> UserEvents { get; set; }
+        public virtual ICollection<UserEvent> UserEvents { get; set; }
 
         public virtual ICollection<IdentityUserRole<string>> Roles { get; set; }
 
         public virtual ICollection<IdentityUserClaim<string>> Claims { get; set; }
 
         public virtual ICollection<IdentityUserLogin<string>> Logins { get; set; }
+
+        public virtual ICollection<Review> Reviews { get; set; }
     }
 }

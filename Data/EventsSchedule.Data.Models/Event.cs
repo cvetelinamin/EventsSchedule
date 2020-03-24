@@ -14,6 +14,7 @@
         {
             this.Id = Guid.NewGuid().ToString();
             this.Audience = new HashSet<UserEvent>();
+            this.Reviews = new HashSet<Review>();
         }
 
         [Required]
@@ -70,5 +71,7 @@
         public TypicalAgeRange AgeRange { get; set; }
 
         public ICollection<UserEvent> Audience { get; set; }
+
+        public ICollection<Review> Reviews { get; set; }
     }
 }

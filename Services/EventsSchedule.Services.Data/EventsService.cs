@@ -54,26 +54,9 @@
             return eventDetails;
         }
 
-        //public async Task<TopEventViewModel> DetailsTopEvent(Event @event)
+        //public string GetEventId()
         //{
-        //    var detailsEvent = new TopEventViewModel
-        //    {
-        //        Description = @event.Description,
-        //        DoorTime = @event.DoorTime,
-        //        Duration = @event.Duration,
-        //        EventCategory = @event.EventCategory,
-        //        MaximumAttendeeCapacity = @event.MaximumAttendeeCapacity,
-        //        Performer = @event.Performer,
-        //        Price = @event.Price,
-        //        Title = @event.Title,
-        //    };
-
-        //    return detailsEvent;
-        //}
-
-        //public Task<ListTopEvents> GetAll()
-        //{
-        //    throw new NotImplementedException();
+            
         //}
     }
 }
