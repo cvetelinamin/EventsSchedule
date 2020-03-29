@@ -1,35 +1,36 @@
 ﻿namespace EventsSchedule.Services.Data
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Text;
     using System.Threading.Tasks;
 
+    using EventsSchedule.Data.Common.Repositories;
     using EventsSchedule.Data.Models;
-    using EventsSchedule.Web.ViewModels;
-    using EventsSchedule.Web.ViewModels.Addresses;
-    using EventsSchedule.Web.ViewModels.Events;
 
     public class AddressesService : IAddressesService
     {
+        private readonly IDeletableEntityRepository<Address> addressesRepository;
         private readonly ICityService cityService;
 
-        public Address CreateAddress(CreateEventModel model, City city, Organizer organizer)
+        public AddressesService(IDeletableEntityRepository<Address> addressesRepository, ICityService cityService)
         {
-            var adress = new Address
+            this.addressesRepository = addressesRepository;
+            this.cityService = cityService;
+        }
+
+        public async Task<Address> CreateAddress(City city, string street, string building, string number, string entrance, string floor, string appartment, string district)
+        {
+            var address = new Address
             {
-                City = city,
-                Street = model.Street,
-                Building = model.Building,
-                Number = model.Number,
-                Entrance = model.Entrance,
-                Floor = model.Floor,
-                Apartment = model.Apartment,
-                District = model.District,
-                Organizer = organizer,
+                 CityId = await this.cityService.GetIdByTitleAsync(city.Name),
+                 Street = street,
+                 Building = building,
+                 Number = number,
+                 Entrance = entrance,
+                 Floor = floor,
+                 Apartment = appartment,
+                 District = district,
             };
 
-            return adress;
+            return address;
         }
     }
 }

@@ -17,6 +17,9 @@
         [StringLength(100, MinimumLength = 3)]
         public string Performer { get; set; }
 
+        [Required]
+        public EventCategory Category { get; set; }
+
         public DateTime DoorTime { get; set; }
 
         [Range(30, 300)]
@@ -28,7 +31,7 @@
         [MaxLength(1000)]
         public string EventSchedule { get; set; }
 
-        public EventStatusType Status { get; set; }
+        public string Status { get; set; }
 
         public bool IsAccessibleForFree { get; set; }
 
@@ -42,6 +45,6 @@
         [MaxLength(500)]
         public string Description { get; set; }
 
-        public TypicalAgeRange AgeRange { get; set; }
+        public string AgeRange { get; set; }
     }
 }

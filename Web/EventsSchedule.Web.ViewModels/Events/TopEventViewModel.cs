@@ -1,8 +1,8 @@
 ﻿namespace EventsSchedule.Web.ViewModels.Events
 {
     using System;
-    using System.ComponentModel.DataAnnotations;
     using System.Text.RegularExpressions;
+
     using EventsSchedule.Data.Models;
     using EventsSchedule.Services.Mapping;
 
@@ -32,9 +32,9 @@
             {
                 var description = Regex.Replace(this.Description, @"<[^>]+>", string.Empty);
 
-                return this.Description?.Length > 100
-              ? this.Description?.Substring(0, 100) + "..."
-              : this.Description;
+                return description?.Length > 50
+              ? description?.Substring(0, 50) + "..."
+              : description;
             }
         }
     }

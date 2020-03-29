@@ -60,10 +60,6 @@ namespace EventsSchedule.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("OrganizerId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("Street")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -73,8 +69,6 @@ namespace EventsSchedule.Data.Migrations
                     b.HasIndex("CityId");
 
                     b.HasIndex("IsDeleted");
-
-                    b.HasIndex("OrganizerId");
 
                     b.ToTable("Addresses");
                 });
@@ -657,12 +651,6 @@ namespace EventsSchedule.Data.Migrations
                         .HasForeignKey("CityId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
-
-                    b.HasOne("EventsSchedule.Data.Models.Organizer", "Organizer")
-                        .WithMany("Addresses")
-                        .HasForeignKey("OrganizerId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("EventsSchedule.Data.Models.Child", b =>
@@ -700,13 +688,13 @@ namespace EventsSchedule.Data.Migrations
             modelBuilder.Entity("EventsSchedule.Data.Models.Review", b =>
                 {
                     b.HasOne("EventsSchedule.Data.Models.ApplicationUser", "ApplicationUser")
-                        .WithMany()
+                        .WithMany("Reviews")
                         .HasForeignKey("ApplicationUserId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("EventsSchedule.Data.Models.Event", "Event")
-                        .WithMany()
+                        .WithMany("Reviews")
                         .HasForeignKey("EventId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();

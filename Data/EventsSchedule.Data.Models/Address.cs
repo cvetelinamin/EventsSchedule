@@ -35,10 +35,5 @@
 
         [Required]
         public string District { get; set; }
-
-        [Required]
-        public string OrganizerId { get; set; }
-
-        public Organizer Organizer { get; set; }
     }
 }

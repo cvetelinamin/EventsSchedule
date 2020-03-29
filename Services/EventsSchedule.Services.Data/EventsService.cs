@@ -1,15 +1,14 @@
 ﻿namespace EventsSchedule.Services.Data
 {
     using System;
-    using System.Collections.Generic;
+    using System.Globalization;
     using System.Linq;
-    using System.Text;
     using System.Threading.Tasks;
+
     using EventsSchedule.Data.Common.Repositories;
     using EventsSchedule.Data.Models;
+    using EventsSchedule.Data.Models.Enums;
     using EventsSchedule.Services.Mapping;
-    using EventsSchedule.Web.ViewModels;
-    using EventsSchedule.Web.ViewModels.Events;
 
     public class EventsService : IEventsService
     {
@@ -22,26 +21,26 @@
             this.eventsRepository = eventsRepository;
         }
 
-        public async Task<Event> CreatEvent(CreateEventModel model, string userId, Organizer organizer, Address address)
+        public async Task<Event> CreatEvent(string title, string performer, DateTime doorTime, DateTime endTime, int duration, string description, string schedule, int maxCapacity, bool isFree, decimal price, EventStatusType status, TypicalAgeRange ageRange, EventCategory category, string userId, Organizer organizer, Address address)
         {
             var eventToCreate = new Event
             {
-                Title = model.Title,
-                Performer = model.Performer,
-                DoorTime = model.DoorTime,
-                EndTime = model.EndTime,
-                Duration = model.Duration,
-                Description = model.EventDescription,
-                EventSchedule = model.EventSchedule,
-                MaximumAttendeeCapacity = model.MaximumAttendeeCapacity,
-                IsAccessibleForFree = model.IsAccessibleForFree,
-                Price = model.Price,
+                Title = title,
+                Performer = performer,
+                DoorTime = doorTime,
+                EndTime = endTime,
+                Duration = duration,
+                Description = description,
+                EventSchedule = schedule,
+                MaximumAttendeeCapacity = maxCapacity,
+                IsAccessibleForFree = isFree,
+                Price = price,
                 CreatorId = userId,
                 Organizer = organizer,
-                Status = model.Status,
-                AgeRange = model.AgeRange,
+                Status = status,
+                AgeRange = ageRange,
                 Address = address,
-                EventCategoryId = await this.categoryService.GetIdByTitleAsync(model.Category.Name),
+                EventCategoryId = await this.categoryService.GetIdByTitleAsync(category.Name),
             };
 
             return eventToCreate;

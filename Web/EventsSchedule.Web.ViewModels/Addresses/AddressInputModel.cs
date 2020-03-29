@@ -2,11 +2,11 @@
 {
     using System.ComponentModel.DataAnnotations;
 
+    using EventsSchedule.Data.Models;
+
     public class AddressInputModel
     {
-        [Required]
-        [StringLength(100, MinimumLength = 3)]
-        public string City { get; set; }
+        public City CityName { get; set; }
 
         [Required]
         [StringLength(100, MinimumLength = 3)]

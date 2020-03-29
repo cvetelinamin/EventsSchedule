@@ -1,25 +1,26 @@
 ﻿namespace EventsSchedule.Services.Data
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Text;
-    using System.Threading.Tasks;
-
+    using EventsSchedule.Data.Common.Repositories;
     using EventsSchedule.Data.Models;
-    using EventsSchedule.Web.ViewModels;
-    using EventsSchedule.Web.ViewModels.Events;
-    using EventsSchedule.Web.ViewModels.Organizers;
+    using System.Threading.Tasks;
 
     public class OrganizersService : IOrganizersService
     {
-        public Organizer CreateOrganizer(CreateEventModel model)
+        private readonly IDeletableEntityRepository<Organizer> organizerRepository;
+
+        public OrganizersService(IDeletableEntityRepository<Organizer> organizerRepository)
+        {
+            this.organizerRepository = organizerRepository;
+        }
+
+        public async Task<Organizer> CreateOrganizer(string name, string contactName, string webSite, string description)
         {
             var organizer = new Organizer
             {
-                 Name = model.Name,
-                 ContactName = model.ContactName,
-                 WebSite = model.WebSite,
-                 Description = model.OrganizerDescription,
+                 Name = name,
+                 ContactName = contactName,
+                 WebSite = webSite,
+                 Description = description,
             };
 
             return organizer;

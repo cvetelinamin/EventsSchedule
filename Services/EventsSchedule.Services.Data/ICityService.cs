@@ -1,13 +1,13 @@
 ﻿namespace EventsSchedule.Services.Data
 {
-    using System;
     using System.Collections.Generic;
-    using System.Text;
+    using System.Threading.Tasks;
 
-    using EventsSchedule.Data.Models;
 
     public interface ICityService
     {
-        City CreateCity(string name);
+        Task<IEnumerable<string>> GetAllCitiesAsync();
+
+        Task<string> GetIdByTitleAsync(string cityName);
     }
 }

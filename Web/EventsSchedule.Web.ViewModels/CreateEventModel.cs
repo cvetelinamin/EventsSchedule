@@ -2,6 +2,7 @@
 {
     using System;
     using System.ComponentModel.DataAnnotations;
+
     using EventsSchedule.Data.Models;
     using EventsSchedule.Data.Models.Enums;
 
@@ -60,8 +61,7 @@
         public string WebSite { get; set; }
 
         [Required]
-        [StringLength(100, MinimumLength = 3)]
-        public string City { get; set; }
+        public City City { get; set; }
 
         [Required]
         [StringLength(100, MinimumLength = 3)]

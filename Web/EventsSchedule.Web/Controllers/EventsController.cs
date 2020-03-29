@@ -1,8 +1,5 @@
 ﻿namespace EventsSchedule.Web.Controllers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using System.Threading.Tasks;
 
     using EventsSchedule.Data;
@@ -49,30 +46,33 @@
         [Authorize]
         public async Task<IActionResult> Create(CreateEventModel model)
         {
-            var user = this.userManager.GetUserId(this.User);
 
             if (!this.ModelState.IsValid)
             {
                 return this.View(model);
             }
 
-            var organizer = this.organizersService.CreateOrganizer(model);
-            var city = this.cityService.CreateCity(model.City);
-            var address = this.addressesService.CreateAddress(model, city, organizer);
-            var inputEvent = await this.eventsService.CreatEvent(model, user, organizer, address);
+            var user = this.userManager.GetUserId(this.User);
+            //var organizerInputModel = model.OrganizerInputModel;
+            //var addressInputModel = model.AdressInputModel;
+            //var model = model.model;
 
-            await this.dbContext.Cities.AddAsync(city);
-            await this.dbContext.Addresses.AddAsync(address);
-            await this.dbContext.Organizers.AddAsync(organizer);
+            var organizer = await this.organizersService.CreateOrganizer(model.Name, model.ContactName, model.WebSite, model.OrganizerDescription);
+
+            var address = await this.addressesService.CreateAddress(model.City, model.Street, model.Building, model.Number, model.Entrance, model.Floor, model.Apartment, model.District);
+
+            var inputEvent = await this.eventsService.CreatEvent(model.Title, model.Performer, model.DoorTime, model.EndTime, model.Duration, model.EventDescription, model.EventSchedule, model.MaximumAttendeeCapacity, model.IsAccessibleForFree, model.Price, model.Status, model.AgeRange, model.Category, user, organizer, address);
+
             await this.dbContext.Events.AddAsync(inputEvent);
 
-            //var eventUser = new UserEvent
-            //{
-            //    ApplicationUserId = user,
-            //    Event = inputEvent,
-            //};
+            var eventuser = new UserEvent
+            {
+                ApplicationUserId = user,
+                Event = inputEvent,
+            };
 
-            //await this.dbContext.UsersEvents.AddAsync(eventUser);
+            
+            await this.dbContext.UsersEvents.AddAsync(eventuser);
             await this.dbContext.SaveChangesAsync();
 
             return this.RedirectToAction("EventById", "Events", new { id = inputEvent.Id });

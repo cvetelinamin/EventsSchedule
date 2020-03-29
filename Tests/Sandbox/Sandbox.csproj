@@ -40,7 +40,6 @@
     <ProjectReference Include="..\..\Services\EventsSchedule.Services.Data\EventsSchedule.Services.Data.csproj" />
     <ProjectReference Include="..\..\Services\EventsSchedule.Services.Mapping\EventsSchedule.Services.Mapping.csproj" />
     <ProjectReference Include="..\..\Services\EventsSchedule.Services.Messaging\EventsSchedule.Services.Messaging.csproj" />
-    <ProjectReference Include="..\..\Services\EventsSchedule.Services\EventsSchedule.Services.csproj" />
   </ItemGroup>
 
 </Project>

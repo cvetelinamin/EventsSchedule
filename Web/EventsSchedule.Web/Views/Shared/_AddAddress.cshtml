@@ -1,10 +1,12 @@
 ﻿@model EventsSchedule.Web.ViewModels.CreateEventModel
 
 <div class="col-sm-4">
-    <div class="form-group">
-        <label asp-for="City"></label>
-        <input asp-for="City" class="form-control" />
-        <span asp-validation-for="City" class="text-danger"></span>
+    <div class="select form-group">
+        <label>City</label>
+        <select asp-for="City.Name" data-placeholder="Choose City" class="chosen-select-no-single form-control">
+            <vc:cities></vc:cities>
+        </select>
+        <span asp-validation-for="City.Name" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="Street"></label>
