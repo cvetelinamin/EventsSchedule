@@ -24,13 +24,16 @@
         @Model.EventCategory.Name
     </div>
     <div>
-        @Model.Description
+        @Model.NewDescription
     </div>
     <div>
         @Model.Price
     </div>
 
     <div class="nav-element">
-        <a class="about-us" asp-area="" asp-controller="Reviews" asp-action="Add" asp-route-id="@Model.Id" title="Ревюта">Ревюта</a>
+        <a class="about-us" asp-area="" asp-controller="Reviews" asp-action="Add" asp-route-id="@Model.Id" title="Оцени">Оцени</a>
+    </div>
+    <div class="nav-element">
+        <a class="about-us" asp-area="" asp-controller="Reviews" asp-action="ListLastReviews" asp-route-id="@Model.Id" title="Коментари">Коментари</a>
     </div>
 </div>

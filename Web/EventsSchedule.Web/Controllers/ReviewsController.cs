@@ -1,15 +1,13 @@
 ﻿namespace EventsSchedule.Web.Controllers
 {
-    using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+
     using EventsSchedule.Data;
     using EventsSchedule.Data.Common.Repositories;
     using EventsSchedule.Data.Models;
     using EventsSchedule.Services.Data;
     using EventsSchedule.Services.Mapping;
-    using EventsSchedule.Web.ViewModels.Events;
     using EventsSchedule.Web.ViewModels.Reviews;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
@@ -20,14 +18,16 @@
         private readonly UserManager<ApplicationUser> userManager;
         private readonly IReviewsService reviewsService;
         private readonly IDeletableEntityRepository<Event> eventRepository;
+        private readonly IDeletableEntityRepository<Review> reviewRepository;
         private readonly ApplicationDbContext dbContext;
 
-        public ReviewsController(IEventsService eventsService, UserManager<ApplicationUser> userManager, IReviewsService reviewsService, IDeletableEntityRepository<Event> eventRepository, ApplicationDbContext dbContext)
+        public ReviewsController(IEventsService eventsService, UserManager<ApplicationUser> userManager, IReviewsService reviewsService, IDeletableEntityRepository<Event> eventRepository, IDeletableEntityRepository<Review> reviewRepository, ApplicationDbContext dbContext)
         {
             this.eventsService = eventsService;
             this.userManager = userManager;
             this.reviewsService = reviewsService;
             this.eventRepository = eventRepository;
+            this.reviewRepository = reviewRepository;
             this.dbContext = dbContext;
         }
 
@@ -50,7 +50,34 @@
 
             await this.reviewsService.CreateAsync(reviewCreateInputModel.Comment, reviewCreateInputModel.Rating, user.Id, eventId);
 
-            return this.View();
+            return this.RedirectToAction("ListReviews", "Reviews", new { eventId });
+        }
+
+        public async Task<IActionResult> ListLastReviews()
+        {
+            var viewModel = new ListReviewsViewModel
+            {
+                Reviews = this.reviewRepository.AllAsNoTracking()
+                    .OrderByDescending(e => e.CreatedOn)
+                    .Take(3)
+                    .To<ReviewViewModel>()
+                    .ToList(),
+            };
+
+            return this.View(viewModel);
+        }
+
+        public async Task<IActionResult> ListAllReviews()
+        {
+            var viewModel = new ListReviewsViewModel
+            {
+                Reviews = this.reviewRepository.AllAsNoTracking()
+                          .OrderByDescending(e => e.CreatedOn)
+                          .To<ReviewViewModel>()
+                          .ToList(),
+            };
+
+            return this.View(viewModel);
         }
     }
 }

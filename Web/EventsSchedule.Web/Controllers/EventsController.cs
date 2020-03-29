@@ -71,7 +71,6 @@
                 Event = inputEvent,
             };
 
-            
             await this.dbContext.UsersEvents.AddAsync(eventuser);
             await this.dbContext.SaveChangesAsync();
 

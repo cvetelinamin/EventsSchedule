@@ -1,0 +1,7 @@
+﻿@model EventsSchedule.Web.ViewComponents.Models.CitiesViewModel
+
+<option selected disabled>Choose City</option>
+@foreach (var cityName in Model.Cities)
+{
+    <option value="@cityName">@cityName</option>
+}

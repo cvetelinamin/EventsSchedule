@@ -55,7 +55,7 @@
             {
                 var description = Regex.Replace(this.Description, @"<[^>]+>", string.Empty);
 
-                return this.Description;
+                return description;
             }
         }
 
