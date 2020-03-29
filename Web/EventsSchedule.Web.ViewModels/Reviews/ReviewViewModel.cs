@@ -14,6 +14,8 @@
 
         public string Comment { get; set; }
 
+        public string EventId { get; set; }
+
         public string EventTitle { get; set; }
 
         public void CreateMappings(IProfileExpression configuration)

@@ -53,11 +53,13 @@
             return this.RedirectToAction("ListReviews", "Reviews", new { eventId });
         }
 
-        public async Task<IActionResult> ListLastReviews()
+        [Route("Reviews/ListLastReviews/{eventId}")]
+        public async Task<IActionResult> ListLastReviews([FromRoute]string eventId)
         {
             var viewModel = new ListReviewsViewModel
             {
                 Reviews = this.reviewRepository.AllAsNoTracking()
+                    .Where(r => r.EventId == eventId)
                     .OrderByDescending(e => e.CreatedOn)
                     .Take(3)
                     .To<ReviewViewModel>()
@@ -67,11 +69,13 @@
             return this.View(viewModel);
         }
 
-        public async Task<IActionResult> ListAllReviews()
+        [Route("Reviews/ListAllReviews/{eventId}")]
+        public async Task<IActionResult> ListAllReviews([FromRoute]string eventId)
         {
             var viewModel = new ListReviewsViewModel
             {
                 Reviews = this.reviewRepository.AllAsNoTracking()
+                          .Where(r => r.EventId == eventId)
                           .OrderByDescending(e => e.CreatedOn)
                           .To<ReviewViewModel>()
                           .ToList(),
