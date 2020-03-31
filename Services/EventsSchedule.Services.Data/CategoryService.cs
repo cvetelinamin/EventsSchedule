@@ -40,21 +40,18 @@
             return result > 0;
         }
 
-        //public async Task<bool> CreateAsync(CreateCategoryModel categoryServiceModel)
-        //{
-        //    var category = categoryServiceModel.To<EventCategory>;
+        public async Task<EventCategory> CreateAsync(CreateCategoryInputModel model)
+        {
+            var category = new EventCategory
+            {
+                Name = model.Name,
+            };
 
-        //    if (string.IsNullOrEmpty(category) ||
-        //        string.IsNullOrWhiteSpace(category.Name))
-        //    {
-        //        throw new ArgumentNullException(NullOrEmptyTitleErrorMessage);
-        //    }
+            await this.categoryRepository.AddAsync(category);
+            await this.categoryRepository.SaveChangesAsync();
 
-        //    await this.categoryRepository.AddAsync(category);
-        //    var result = await this.categoryRepository.SaveChangesAsync();
-
-        //    return result > 0;
-        //}
+            return category;
+        }
 
         //public async Task<bool> DeleteByIdAsync(int id)
         //{

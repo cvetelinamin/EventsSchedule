@@ -20,6 +20,7 @@
         public City City { get; set; }
 
         [Required]
+        [StringLength(50, MinimumLength = 3)]
         public string Street { get; set; }
 
         [Required]
@@ -34,6 +35,7 @@
         public string Apartment { get; set; }
 
         [Required]
+        [StringLength(50, MinimumLength = 3)]
         public string District { get; set; }
     }
 }

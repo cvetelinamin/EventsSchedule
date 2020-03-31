@@ -21,7 +21,7 @@
         public int Rating { get; set; }
 
         [Required]
-        [MaxLength(250)]
+        [StringLength(250, MinimumLength = 5)]
         public string Comment { get; set; }
 
         [Required]

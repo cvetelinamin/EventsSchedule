@@ -9,8 +9,6 @@
 <form asp-action="Add" id="add-review" class="add-comment">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <fieldset>
-        @*<input asp-for="EventId" type="hidden" value="@Model.EventId">*@
-        @*<input asp-for="EventId.Title" type="hidden" value="@Model.Recipe.Title">*@
         <div class="form-group">
             <label asp-for="Rating">Rating:</label>
             <input asp-for="Rating" class="form-control" />

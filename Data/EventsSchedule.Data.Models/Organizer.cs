@@ -16,15 +16,15 @@
         }
 
         [Required]
-        [MaxLength(50)]
+        [StringLength(50, MinimumLength = 5)]
         public string Name { get; set; }
 
         [Required]
-        [MaxLength(100)]
+        [StringLength(100, MinimumLength = 5)]
         public string ContactName { get; set; }
 
         [Required]
-        [MaxLength(1000)]
+        [StringLength(1000, MinimumLength = 5)]
         public string Description { get; set; }
 
         public string WebSite { get; set; }

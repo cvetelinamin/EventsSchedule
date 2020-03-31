@@ -1,9 +1,7 @@
 ﻿namespace EventsSchedule.Web.ViewModels.Reviews
 {
     using System;
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using System.Text;
 
     using EventsSchedule.Data.Models;
     using EventsSchedule.Services.Mapping;

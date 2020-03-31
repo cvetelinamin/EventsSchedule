@@ -7,7 +7,7 @@
     using EventsSchedule.Data.Models;
     using EventsSchedule.Services.Mapping;
 
-    public class CreateCategoryModel : IMapTo<EventCategory>, IMapFrom<EventCategory>
+    public class CreateCategoryInputModel : IMapTo<EventCategory>, IMapFrom<EventCategory>
     {
         public string Name { get; set; }
     }

@@ -23,28 +23,44 @@
                 </div>
                 <div class="panel-body">
                     <ul class="media-list">
-                        @foreach (var review in Model.Reviews)
+                        @if (Model.Reviews.Count == 0)
                         {
-                            <li class="media">
-                                <div class="media-left">
-                                    <img src="http://placehold.it/60x60" class="img-circle">
-                                </div>
-                                <div class="media-body">
-                                    <h4 class="media-heading">
-                                        @review.Username
-                                        <br>
-                                        <small>
-                                            commented on <a href="#">@review.EventTitle</a>
-                                        </small>
-                                    </h4>
+                            <div class="single-review">
+                                <div class="review-body">
                                     <p>
-                                        @review.Comment
+                                        Няма ревюта.
                                     </p>
                                 </div>
-                            </li>
+                            </div>
+                        }
+                        else
+                        {
+                            @foreach (var review in Model.Reviews)
+                            {
+                                <li class="media">
+                                    <div class="media-left">
+                                        <img src="http://placehold.it/60x60" class="img-circle">
+                                    </div>
+                                    <div class="media-body">
+                                        <h4 class="media-heading">
+                                            @review.Username
+                                            <br>
+                                            <small>
+                                                commented on <a href="#">@review.EventTitle</a>
+                                            </small>
+                                        </h4>
+                                        <p>
+                                            @review.Comment
+                                        </p>
+                                    </div>
+                                </li>
+                            }
                         }
                     </ul>
-                    <a asp-controller="Reviews" asp-action="ListAllReviews" class="btn btn-default btn-block">Всички коментари »</a>
+                    @if(Model.Reviews.Count > 0)
+                    {
+                        <a asp-controller="Reviews" asp-action="ListAllReviews" class="btn btn-default btn-block">Всички коментари »</a>
+                    }
                 </div>
             </div>
             <!-- End fluid width widget -->

@@ -18,11 +18,13 @@
         }
 
         [Required]
-        [MaxLength(100)]
+        [StringLength(100, MinimumLength = 3)]
+
         public string Title { get; set; }
 
         [Required]
-        [MaxLength(100)]
+        [StringLength(100, MinimumLength = 3)]
+
         public string Performer { get; set; }
 
         [Required]
@@ -44,7 +46,8 @@
         public DateTime EndTime { get; set; }
 
         [Required]
-        [MaxLength(1000)]
+        [StringLength(1000, MinimumLength = 3)]
+
         public string EventSchedule { get; set; }
 
         public EventStatusType Status { get; set; }
@@ -61,7 +64,8 @@
         public decimal Price { get; set; }
 
         [Required]
-        [MaxLength(1500)]
+        [StringLength(1500, MinimumLength = 3)]
+
         public string Description { get; set; }
 
         public string CreatorId { get; set; }
