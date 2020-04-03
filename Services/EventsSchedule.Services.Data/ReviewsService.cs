@@ -1,12 +1,9 @@
 ﻿namespace EventsSchedule.Services.Data
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Text;
     using System.Threading.Tasks;
+
     using EventsSchedule.Data.Common.Repositories;
     using EventsSchedule.Data.Models;
-    using EventsSchedule.Web.ViewModels.Reviews;
 
     public class ReviewsService : IReviewsService
     {

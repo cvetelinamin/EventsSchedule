@@ -8,6 +8,7 @@
     using EventsSchedule.Data.Models;
     using EventsSchedule.Data.Models.Enums;
     using EventsSchedule.Services.Mapping;
+    using EventsSchedule.Web.ViewModels.Reviews;
 
     public class EventViewModel : IMapFrom<Event>, IMapTo<Event>
     {
@@ -58,6 +59,8 @@
                 return description;
             }
         }
+
+        public IEnumerable<EventReviewViewModel> Reviews { get; set; }
 
         public void CreateMappings(IProfileExpression configuration)
         {

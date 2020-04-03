@@ -38,8 +38,7 @@
         }
 
         [HttpPost]
-        [Route("Reviews/Add/{eventId}")]
-        public async Task<IActionResult> Add(ReviewCreateInputModel reviewCreateInputModel, [FromRoute] string eventId)
+        public async Task<IActionResult> Add(ReviewCreateInputModel reviewCreateInputModel)
         {
             if (!this.ModelState.IsValid)
             {
@@ -48,9 +47,9 @@
 
             var user = await this.userManager.GetUserAsync(this.User);
 
-            await this.reviewsService.CreateAsync(reviewCreateInputModel.Comment, reviewCreateInputModel.Rating, user.Id, eventId);
+            await this.reviewsService.CreateAsync(reviewCreateInputModel.Comment, reviewCreateInputModel.Rating, user.Id, reviewCreateInputModel.EventId);
 
-            return this.RedirectToAction("ListReviews", "Reviews", new { eventId });
+            return this.RedirectToAction("EventById", "Events", new { reviewCreateInputModel.EventId });
         }
 
         [Route("Reviews/ListLastReviews/{eventId}")]
@@ -62,7 +61,7 @@
                     .Where(r => r.EventId == eventId)
                     .OrderByDescending(e => e.CreatedOn)
                     .Take(3)
-                    .To<ReviewViewModel>()
+                    .To<EventReviewViewModel>()
                     .ToList(),
             };
 
@@ -77,7 +76,7 @@
                 Reviews = this.reviewRepository.AllAsNoTracking()
                           .Where(r => r.EventId == eventId)
                           .OrderByDescending(e => e.CreatedOn)
-                          .To<ReviewViewModel>()
+                          .To<EventReviewViewModel>()
                           .ToList(),
             };
 

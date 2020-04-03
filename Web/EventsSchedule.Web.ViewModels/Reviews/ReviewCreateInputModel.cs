@@ -14,5 +14,7 @@
         [Required]
         [MaxLength(250)]
         public string Comment { get; set; }
+
+        public string EventId { get; set; }
     }
 }
