@@ -1,7 +1,32 @@
-﻿
+﻿@model EventsSchedule.Web.ViewModels.Reviews.ListReviewsViewModel
 @{
     ViewData["Title"] = "ListAllReviews";
 }
 
-<h1>ListAllReviews</h1>
+<h1>Всички коментари</h1>
 
+@foreach (var review in this.Model.Reviews.OrderByDescending(r => r.CreatedOn))
+{
+    <div class="row">
+        <div class="col-12 m-2">
+            <div class="card card-white post p-3">
+                <div class="post-heading">
+                    <div class="float-left image m-3">
+                        <img src="http://bootdey.com/img/Content/user_1.jpg" class="img-circle avatar" alt="user profile image">
+                    </div>
+                    <div>
+                        <div>
+                            @review.ApplicationUserUserName
+                        </div>
+                        <time class="text-muted" datetime="@review.CreatedOn.ToString("O")"></time>
+                    </div>
+                    <div>
+                        <div class="post-description m-3">
+                            <p>@Html.Raw(review.SanitizedComment)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

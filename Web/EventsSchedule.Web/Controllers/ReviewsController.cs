@@ -4,8 +4,7 @@
     using System.Threading.Tasks;
 
     using EventsSchedule.Data;
-    using EventsSchedule.Data.Common.Repositories;
-    using EventsSchedule.Data.Models;
+    using EventsSchedule.Data.Models;b
     using EventsSchedule.Services.Data;
     using EventsSchedule.Services.Mapping;
     using EventsSchedule.Web.ViewModels.Reviews;
@@ -17,17 +16,13 @@
         private readonly IEventsService eventsService;
         private readonly UserManager<ApplicationUser> userManager;
         private readonly IReviewsService reviewsService;
-        private readonly IDeletableEntityRepository<Event> eventRepository;
-        private readonly IDeletableEntityRepository<Review> reviewRepository;
         private readonly ApplicationDbContext dbContext;
 
-        public ReviewsController(IEventsService eventsService, UserManager<ApplicationUser> userManager, IReviewsService reviewsService, IDeletableEntityRepository<Event> eventRepository, IDeletableEntityRepository<Review> reviewRepository, ApplicationDbContext dbContext)
+        public ReviewsController(IEventsService eventsService, UserManager<ApplicationUser> userManager, IReviewsService reviewsService, ApplicationDbContext dbContext)
         {
             this.eventsService = eventsService;
             this.userManager = userManager;
             this.reviewsService = reviewsService;
-            this.eventRepository = eventRepository;
-            this.reviewRepository = reviewRepository;
             this.dbContext = dbContext;
         }
 
@@ -38,6 +33,7 @@
         }
 
         [HttpPost]
+        [Route("Reviews/Add/{eventId}")]
         public async Task<IActionResult> Add(ReviewCreateInputModel reviewCreateInputModel)
         {
             if (!this.ModelState.IsValid)
@@ -52,28 +48,12 @@
             return this.RedirectToAction("EventById", "Events", new { reviewCreateInputModel.EventId });
         }
 
-        [Route("Reviews/ListLastReviews/{eventId}")]
-        public async Task<IActionResult> ListLastReviews([FromRoute]string eventId)
-        {
-            var viewModel = new ListReviewsViewModel
-            {
-                Reviews = this.reviewRepository.AllAsNoTracking()
-                    .Where(r => r.EventId == eventId)
-                    .OrderByDescending(e => e.CreatedOn)
-                    .Take(3)
-                    .To<EventReviewViewModel>()
-                    .ToList(),
-            };
-
-            return this.View(viewModel);
-        }
-
         [Route("Reviews/ListAllReviews/{eventId}")]
         public async Task<IActionResult> ListAllReviews([FromRoute]string eventId)
         {
             var viewModel = new ListReviewsViewModel
             {
-                Reviews = this.reviewRepository.AllAsNoTracking()
+                Reviews = this.dbContext.Reviews
                           .Where(r => r.EventId == eventId)
                           .OrderByDescending(e => e.CreatedOn)
                           .To<EventReviewViewModel>()
