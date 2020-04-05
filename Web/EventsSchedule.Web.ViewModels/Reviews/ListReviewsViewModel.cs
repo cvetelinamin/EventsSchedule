@@ -4,6 +4,12 @@
 
     public class ListReviewsViewModel
     {
-        public ICollection<EventReviewViewModel> Reviews { get; set; }
+        public IEnumerable<EventReviewViewModel> EventReviews { get; set; }
+
+        public int PagesCount { get; set; }
+
+        public int CurrentPage { get; set; }
+
+        public string EventId { get; set; }
     }
 }

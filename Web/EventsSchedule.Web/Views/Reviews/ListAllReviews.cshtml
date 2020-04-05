@@ -5,7 +5,7 @@
 
 <h1>Всички коментари</h1>
 
-@foreach (var review in this.Model.Reviews.OrderByDescending(r => r.CreatedOn))
+@foreach (var review in this.Model.EventReviews.OrderByDescending(r => r.CreatedOn))
 {
     <div class="row">
         <div class="col-12 m-2">
@@ -30,3 +30,43 @@
         </div>
     </div>
 }
+
+<nav aria-label="...">
+    <ul class="pagination justify-content-center">
+        @if (this.Model.CurrentPage == 1)
+        {
+            <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1">Previous</a>
+            </li>
+        }
+        else
+        {
+            <li class="page-item">
+                <a class="page-link" asp-controller="Reviews" asp-action="ListAllReviews" asp-route-eventId="@this.Model.EventId" asp-route-page="@(this.Model.CurrentPage - 1)" tabindex="-1">Previous</a>
+            </li>
+        }
+
+        @for (int i = 1; i <= this.Model.PagesCount; i++)
+        {
+            var active = i == this.Model.CurrentPage ? "active" : string.Empty;
+
+            <li class="page-item @active">
+                <a class="page-link" asp-controller="Reviews" asp-action="ListAllReviews" asp-route-eventId="@this.Model.EventId" asp-route-page="@i">@i</a>
+            </li>
+        }
+
+        @if (this.Model.CurrentPage == this.Model.PagesCount)
+        {
+            <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1">Next</a>
+            </li>
+        }
+        else
+        {
+            <li class="page-item">
+                <a class="page-link" asp-controller="Reviews" asp-action="ListAllReviews" asp-route-eventId="@this.Model.EventId" asp-route-page="@(this.Model.CurrentPage + 1)" tabindex="-1">Next</a>
+            </li>
+        }
+
+    </ul>
+</nav>

@@ -100,6 +100,7 @@
             this.ExternalLogins = (await this._signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (this.ModelState.IsValid)
             {
+                var isRoot = !_userManager.Users.Any();
                 var user = new ApplicationUser { UserName = this.Input.Email, Email = this.Input.Email,
                                                         FirstName = this.Input.FirstName,
                                                         LastName = this.Input.LastName,
@@ -111,6 +112,15 @@
                 if (result.Succeeded)
                 {
                     this._logger.LogInformation("User created a new account with password.");
+
+                    if (isRoot)
+                    {
+                        await _userManager.AddToRoleAsync(user, "Administrator");
+                    }
+                    else
+                    {
+                        await _userManager.AddToRoleAsync(user, "User");
+                    }
 
                     var code = await this._userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));

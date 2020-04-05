@@ -1,10 +1,11 @@
 ﻿namespace EventsSchedule.Web.Controllers
 {
+    using System;
     using System.Linq;
     using System.Threading.Tasks;
 
     using EventsSchedule.Data;
-    using EventsSchedule.Data.Models;b
+    using EventsSchedule.Data.Models;
     using EventsSchedule.Services.Data;
     using EventsSchedule.Services.Mapping;
     using EventsSchedule.Web.ViewModels.Reviews;
@@ -13,6 +14,8 @@
 
     public class ReviewsController : Controller
     {
+        private const int ItemsPerPage = 3;
+
         private readonly IEventsService eventsService;
         private readonly UserManager<ApplicationUser> userManager;
         private readonly IReviewsService reviewsService;
@@ -48,16 +51,17 @@
             return this.RedirectToAction("EventById", "Events", new { reviewCreateInputModel.EventId });
         }
 
-        [Route("Reviews/ListAllReviews/{eventId}")]
-        public async Task<IActionResult> ListAllReviews([FromRoute]string eventId)
+        [Route("Reviews/ListAllReviews/{eventId}/{page}")]
+        public async Task<IActionResult> ListAllReviews([FromRoute]string eventId, int page = 1)
         {
+            var count = this.reviewsService.GetCountByEventId(eventId);
+
             var viewModel = new ListReviewsViewModel
             {
-                Reviews = this.dbContext.Reviews
-                          .Where(r => r.EventId == eventId)
-                          .OrderByDescending(e => e.CreatedOn)
-                          .To<EventReviewViewModel>()
-                          .ToList(),
+                EventReviews = this.reviewsService.GetEventReviews<EventReviewViewModel>(eventId, ItemsPerPage, (page - 1) * ItemsPerPage),
+                PagesCount = (int)Math.Ceiling((double)count / ItemsPerPage),
+                CurrentPage = page,
+                EventId = eventId,
             };
 
             return this.View(viewModel);
