@@ -1,4 +1,4 @@
-﻿@model EventsSchedule.Web.ViewModels.Blogs.BlogInputModel
+﻿@model EventsSchedule.Web.ViewModels.News.NewsInputModel
 
 @{
     ViewData["Title"] = "Create";
@@ -16,7 +16,7 @@
     });
 </script>
 
-<form asp-action="Create" asp-controller="Blogs">
+<form method="post" asp-area="Administration" asp-controller="News" asp-action="Create">
     <div class="form-group">
         <label asp-for="Title"></label>
         <input asp-for="Title" class="form-control" />

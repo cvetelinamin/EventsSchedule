@@ -1,8 +1,8 @@
-﻿namespace EventsSchedule.Web.ViewModels.Blogs
+﻿namespace EventsSchedule.Web.ViewModels.News
 {
     using System.ComponentModel.DataAnnotations;
 
-    public class BlogInputModel
+    public class NewsInputModel
     {
         [Required]
         [StringLength(150, MinimumLength = 5)]

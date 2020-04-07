@@ -21,10 +21,10 @@
         private readonly IOrganizersService organizersService;
         private readonly IAddressesService addressesService;
         private readonly ICityService cityService;
-        private readonly ICategoryService categoryService;
+        private readonly ICategoriesService categoryService;
         private readonly IDeletableEntityRepository<Event> eventRepository;
 
-        public EventsController(ApplicationDbContext dbContext, UserManager<ApplicationUser> userManager, IEventsService eventsService, IOrganizersService organizersService, IAddressesService addressesService, ICityService cityService, ICategoryService categoryService, IDeletableEntityRepository<Event> eventRepository)
+        public EventsController(ApplicationDbContext dbContext, UserManager<ApplicationUser> userManager, IEventsService eventsService, IOrganizersService organizersService, IAddressesService addressesService, ICityService cityService, ICategoriesService categoryService, IDeletableEntityRepository<Event> eventRepository)
         {
             this.dbContext = dbContext;
             this.userManager = userManager;

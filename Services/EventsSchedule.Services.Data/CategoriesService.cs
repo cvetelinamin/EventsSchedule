@@ -12,13 +12,13 @@
     using EventsSchedule.Web.ViewModels.Categories;
     using Microsoft.EntityFrameworkCore;
 
-    public class CategoryService : ICategoryService
+    public class CategoriesService : ICategoriesService
     {
         private const string InvalidCategoryTitleErrorMessage = "Category with Title: {0} does not exist.";
 
         private readonly IDeletableEntityRepository<EventCategory> categoryRepository;
 
-        public CategoryService(IDeletableEntityRepository<EventCategory> categoryRepository)
+        public CategoriesService(IDeletableEntityRepository<EventCategory> categoryRepository)
         {
             this.categoryRepository = categoryRepository;
         }
@@ -40,11 +40,11 @@
             return result > 0;
         }
 
-        public async Task<EventCategory> CreateAsync(CreateCategoryInputModel model)
+        public async Task<EventCategory> CreateAsync(string name)
         {
             var category = new EventCategory
             {
-                Name = model.Name,
+                Name = name,
             };
 
             await this.categoryRepository.AddAsync(category);

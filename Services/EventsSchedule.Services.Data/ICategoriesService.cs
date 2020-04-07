@@ -4,9 +4,8 @@
     using System.Threading.Tasks;
 
     using EventsSchedule.Data.Models;
-    using EventsSchedule.Web.ViewModels.Categories;
 
-    public interface ICategoryService
+    public interface ICategoriesService
     {
         Task<bool> CreateAllAsync(string[] titles);
 
@@ -14,7 +13,7 @@
 
         // Task<CreateCategoryModel> GetByIdAsync(int id);
 
-        Task<EventCategory> CreateAsync(CreateCategoryInputModel model);
+        Task<EventCategory> CreateAsync(string name);
 
        // Task<bool> EditAsync(CreateCategoryModel categoryServiceModel);
 

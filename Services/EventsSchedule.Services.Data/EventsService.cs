@@ -12,10 +12,10 @@
 
     public class EventsService : IEventsService
     {
-        private readonly ICategoryService categoryService;
+        private readonly ICategoriesService categoryService;
         private readonly IDeletableEntityRepository<Event> eventsRepository;
 
-        public EventsService(ICategoryService categoryService, IDeletableEntityRepository<Event> eventsRepository)
+        public EventsService(ICategoriesService categoryService, IDeletableEntityRepository<Event> eventsRepository)
         {
             this.categoryService = categoryService;
             this.eventsRepository = eventsRepository;

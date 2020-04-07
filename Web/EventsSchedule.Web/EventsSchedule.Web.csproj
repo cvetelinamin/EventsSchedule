@@ -26,6 +26,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.1">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -48,5 +49,9 @@
     <ProjectReference Include="..\..\Services\EventsSchedule.Services.Messaging\EventsSchedule.Services.Messaging.csproj" />
     <ProjectReference Include="..\EventsSchedule.Web.Infrastructure\EventsSchedule.Web.Infrastructure.csproj" />
     <ProjectReference Include="..\EventsSchedule.Web.ViewModels\EventsSchedule.Web.ViewModels.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\lib\moment\min\" />
   </ItemGroup>
 </Project>

@@ -12,9 +12,9 @@
     [ViewComponent(Name = "Categories")]
     public class CategoriesViewComponent : ViewComponent
     {
-        private readonly ICategoryService categoryService;
+        private readonly ICategoriesService categoryService;
 
-        public CategoriesViewComponent(ICategoryService categoryService)
+        public CategoriesViewComponent(ICategoriesService categoryService)
         {
             this.categoryService = categoryService;
         }
