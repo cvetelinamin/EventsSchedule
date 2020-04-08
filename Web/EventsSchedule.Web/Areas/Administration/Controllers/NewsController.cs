@@ -48,9 +48,9 @@
         }
 
         [HttpGet("/Administration/News/Edit")]
-        public async Task<IActionResult> Edit(string id)
+        public async Task<IActionResult> Edit(string newsId)
         {
-            var newsViewModel = this.newsService.GetById<NewsEditViewModel>(id);
+            var newsViewModel = this.newsService.GetById<NewsEditViewModel>(newsId);
 
             if (newsViewModel == null)
             {
@@ -77,16 +77,18 @@
             this.newsRepository.Update(newsToEdit);
             await this.newsRepository.SaveChangesAsync();
 
-            return this.RedirectToAction("NewsDetails", "News", new { newsToEdit.Id });
+            var newsId = newsToEdit.Id;
+
+            return this.RedirectToAction("NewsDetails", "News", new { newsId, Area = "User" });
         }
 
-        public async Task<IActionResult> Delete(string id)
+        public async Task<IActionResult> Delete(string newsId)
         {
-            var news = this.newsRepository.All().FirstOrDefault(x => x.Id == id);
+            var news = this.newsRepository.All().FirstOrDefault(x => x.Id == newsId);
             this.newsRepository.Delete(news);
             await this.newsRepository.SaveChangesAsync();
 
-            return this.RedirectToAction("AllNews", "News");
+            return this.RedirectToAction("GetAll", "News", new { Area = "User" });
         }
     }
 }

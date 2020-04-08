@@ -11,7 +11,7 @@
 
     public class NewsController : Controller
     {
-        private const int ItemsPerPage = 5;
+        private const int ItemsPerPage = 1;
 
         private readonly INewsService newsService;
 

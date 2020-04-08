@@ -3,20 +3,69 @@
     ViewData["Title"] = "GetAll";
 }
 
+@if (this.User.IsInRole("Administrator"))
+{
+    <div class="btn btn-primary text-white mb-2">
+        <a class="about-us" asp-area="Administration" asp-controller="News" asp-action="Create" title="Създай статия">Създай свето събитие</a>
+    </div>
+
+}
+
 @foreach (var news in this.Model.News)
 {
-    <div class="card bg-dark text-white">
+    <div class="card bg-dark text-white" style="height: 40vh; margin-bottom: 2em;">
         <input type="hidden" name="Id" value="@news.Id" />
         <img class="card-img" src="..." alt="Card image">
         <div class="card-img-overlay">
-            <h5 class="card-title">@news.Title</h5>
-            <p class="card-text">@news.ShortContent</p>
-            <time class="card-text" datetime="@news.CreatedOn.ToString("O")"></time>
+            <h3 class="card-title text-white">@news.Title</h3>
+            <p class="card-text">@Html.Raw(news.ShortContent)</p>
+            <div class="float-right">
+                <time class="card-text" datetime="@news.CreatedOn.ToString("O")"></time>
+            </div>
         </div>
 
-
-        <div class="px-4 pt-3">
-            <a asp-controller="News" asp-action="NewsDetails" asp-route-eventId="@news.Id" class="btn btn-primary">Виж повече »</a>
+        <div class="pt-3" style="position: absolute; bottom: 2em; right: 2em;">
+            <a asp-controller="News" asp-action="NewsDetails" asp-route-newsId="@news.Id" class="btn btn-primary">Виж повече »</a>
         </div>
     </div>
 }
+
+
+<nav style="margin-bottom = 2em;" aria-label="...">
+    <ul class="pagination justify-content-center">
+        @if (this.Model.CurrentPage == 1)
+        {
+            <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1">Previous</a>
+            </li>
+        }
+        else
+        {
+            <li class="page-item">
+                <a class="page-link" asp-controller="News" asp-action="GetAll" asp-route-page="@(this.Model.CurrentPage - 1)" tabindex="-1">Previous</a>
+            </li>
+        }
+
+        @for (int i = 1; i <= this.Model.PagesCount; i++)
+        {
+            var active = i == this.Model.CurrentPage ? "active" : string.Empty;
+
+            <li class="page-item @active">
+                <a class="page-link" asp-controller="News" asp-action="GetAll" asp-route-page="@i">@i</a>
+            </li>
+        }
+
+        @if (this.Model.CurrentPage == this.Model.PagesCount)
+        {
+            <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1">Next</a>
+            </li>
+        }
+        else
+        {
+            <li class="page-item">
+                <a class="page-link" asp-controller="News" asp-action="GetAll" asp-route-page="@(this.Model.CurrentPage + 1)" tabindex="-1">Next</a>
+            </li>
+        }
+    </ul>
+</nav>

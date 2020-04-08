@@ -2,7 +2,10 @@
 {
     using System;
 
-    public class NewsShortViewModel
+    using EventsSchedule.Data.Models;
+    using EventsSchedule.Services.Mapping;
+
+    public class NewsShortViewModel : IMapTo<Blog>, IMapFrom<Blog>
     {
         public string Id { get; set; }
 

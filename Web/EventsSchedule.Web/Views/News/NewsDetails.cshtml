@@ -13,15 +13,15 @@
     <div>
         @Html.Raw(Model.SanitizedContent)
     </div>
-    <div>
+    <div class="w-100" style="text-align: right;">
         <time class="text-muted" datetime="@Model.CreatedOn.ToString("O")"></time>
     </div>
 
     @if (this.User.IsInRole("Administrator"))
     {
         <div class="px-4 pt-3">
-            <a asp-controller="News" asp-action="Edit" asp-route-eventId="@Model.Id" class="btn btn-primary">Промени</a>
-            <a asp-controller="News" asp-action="Delete" asp-route-eventId="@Model.Id" class="btn btn-primary">Изтрий</a>
+            <a asp-area="Administration" asp-controller="News" asp-action="Edit" asp-route-newsId="@Model.Id" class="btn btn-primary">Промени</a>
+            <a asp-area="Administration" asp-controller="News" asp-action="Delete" asp-route-newsId="@Model.Id" class="btn btn-primary">Изтрий</a>
         </div>
     }
 </div>
