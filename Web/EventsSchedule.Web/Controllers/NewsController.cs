@@ -1,8 +1,6 @@
 ﻿namespace EventsSchedule.Web.Controllers
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using System.Threading.Tasks;
 
     using EventsSchedule.Services.Data;
@@ -11,7 +9,7 @@
 
     public class NewsController : Controller
     {
-        private const int ItemsPerPage = 1;
+        private const int ItemsPerPage = 5;
 
         private readonly INewsService newsService;
 

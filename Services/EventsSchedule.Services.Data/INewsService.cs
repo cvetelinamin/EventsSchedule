@@ -5,7 +5,7 @@
 
     public interface INewsService
     {
-        Task<string> CreateAsync(string title, string content, string userId);
+        Task<string> CreateAsync(string title, string content, string imageUrl, string userId);
 
         T GetById<T>(string id);
 

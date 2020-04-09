@@ -18,13 +18,14 @@
             this.newsRepository = newsRepository;
         }
 
-        public async Task<string> CreateAsync(string title, string content, string userId)
+        public async Task<string> CreateAsync(string title, string content, string imageUrl, string userId)
         {
             var blog = new Blog
             {
                 ApplicationUserId = userId,
                 Title = title,
                 Content = content,
+                Image = imageUrl,
             };
 
             await this.newsRepository.AddAsync(blog);

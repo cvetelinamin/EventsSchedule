@@ -17,13 +17,15 @@
         private readonly UserManager<ApplicationUser> userManager;
         private readonly INewsService newsService;
         private readonly IDeletableEntityRepository<Blog> newsRepository;
+        private readonly ICloudinaryService cloudinaryService;
 
-        public NewsController(ApplicationDbContext dbContext, UserManager<ApplicationUser> userManager, INewsService newsService, IDeletableEntityRepository<Blog> newsRepository)
+        public NewsController(ApplicationDbContext dbContext, UserManager<ApplicationUser> userManager, INewsService newsService, IDeletableEntityRepository<Blog> newsRepository, ICloudinaryService cloudinaryService)
         {
             this.dbContext = dbContext;
             this.userManager = userManager;
             this.newsService = newsService;
             this.newsRepository = newsRepository;
+            this.cloudinaryService = cloudinaryService;
         }
 
         [HttpGet("/Administration/News/Create")]
@@ -42,9 +44,11 @@
 
             var user = await this.userManager.GetUserAsync(this.User);
 
-            var newsId = await this.newsService.CreateAsync(model.Title, model.Content, user.Id);
+            string pictureUrl = this.cloudinaryService.UploadPicture(model.Image, model.Title);
 
-            return this.RedirectToAction( "NewsDetails", "News", new { newsId, Area = "User"});
+            var newsId = await this.newsService.CreateAsync(model.Title, model.Content, pictureUrl, user.Id);
+
+            return this.RedirectToAction("NewsDetails", "News", new { newsId, Area = "User" });
         }
 
         [HttpGet("/Administration/News/Edit")]

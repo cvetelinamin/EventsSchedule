@@ -20,6 +20,8 @@
         [StringLength(5000, MinimumLength = 5)]
         public string Content { get; set; }
 
+        public string Image { get; set; }
+
         [Required]
         public string ApplicationUserId { get; set; }
 

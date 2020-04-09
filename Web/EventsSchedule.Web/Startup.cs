@@ -1,7 +1,7 @@
 ﻿namespace EventsSchedule.Web
 {
     using System.Reflection;
-
+    using CloudinaryDotNet;
     using EventsSchedule.Data;
     using EventsSchedule.Data.Common;
     using EventsSchedule.Data.Common.Repositories;
@@ -51,12 +51,22 @@
 
             services.AddSingleton(this.configuration);
 
+            Account cloudinaryCredentials = new Account(
+                                            this.configuration["Cloudinary:CloudName"],
+                                            this.configuration["Cloudinary:ApiKey"],
+                                            this.configuration["Cloudinary:ApiSecret"]);
+
+            Cloudinary cloudinaryUtility = new Cloudinary(cloudinaryCredentials);
+
+            services.AddSingleton(cloudinaryUtility);
+
             // Data repositories
             services.AddScoped(typeof(IDeletableEntityRepository<>), typeof(EfDeletableEntityRepository<>));
             services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
             services.AddScoped<IDbQueryRunner, DbQueryRunner>();
 
             // Application services
+            services.AddTransient<ICloudinaryService, CloudinaryService>();
             services.AddTransient<IEmailSender, NullMessageSender>();
             services.AddTransient<ISettingsService, SettingsService>();
             services.AddTransient<IEventsService, EventsService>();
