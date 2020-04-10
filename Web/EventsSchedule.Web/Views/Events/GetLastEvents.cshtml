@@ -32,12 +32,12 @@
                     </div>
                     <div class="timeline-panel">
                         <div class="timeline-heading">
-                            <a asp-controller="Events" asp-action="EventById" asp-route-id="@eventToDisplay.Id">
+                            <a asp-controller="Events" asp-action="EventById" asp-route-eventId="@eventToDisplay.Id">
                                 <h4>@eventToDisplay.Title</h4>
                             </a>
                         </div>
                         <div class="timeline-body">
-                            <div class="timeline-desc col-md-6">@eventToDisplay.ShortDescription</div>
+                            <div class="timeline-desc col-md-6">@Html.Raw(eventToDisplay.ShortDescription)</div>
                             <p class="timeline-other col-md-6">
                                 <em class="timeline-item">
                                     Category : @eventToDisplay.EventCategory.Name

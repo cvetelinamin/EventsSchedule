@@ -28,7 +28,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-lg navbar-light bg-info border-bottom box-shadow mb-1">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Events Schedule</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -60,7 +60,7 @@
                         </li>
                         <li>
                             <div class="nav-element">
-                                <a class="about-us" asp-area="" asp-controller="Home" asp-action="Contacts" title="Контакти">Контакти</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Contacts" title="Контакти">Контакти</a>
                             </div>
                         </li>
                     </ul>
@@ -74,7 +74,7 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="border-top footer bg-info" style="margin-top:auto;">
         <div class="container">
             &copy; 2020 - EventsForAll - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>

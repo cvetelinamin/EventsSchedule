@@ -19,5 +19,7 @@
         public string ApplicationUserUserName { get; set; }
 
         public DateTime CreatedOn { get; set; }
+
+        public string Image { get; set; }
     }
 }

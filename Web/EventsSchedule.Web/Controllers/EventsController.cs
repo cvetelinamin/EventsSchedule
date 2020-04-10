@@ -1,11 +1,13 @@
 ﻿namespace EventsSchedule.Web.Controllers
 {
+    using System.Linq;
     using System.Threading.Tasks;
 
     using EventsSchedule.Data;
     using EventsSchedule.Data.Common.Repositories;
     using EventsSchedule.Data.Models;
     using EventsSchedule.Services.Data;
+    using EventsSchedule.Services.Mapping;
     using EventsSchedule.Web.ViewModels;
     using EventsSchedule.Web.ViewModels.Events;
     using Microsoft.AspNetCore.Authorization;
@@ -46,7 +48,6 @@
         [Authorize]
         public async Task<IActionResult> Create(CreateEventModel model)
         {
-
             if (!this.ModelState.IsValid)
             {
                 return this.View(model);
@@ -59,7 +60,7 @@
 
             var organizer = await this.organizersService.CreateOrganizer(model.Name, model.ContactName, model.WebSite, model.OrganizerDescription);
 
-            var address = await this.addressesService.CreateAddress(model.City, model.Street, model.Building, model.Number, model.Entrance, model.Floor, model.Apartment, model.District);
+            var address = await this.addressesService.CreateAddress(model.City, model.Street, model.AdditionalInformation);
 
             var inputEvent = await this.eventsService.CreatEvent(model.Title, model.Performer, model.DoorTime, model.EndTime, model.Duration, model.EventDescription, model.EventSchedule, model.MaximumAttendeeCapacity, model.IsAccessibleForFree, model.Price, model.Status, model.AgeRange, model.Category, user, organizer, address);
 
@@ -77,15 +78,30 @@
             return this.RedirectToAction("EventById", "Events", new { id = inputEvent.Id });
         }
 
-        public IActionResult EventById(string id)
+        public IActionResult EventById(string eventId)
         {
-            var eventViewModel = this.eventsService.GetById<EventViewModel>(id);
+            var eventViewModel = this.eventsService.GetById<EventViewModel>(eventId);
             if (eventViewModel == null)
             {
                 return this.NotFound();
             }
 
             return this.View(eventViewModel);
+        }
+
+        [Authorize]
+        public async Task<IActionResult> GetLastEvents()
+        {
+            var viewModel = new ListTopEvents
+            {
+                TopEvents = this.eventRepository.AllAsNoTracking()
+                                .OrderByDescending(e => e.CreatedOn)
+                                .Take(6)
+                                .To<TopEventViewModel>()
+                .ToList(),
+            };
+
+            return this.View(viewModel);
         }
     }
 }

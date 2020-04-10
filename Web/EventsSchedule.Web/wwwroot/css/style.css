@@ -276,6 +276,7 @@ header{
   position: relative;
   height: 750px;
   overflow: hidden;
+  margin-bottom: 7em;
 }
 
 .header-bg:before {
@@ -718,12 +719,12 @@ p.name-member {
     height: 172px;
   }
  .timeline {
-  top: 35px;
+  top: 15px;
   list-style: none;
   padding: 10px 0;
   position: relative;
-  margin-bottom: -32px;
   font-weight: 300;
+  width: 100%;
 }
 
 .timeline > li {

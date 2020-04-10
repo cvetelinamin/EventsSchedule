@@ -6,9 +6,10 @@
 }
 
 <h1>Add</h1>
-<form asp-action="Add" id="add-review" class="add-comment">
+<form asp-controller="Reviews" asp-action="Add" id="add-review" class="add-comment">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <fieldset>
+        <input type="hidden" name="eventId" value="@Model.EventId" />
         <div class="form-group">
             <label asp-for="Rating">Rating:</label>
             <input asp-for="Rating" class="form-control" />

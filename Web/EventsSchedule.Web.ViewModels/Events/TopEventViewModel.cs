@@ -5,6 +5,7 @@
 
     using EventsSchedule.Data.Models;
     using EventsSchedule.Services.Mapping;
+    using Ganss.XSS;
 
     public class TopEventViewModel : IMapTo<Event>, IMapFrom<Event>
     {
@@ -26,16 +27,8 @@
 
         public string Description { get; set; }
 
-        public string ShortDescription
-        {
-            get
-            {
-                var description = Regex.Replace(this.Description, @"<[^>]+>", string.Empty);
+        public string SanitizedDescription => new HtmlSanitizer().Sanitize(this.Description);
 
-                return description?.Length > 50
-              ? description?.Substring(0, 50) + "..."
-              : description;
-            }
-        }
+        public string ShortDescription => this.SanitizedDescription.Length > 100 ? this.SanitizedDescription.Substring(0, 100) + "..." : this.SanitizedDescription;
     }
 }

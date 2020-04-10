@@ -17,7 +17,6 @@ namespace EventsSchedule.Data.Models
             this.Roles = new HashSet<IdentityUserRole<string>>();
             this.Claims = new HashSet<IdentityUserClaim<string>>();
             this.Logins = new HashSet<IdentityUserLogin<string>>();
-            this.Children = new HashSet<Child>();
             this.UserEvents = new HashSet<UserEvent>();
             this.Reviews = new HashSet<Review>();
         }
@@ -35,7 +34,6 @@ namespace EventsSchedule.Data.Models
         public int Age { get; set; }
 
         [Required]
-        [MaxLength(30)]
         public string City { get; set; }
 
         public bool HaveChildren { get; set; }
@@ -49,8 +47,6 @@ namespace EventsSchedule.Data.Models
         public bool IsDeleted { get; set; }
 
         public DateTime? DeletedOn { get; set; }
-
-        public virtual ICollection<Child> Children { get; set; }
 
         public virtual ICollection<UserEvent> UserEvents { get; set; }
 

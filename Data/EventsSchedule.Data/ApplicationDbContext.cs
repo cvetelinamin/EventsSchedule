@@ -32,8 +32,6 @@
 
         public DbSet<Blog> Blogs { get; set; }
 
-        public DbSet<Child> Children { get; set; }
-
         public DbSet<City> Cities { get; set; }
 
         public DbSet<Event> Events { get; set; }

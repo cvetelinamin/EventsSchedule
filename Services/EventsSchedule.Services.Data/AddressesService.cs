@@ -16,18 +16,13 @@
             this.cityService = cityService;
         }
 
-        public async Task<Address> CreateAddress(City city, string street, string building, string number, string entrance, string floor, string appartment, string district)
+        public async Task<Address> CreateAddress(City city, string street, string additionalInformation)
         {
             var address = new Address
             {
                  CityId = await this.cityService.GetIdByTitleAsync(city.Name),
                  Street = street,
-                 Building = building,
-                 Number = number,
-                 Entrance = entrance,
-                 Floor = floor,
-                 Apartment = appartment,
-                 District = district,
+                 AdditionalInformation = additionalInformation,
             };
 
             return address;

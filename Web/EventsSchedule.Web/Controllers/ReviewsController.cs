@@ -29,14 +29,14 @@
             this.dbContext = dbContext;
         }
 
-        [Route("Reviews/Add/{eventId}")]
+        [Route("Reviews/Add")]
         public IActionResult Add()
         {
             return this.View();
         }
 
         [HttpPost]
-        [Route("Reviews/Add/{eventId}")]
+        [Route("Reviews/Add")]
         public async Task<IActionResult> Add(ReviewCreateInputModel reviewCreateInputModel)
         {
             if (!this.ModelState.IsValid)
@@ -48,7 +48,9 @@
 
             await this.reviewsService.CreateAsync(reviewCreateInputModel.Comment, reviewCreateInputModel.Rating, user.Id, reviewCreateInputModel.EventId);
 
-            return this.RedirectToAction("EventById", "Events", new { reviewCreateInputModel.EventId });
+            var eventId = reviewCreateInputModel.EventId;
+
+            return this.Redirect($"ListAllReviews/{eventId}/1");
         }
 
         [Route("Reviews/ListAllReviews/{eventId}/{page}")]

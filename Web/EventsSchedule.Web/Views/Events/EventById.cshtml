@@ -32,8 +32,16 @@
         </div>
 
         <div class="px-4 pt-3">
-            <button class="btn btn-primary" type="button" onclick="showAddCommentForm()" asp-area="" asp-controller="Reviews" asp-action="Add" asp-route-id="@Model.Id" title="Коментирай">Коментирай</button>
+            <button class="btn btn-primary" type="button" onclick="showAddCommentForm()" asp-area="" asp-controller="Reviews" asp-action="Add" asp-route-eventId="@Model.Id" title="Коментирай">Коментирай</button>
         </div>
+
+        @if (this.User.IsInRole("Administrator"))
+        {
+            <div class="px-4 pt-3">
+                <a asp-area="Administration" asp-controller="Events" asp-action="Edit" asp-route-eventId="@Model.Id" class="btn btn-primary">Промени</a>
+                <a asp-area="Administration" asp-controller="Events" asp-action="Delete" asp-route-eventId="@Model.Id" class="btn btn-primary">Изтрий</a>
+            </div>
+        }
     </div>
 
     <div class="container col-sm-4">

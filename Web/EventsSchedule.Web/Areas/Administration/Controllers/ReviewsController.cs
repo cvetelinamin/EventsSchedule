@@ -1,39 +1,36 @@
 ﻿namespace EventsSchedule.Web.Areas.Administration.Controllers
 {
-    using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using EventsSchedule.Data;
-    using EventsSchedule.Services.Data;
+
+    using EventsSchedule.Data.Common.Repositories;
+    using EventsSchedule.Data.Models;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
     [Authorize(Roles = "Administrator")]
     public class ReviewsController : AdministrationController
     {
-        private readonly ApplicationDbContext dbContext;
-        private readonly IReviewsService reviewsService;
+        private readonly IDeletableEntityRepository<Review> reviewsRepository;
 
-        public ReviewsController(ApplicationDbContext dbContext, IReviewsService reviewsService)
+        public ReviewsController(IDeletableEntityRepository<Review> reviewsRepository)
         {
-            this.dbContext = dbContext;
-            this.reviewsService = reviewsService;
+            this.reviewsRepository = reviewsRepository;
         }
 
-        public IActionResult Delete(string id, int eventId)
+        public async Task<IActionResult> Delete(string id, string eventId)
         {
-            var review = this.dbContext.Reviews.FirstOrDefault(r => r.Id == id);
+            var review = this.reviewsRepository.All().FirstOrDefault(r => r.Id == id);
 
             if (review == null)
             {
                 return this.BadRequest();
             }
 
-            this.dbContext.Remove(review);
-            this.dbContext.SaveChanges();
+            this.reviewsRepository.Delete(review);
+            await this.reviewsRepository.SaveChangesAsync();
 
-            return this.Redirect($"/Reviews/ListAllReviews/{eventId}");
+            return this.RedirectToAction("EventById", "Events", new { eventId, Area = string.Empty });
         }
     }
 }

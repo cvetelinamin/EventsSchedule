@@ -13,8 +13,10 @@
 
         public string Content { get; set; }
 
-        public string ShortContent => this.Content.Substring(0, 200) + "...";
+        public string ShortContent => this.Content.Length > 200 ? this.Content.Substring(0, 200) + "..." : this.Content;
 
         public DateTime CreatedOn { get; set; }
+
+        public string Image { get; set; }
     }
 }

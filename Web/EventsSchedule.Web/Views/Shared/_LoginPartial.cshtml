@@ -8,7 +8,7 @@
     {
         <li>
             <div class="nav-element">
-                <a class="nav-link text-dark" asp-area="" asp-controller="Schedules" asp-action="Schedule" title="Събития">Събития</a>
+                <a class="nav-link text-dark" asp-area="" asp-controller="Events" asp-action="GetLastEvents" title="Събития">Събития</a>
             </div>
         </li>
         <li>
@@ -18,12 +18,12 @@
         </li>
         <li class="nav-item">
             <div>
-                <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity.Name!</a>
+                <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello, @User.Identity.Name!</a>
             </div>
         </li>
         <li class="nav-item">
             <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                <button type="submit" class="nav-link btn btn-link font-weight-bolder">Logout</button>
+                <button type="submit" class="nav-link btn text-dark bold">Logout</button>
             </form>
         </li>
     }

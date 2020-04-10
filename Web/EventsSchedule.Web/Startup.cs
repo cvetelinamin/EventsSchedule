@@ -1,6 +1,7 @@
 ﻿namespace EventsSchedule.Web
 {
     using System.Reflection;
+
     using CloudinaryDotNet;
     using EventsSchedule.Data;
     using EventsSchedule.Data.Common;
@@ -76,7 +77,6 @@
             services.AddTransient<ICategoriesService, CategoriesService>();
             services.AddTransient<IReviewsService, ReviewsService>();
             services.AddTransient<INewsService, NewsService>();
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

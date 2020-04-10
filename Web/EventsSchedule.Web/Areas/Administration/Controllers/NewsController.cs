@@ -3,6 +3,7 @@
     using System;
     using System.Linq;
     using System.Threading.Tasks;
+
     using EventsSchedule.Data;
     using EventsSchedule.Data.Common.Repositories;
     using EventsSchedule.Data.Models;

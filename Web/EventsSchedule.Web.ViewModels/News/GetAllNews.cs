@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace EventsSchedule.Web.ViewModels.News
+﻿namespace EventsSchedule.Web.ViewModels.News
 {
+    using System.Collections.Generic;
+
     public class GetAllNews
     {
         public IEnumerable<NewsShortViewModel> News { get; set; }

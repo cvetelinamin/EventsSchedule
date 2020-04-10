@@ -13,9 +13,9 @@
 
 @foreach (var news in this.Model.News)
 {
-    <div class="card bg-dark text-white" style="height: 40vh; margin-bottom: 2em;">
+    <div class="card bg-dark text-white" style="height: 40vh; margin-bottom: 2em; overflow: hidden;">
         <input type="hidden" name="Id" value="@news.Id" />
-        <img class="card-img" src="..." alt="Card image">
+        <img class="card-img" src="@news.Image" alt="Card image">
         <div class="card-img-overlay">
             <h3 class="card-title text-white">@news.Title</h3>
             <p class="card-text">@Html.Raw(news.ShortContent)</p>

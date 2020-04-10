@@ -11,6 +11,7 @@
         <div class="col-12 m-2">
             <div class="card card-white post p-3">
                 <div class="post-heading">
+                    <input type="hidden" name="Id" value="@Model.EventId" />
                     <div class="float-left image m-3">
                         <img src="http://bootdey.com/img/Content/user_1.jpg" class="img-circle avatar" alt="user profile image">
                     </div>
@@ -25,6 +26,12 @@
                             <p>@Html.Raw(review.SanitizedComment)</p>
                         </div>
                     </div>
+                    @if (this.User.IsInRole("Administrator"))
+                    {
+                        <div class="px-4 pt-3">
+                            <a asp-area="Administration" asp-controller="Reviews" asp-action="Delete" asp-route-id="@review.Id" asp-route-eventId="@review.EventId" class="btn btn-primary">Изтрий</a>
+                        </div>
+                    }
                 </div>
             </div>
         </div>
