@@ -1,7 +1,7 @@
-﻿@model EventsSchedule.Web.ViewComponents.Models.CitiesViewModel
+﻿@model EventsSchedule.Web.ViewComponents.Models.GetAllCitiesViewModel
 
-<option selected disabled>Choose City</option>
-@foreach (var cityName in Model.Cities)
+<option selected disabled>Избери град</option>
+@foreach (var city in Model.Cities)
 {
-    <option value="@cityName">@cityName</option>
+    <option value="@city.Id">@city.Name</option>
 }

@@ -1,9 +1,9 @@
 ﻿namespace EventsSchedule.Web.ViewComponents.Models
 {
-    using System.Collections.Generic;
-
     public class CitiesViewModel
     {
-        public IEnumerable<string> Cities { get; set; }
+        public string Id { get; set; }
+
+        public string Name { get; set; }
     }
 }

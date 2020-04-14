@@ -6,6 +6,6 @@
 
     public interface IAddressesService
     {
-        Task<Address> CreateAddress(City city, string street, string additionalInformation);
+        Task<Address> CreateAddress(string cityId, string street, string additionalInformation);
     }
 }

@@ -68,7 +68,7 @@
 
             // Application services
             services.AddTransient<ICloudinaryService, CloudinaryService>();
-            services.AddTransient<IEmailSender, NullMessageSender>();
+            services.AddTransient<IEmailSender>(x => new SendGridEmailSender("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"));
             services.AddTransient<ISettingsService, SettingsService>();
             services.AddTransient<IEventsService, EventsService>();
             services.AddTransient<IOrganizersService, OrganizersService>();

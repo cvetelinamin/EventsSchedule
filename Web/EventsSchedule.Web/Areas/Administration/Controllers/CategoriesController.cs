@@ -55,6 +55,11 @@
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Name,IsDeleted,DeletedOn,Id,CreatedOn,ModifiedOn")] EventCategory eventCategory)
         {
+            if (eventCategory.Name.Length < 5)
+            {
+                return this.View(eventCategory);
+            }
+
             if (this.ModelState.IsValid)
             {
                 this.dbContext.Add(eventCategory);

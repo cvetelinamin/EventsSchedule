@@ -23,12 +23,12 @@
             return this.View();
         }
 
-        public IActionResult Contacts()
+        public IActionResult Team()
         {
             return this.View();
         }
 
-        public IActionResult Team()
+        public IActionResult ContactUs()
         {
             return this.View();
         }

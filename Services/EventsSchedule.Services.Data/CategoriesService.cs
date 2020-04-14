@@ -89,12 +89,12 @@
         //    return result > 0;
         //}
 
-        //public IQueryable<CategoryServiceModel> GetAll()
-        //{
-        //    return this.categoryRepository
-        //        .AllAsNoTracking()
-        //        .To<CategoryServiceModel>();
-        //}
+        public ICollection<EventCategory> GetAll()
+        {
+            return this.categoryRepository
+                .AllAsNoTracking()
+                .ToList();
+        }
 
         public async Task<IEnumerable<string>> GetAllTitlesAsync()
         {

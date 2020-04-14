@@ -1,14 +1,18 @@
 ﻿namespace EventsSchedule.Web.ViewModels.Events
 {
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-
+    using System.Linq;
     using EventsSchedule.Data.Models;
     using EventsSchedule.Data.Models.Enums;
     using EventsSchedule.Services.Mapping;
+    using EventsSchedule.Web.ViewModels.Categories;
 
     public class EventInputModel : IMapTo<Event>, IMapFrom<Event>
     {
+        public IQueryable<CategoriesViewModel> Categories { get; set; }
+
         [Required]
         [StringLength(100, MinimumLength = 3)]
         public string Title { get; set; }
@@ -18,7 +22,7 @@
         public string Performer { get; set; }
 
         [Required]
-        public EventCategory Category { get; set; }
+        public string CategoryId { get; set; }
 
         public DateTime DoorTime { get; set; }
 
@@ -31,7 +35,7 @@
         [MaxLength(1000)]
         public string EventSchedule { get; set; }
 
-        public string Status { get; set; }
+        public EventStatusType Status { get; set; }
 
         public bool IsAccessibleForFree { get; set; }
 
@@ -42,9 +46,9 @@
         public decimal Price { get; set; }
 
         [Required]
-        [MaxLength(500)]
+        [MaxLength(1500)]
         public string Description { get; set; }
 
-        public string AgeRange { get; set; }
+        public TypicalAgeRange AgeRange { get; set; }
     }
 }

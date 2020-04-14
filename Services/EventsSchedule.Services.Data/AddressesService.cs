@@ -16,11 +16,11 @@
             this.cityService = cityService;
         }
 
-        public async Task<Address> CreateAddress(City city, string street, string additionalInformation)
+        public async Task<Address> CreateAddress(string cityId, string street, string additionalInformation)
         {
             var address = new Address
             {
-                 CityId = await this.cityService.GetIdByTitleAsync(city.Name),
+                 CityId = cityId,
                  Street = street,
                  AdditionalInformation = additionalInformation,
             };

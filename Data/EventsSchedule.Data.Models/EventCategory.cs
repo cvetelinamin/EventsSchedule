@@ -13,7 +13,6 @@
         }
 
         [Required]
-        [StringLength(30, MinimumLength = 5)]
         public string Name { get; set; }
     }
 }

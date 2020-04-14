@@ -21,7 +21,7 @@
             this.eventsRepository = eventsRepository;
         }
 
-        public async Task<Event> CreatEvent(string title, string performer, DateTime doorTime, DateTime endTime, int duration, string description, string schedule, int maxCapacity, bool isFree, decimal price, EventStatusType status, TypicalAgeRange ageRange, EventCategory category, string userId, Organizer organizer, Address address)
+        public async Task<Event> CreatEvent(string title, string performer, DateTime doorTime, DateTime endTime, int duration, string description, string schedule, int maxCapacity, bool isFree, decimal price, EventStatusType status, TypicalAgeRange ageRange, string categoryId, string userId, Organizer organizer, Address address)
         {
             var eventToCreate = new Event
             {
@@ -40,7 +40,7 @@
                 Status = status,
                 AgeRange = ageRange,
                 Address = address,
-                EventCategoryId = await this.categoryService.GetIdByTitleAsync(category.Name),
+                EventCategoryId = categoryId,
             };
 
             return eventToCreate;

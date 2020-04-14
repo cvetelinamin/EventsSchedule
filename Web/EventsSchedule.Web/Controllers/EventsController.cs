@@ -9,6 +9,7 @@
     using EventsSchedule.Services.Data;
     using EventsSchedule.Services.Mapping;
     using EventsSchedule.Web.ViewModels;
+    using EventsSchedule.Web.ViewModels.Categories;
     using EventsSchedule.Web.ViewModels.Events;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
@@ -25,8 +26,9 @@
         private readonly ICityService cityService;
         private readonly ICategoriesService categoryService;
         private readonly IDeletableEntityRepository<Event> eventRepository;
+        private readonly IDeletableEntityRepository<EventCategory> categoriesRepository;
 
-        public EventsController(ApplicationDbContext dbContext, UserManager<ApplicationUser> userManager, IEventsService eventsService, IOrganizersService organizersService, IAddressesService addressesService, ICityService cityService, ICategoriesService categoryService, IDeletableEntityRepository<Event> eventRepository)
+        public EventsController(ApplicationDbContext dbContext, UserManager<ApplicationUser> userManager, IEventsService eventsService, IOrganizersService organizersService, IAddressesService addressesService, ICityService cityService, ICategoriesService categoryService, IDeletableEntityRepository<Event> eventRepository, IDeletableEntityRepository<EventCategory> categoriesRepository)
         {
             this.dbContext = dbContext;
             this.userManager = userManager;
@@ -36,6 +38,7 @@
             this.cityService = cityService;
             this.categoryService = categoryService;
             this.eventRepository = eventRepository;
+            this.categoriesRepository = categoriesRepository;
         }
 
         [Authorize]
@@ -46,7 +49,7 @@
 
         [HttpPost]
         [Authorize]
-        public async Task<IActionResult> Create(CreateEventModel model)
+        public async Task<IActionResult> Create(CreateEventInputModel model)
         {
             if (!this.ModelState.IsValid)
             {
@@ -54,15 +57,15 @@
             }
 
             var user = this.userManager.GetUserId(this.User);
-            //var organizerInputModel = model.OrganizerInputModel;
-            //var addressInputModel = model.AdressInputModel;
-            //var model = model.model;
+            var organizerInputModel = model.OrganizerInputModel;
+            var addressInputModel = model.AdressInputModel;
+            var eventInputModel = model.EventInputModel;
 
-            var organizer = await this.organizersService.CreateOrganizer(model.Name, model.ContactName, model.WebSite, model.OrganizerDescription);
+            var organizer = await this.organizersService.CreateOrganizer(organizerInputModel.Name, organizerInputModel.ContactName, organizerInputModel.WebSite, organizerInputModel.Description);
 
-            var address = await this.addressesService.CreateAddress(model.City, model.Street, model.AdditionalInformation);
+            var address = await this.addressesService.CreateAddress(addressInputModel.CityId, addressInputModel.Street, addressInputModel.AdditionalInformation);
 
-            var inputEvent = await this.eventsService.CreatEvent(model.Title, model.Performer, model.DoorTime, model.EndTime, model.Duration, model.EventDescription, model.EventSchedule, model.MaximumAttendeeCapacity, model.IsAccessibleForFree, model.Price, model.Status, model.AgeRange, model.Category, user, organizer, address);
+            var inputEvent = await this.eventsService.CreatEvent(eventInputModel.Title, eventInputModel.Performer, eventInputModel.DoorTime, eventInputModel.EndTime, eventInputModel.Duration, eventInputModel.Description, eventInputModel.EventSchedule, eventInputModel.MaximumAttendeeCapacity, eventInputModel.IsAccessibleForFree, eventInputModel.Price, eventInputModel.Status, eventInputModel.AgeRange, eventInputModel.CategoryId, user, organizer, address);
 
             await this.dbContext.Events.AddAsync(inputEvent);
 

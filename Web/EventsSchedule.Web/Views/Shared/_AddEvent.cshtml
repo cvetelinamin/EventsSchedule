@@ -1,4 +1,5 @@
-﻿@model EventsSchedule.Web.ViewModels.CreateEventModel
+﻿@model EventsSchedule.Web.ViewModels.Events.EventInputModel
+
 @using EventsSchedule.Data.Models.Enums
 
 <script src="/lib/tinymce/tinymce.min.js" type="text/javascript"></script>
@@ -22,11 +23,11 @@
     <span asp-validation-for="Performer" class="text-danger"></span>
 </div>
 <div class="select form-group">
-    <label>Category</label>
-    <select asp-for="Category.Name" data-placeholder="Choose Category" class="chosen-select-no-single form-control">
+    <label for="CategoryId">Category</label>
+    <select asp-for="CategoryId" class="custom-select-lg">
         <vc:categories></vc:categories>
     </select>
-    <span asp-validation-for="Category.Name" class="text-danger"></span>
+    <span asp-validation-for="CategoryId" class="text-danger"></span>
 </div>
 <div class="form-group">
     <label asp-for="DoorTime"></label>
@@ -69,9 +70,9 @@
     <span asp-validation-for="Price" class="text-danger"></span>
 </div>
 <div class="form-group">
-    <label asp-for="EventDescription"></label>
-    <textarea asp-for="EventDescription" class="form-control"></textarea>
-    <span asp-validation-for="EventDescription" class="text-danger"></span>
+    <label asp-for="Description"></label>
+    <textarea asp-for="Description" class="form-control"></textarea>
+    <span asp-validation-for="Description" class="text-danger"></span>
 </div>
 <div class="form-group">
     <label asp-for="AgeRange"></label>
