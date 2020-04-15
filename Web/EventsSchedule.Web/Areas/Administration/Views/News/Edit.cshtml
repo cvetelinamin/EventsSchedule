@@ -13,7 +13,7 @@
     });
 </script>
 
-<form method="post" asp-area="Administration" asp-controller="News" asp-action="Edit">
+<form method="post" asp-area="Administration" asp-controller="News" asp-action="Edit" enctype="multipart/form-data">
     <input type="hidden" name="Id" value="@Model.Id" />
     <div class="form-group">
         <label asp-for="Title"></label>
@@ -25,6 +25,16 @@
         <label asp-for="Content"></label>
         <textarea asp-for="Content" class="form-control"></textarea>
         <span asp-validation-for="Content" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Image" class="control-label"></label>
+        <input type="file"
+               class="form-control text-primary text-center"
+               id="image"
+               placeholder="Снимка"
+               asp-for="Image">
+        <span asp-validation-for="Image" class="text-danger"></span>
     </div>
 
     <button type="submit" class="button color big">Промени</button>

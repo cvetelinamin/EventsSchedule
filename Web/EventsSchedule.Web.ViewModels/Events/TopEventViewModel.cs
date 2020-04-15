@@ -1,7 +1,6 @@
 ﻿namespace EventsSchedule.Web.ViewModels.Events
 {
     using System;
-    using System.Text.RegularExpressions;
 
     using EventsSchedule.Data.Models;
     using EventsSchedule.Services.Mapping;

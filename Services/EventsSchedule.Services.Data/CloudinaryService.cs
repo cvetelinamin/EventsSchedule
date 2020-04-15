@@ -33,7 +33,7 @@
                 {
                     ImageUploadParams uploadParams = new ImageUploadParams
                     {
-                        Folder = "product_images",
+                        Folder = "events_images",
                         File = new FileDescription(fileName, ms),
                     };
 

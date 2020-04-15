@@ -1,9 +1,9 @@
 ﻿namespace EventsSchedule.Web.ViewModels.Events
 {
     using System;
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Linq;
+
     using EventsSchedule.Data.Models;
     using EventsSchedule.Data.Models.Enums;
     using EventsSchedule.Services.Mapping;

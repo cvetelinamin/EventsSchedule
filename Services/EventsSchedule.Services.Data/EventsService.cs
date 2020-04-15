@@ -1,7 +1,6 @@
 ﻿namespace EventsSchedule.Services.Data
 {
     using System;
-    using System.Globalization;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -53,9 +52,6 @@
             return eventDetails;
         }
 
-        //public string GetEventId()
-        //{
-            
-        //}
+
     }
 }

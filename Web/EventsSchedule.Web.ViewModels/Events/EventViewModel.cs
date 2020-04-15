@@ -2,8 +2,8 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Text;
     using System.Text.RegularExpressions;
+
     using AutoMapper;
     using EventsSchedule.Data.Models;
     using EventsSchedule.Data.Models.Enums;

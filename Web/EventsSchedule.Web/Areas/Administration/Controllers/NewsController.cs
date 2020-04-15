@@ -8,6 +8,7 @@
     using EventsSchedule.Data.Common.Repositories;
     using EventsSchedule.Data.Models;
     using EventsSchedule.Services.Data;
+    using EventsSchedule.Services.Mapping;
     using EventsSchedule.Web.ViewModels.News;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
@@ -55,7 +56,7 @@
         [HttpGet("/Administration/News/Edit")]
         public async Task<IActionResult> Edit(string newsId)
         {
-            var newsViewModel = this.newsService.GetById<NewsEditViewModel>(newsId);
+            var newsViewModel = this.dbContext.Blogs.To<NewsEditViewModel>().FirstOrDefault(n => n.Id == newsId);
 
             if (newsViewModel == null)
             {
@@ -78,6 +79,13 @@
             newsToEdit.Title = newsEditViewModel.Title;
             newsToEdit.Content = newsEditViewModel.Content;
             newsToEdit.ModifiedOn = DateTime.UtcNow;
+
+            string pictureUrl = this.cloudinaryService.UploadPicture(newsEditViewModel.Image, newsEditViewModel.Title);
+
+            if (newsEditViewModel.Image != null)
+            {
+                newsToEdit.Image = pictureUrl;
+            }
 
             this.newsRepository.Update(newsToEdit);
             await this.newsRepository.SaveChangesAsync();
