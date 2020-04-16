@@ -222,7 +222,6 @@ input[type='submit']:active {
 #header {
   position: relative;
   margin-bottom: -100px;
-  overflow: hidden;
 }
 
 .header-panel {
@@ -586,11 +585,10 @@ background: none;
 
 .navbar-brand {
     float: left;
-    font-size: 1.8rem;
     height: 6rem;
     color: black;
     line-height: 4rem;
-    font-size: 3.8rem;
+    font-size: 6.8rem;
     font-weight: 700;
     padding: 1rem 0;
 }
@@ -1480,5 +1478,10 @@ font-weight: bold;
   background-image: url(../images/wordpress.png);
 }
 
+.navbar-nav li {
+    overflow: inherit;
+}
 
-
+.navbar .container .navbar-brand {
+    font-size: 4em;
+}

@@ -1,6 +1,7 @@
 ﻿namespace EventsSchedule.Services.Data
 {
     using System;
+    using System.Linq;
     using System.Threading.Tasks;
 
     using EventsSchedule.Data.Models;
@@ -11,6 +12,9 @@
         Task<Event> CreatEvent(string title, string performer, DateTime doorTime, DateTime endTime, int duration, string description, string schedule, int maxCapacity, bool isFree, decimal price, EventStatusType status, TypicalAgeRange ageRange, string category, string userId, Organizer organizer, Address address);
 
         T GetById<T>(string id);
+
+        IQueryable<Event> GetEventsByCategoryName(string name);
+
         //Task<TopEventViewModel> DetailsTopEvent();
 
         //Task<ListTopEvents> GetAll();

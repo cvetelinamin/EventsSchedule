@@ -1,16 +1,34 @@
 ﻿namespace EventsSchedule.Web.Controllers
 {
     using System.Diagnostics;
-
+    using System.Threading.Tasks;
+    using EventsSchedule.Data;
+    using EventsSchedule.Services.Data;
     using EventsSchedule.Web.ViewModels;
-
+    using EventsSchedule.Web.ViewModels.Home;
     using Microsoft.AspNetCore.Mvc;
 
     public class HomeController : BaseController
     {
-        public IActionResult Index()
+        private readonly ApplicationDbContext dbContext;
+        private readonly ICategoriesService categoriesService;
+
+        public HomeController(ApplicationDbContext dbContext, ICategoriesService categoriesService)
         {
-            return this.View();
+            this.dbContext = dbContext;
+            this.categoriesService = categoriesService;
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            var categories = await this.categoriesService.GetAllTitlesAsync();
+
+            var viewModel = new IndexViewModel
+            {
+                Categories = categories,
+            };
+
+            return this.View(viewModel);
         }
 
         public IActionResult Privacy()
@@ -28,7 +46,7 @@
             return this.View();
         }
 
-        public IActionResult ContactUs()
+        public IActionResult Contacts()
         {
             return this.View();
         }

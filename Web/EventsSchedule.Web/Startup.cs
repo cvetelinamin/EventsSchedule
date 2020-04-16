@@ -68,7 +68,7 @@
 
             // Application services
             services.AddTransient<ICloudinaryService, CloudinaryService>();
-            services.AddTransient<IEmailSender>();
+            //services.AddTransient<IEmailSender>();
             services.AddTransient<ISettingsService, SettingsService>();
             services.AddTransient<IEventsService, EventsService>();
             services.AddTransient<IOrganizersService, OrganizersService>();

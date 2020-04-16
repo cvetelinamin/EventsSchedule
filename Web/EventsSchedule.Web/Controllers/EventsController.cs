@@ -93,14 +93,14 @@
         }
 
         [Authorize]
-        public async Task<IActionResult> GetLastEvents()
+        public async Task<IActionResult> EventsByCategory(string name)
         {
-            var viewModel = new ListTopEvents
+            var viewModel = new ListEventsByCategory
             {
-                TopEvents = this.eventRepository.AllAsNoTracking()
+                Events = this.eventRepository.AllAsNoTracking()
+                                .Where(e => e.EventCategory.Name == name)
                                 .OrderByDescending(e => e.CreatedOn)
-                                .Take(6)
-                                .To<TopEventViewModel>()
+                                .To<EventShortViewModel>()
                 .ToList(),
             };
 

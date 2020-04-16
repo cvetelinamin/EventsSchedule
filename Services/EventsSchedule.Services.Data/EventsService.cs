@@ -52,6 +52,11 @@
             return eventDetails;
         }
 
-
+        public IQueryable<Event> GetEventsByCategoryName(string name)
+        {
+            return this.eventsRepository.AllAsNoTracking()
+                                        .Where(e => e.EventCategory.Name == name)
+                                        .OrderByDescending(e => e.CreatedOn);
+        }
     }
 }
