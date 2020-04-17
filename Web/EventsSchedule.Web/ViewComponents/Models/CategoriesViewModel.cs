@@ -1,6 +1,9 @@
 ﻿namespace EventsSchedule.Web.ViewComponents.Models
 {
-    public class CategoriesViewModel
+    using EventsSchedule.Data.Models;
+    using EventsSchedule.Services.Mapping;
+
+    public class CategoriesViewModel : IMapTo<EventCategory>, IMapFrom<EventCategory>
     {
         public string Id { get; set; }
 

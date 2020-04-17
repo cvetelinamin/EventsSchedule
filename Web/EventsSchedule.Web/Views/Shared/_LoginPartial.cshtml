@@ -1,5 +1,4 @@
-﻿@model EventsSchedule.Web.ViewModels.Home.IndexViewModel
-@using Microsoft.AspNetCore.Identity
+﻿@using Microsoft.AspNetCore.Identity
 @using EventsSchedule.Data.Models
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
@@ -7,34 +6,7 @@
 <ul class="navbar-nav">
     @if (SignInManager.IsSignedIn(User))
     {
-        <li>
-            <div class="dropdown show nav-element">
-                <a class="nav-link dropdown-toggle text-dark" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Събития
-                </a>
-                
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" role="menu" style="opacity: 1 !important;">
-                    @foreach (var category in Model.Categories)
-                    {
-                        <a class="dropdown-item" asp-controller="Events" asp-action="EventsByCategory" asp-route-name="@category">@category</a>
-                    }
-
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-            </div>
-        </li>
-
-        @*<li>
-                <div class="nav-element dropdown">
-                    <a class="nav-link text-dark" asp-area="" asp-controller="Events" asp-action="GetLastEvents" title="Събития">Събития</a>
-                </div>
-            </li>*@
-        <li>
-            <div class="nav-element">
-                <a class="nav-link text-dark" asp-area="" asp-controller="News" asp-action="GetAll" title="Новини">Новини</a>
-            </div>
-        </li>
+        
         <li class="nav-item">
             <div>
                 <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello, @User.Identity.Name!</a>

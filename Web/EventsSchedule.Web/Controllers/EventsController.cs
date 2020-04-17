@@ -92,13 +92,12 @@
             return this.View(eventViewModel);
         }
 
-        [Authorize]
-        public async Task<IActionResult> EventsByCategory(string name)
+        public async Task<IActionResult> EventsByCategory(string id)
         {
             var viewModel = new ListEventsByCategory
             {
                 Events = this.eventRepository.AllAsNoTracking()
-                                .Where(e => e.EventCategory.Name == name)
+                                .Where(e => e.EventCategory.Id == id)
                                 .OrderByDescending(e => e.CreatedOn)
                                 .To<EventShortViewModel>()
                 .ToList(),

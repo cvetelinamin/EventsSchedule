@@ -1,10 +1,16 @@
 ﻿namespace EventsSchedule.Web.Controllers
 {
     using System.Diagnostics;
+    using System.Linq;
     using System.Threading.Tasks;
+
     using EventsSchedule.Data;
+    using EventsSchedule.Data.Common.Repositories;
+    using EventsSchedule.Data.Models;
     using EventsSchedule.Services.Data;
+    using EventsSchedule.Services.Mapping;
     using EventsSchedule.Web.ViewModels;
+    using EventsSchedule.Web.ViewModels.Events;
     using EventsSchedule.Web.ViewModels.Home;
     using Microsoft.AspNetCore.Mvc;
 
@@ -12,20 +18,27 @@
     {
         private readonly ApplicationDbContext dbContext;
         private readonly ICategoriesService categoriesService;
+        private readonly IDeletableEntityRepository<Event> eventsRepository;
 
-        public HomeController(ApplicationDbContext dbContext, ICategoriesService categoriesService)
+        public HomeController(ApplicationDbContext dbContext, ICategoriesService categoriesService, IDeletableEntityRepository<Event> eventsRepository)
         {
             this.dbContext = dbContext;
             this.categoriesService = categoriesService;
+            this.eventsRepository = eventsRepository;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(IndexInputModel model)
         {
-            var categories = await this.categoriesService.GetAllTitlesAsync();
+            var categories = this.categoriesService.GetAll();
 
             var viewModel = new IndexViewModel
             {
                 Categories = categories,
+                Events = this.eventsRepository.AllAsNoTracking()
+                                .Where(e => e.EventCategory.Id == model.EventCategotyId)
+                                .OrderByDescending(e => e.CreatedOn)
+                                .To<EventShortViewModel>()
+                .ToList(),
             };
 
             return this.View(viewModel);
