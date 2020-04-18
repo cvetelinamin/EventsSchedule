@@ -2,14 +2,16 @@
 
 <li>
     <div class="dropdown show nav-element">
+        
+
         <a class="nav-link dropdown-toggle text-dark" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Събития
         </a>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" role="menu" style="opacity: 1 !important;">
-         
+
             @foreach (var category in Model)
             {
-                <a class="dropdown-item" asp-controller="Home" asp-action="Index" asp-route-id="@category.Id">@category.Name</a>
+                <a class="dropdown-item" asp-controller="Home" asp-action="Index" asp-route-eventCategoryId="@category.Id">@category.Name</a>
             }
         </div>
     </div>

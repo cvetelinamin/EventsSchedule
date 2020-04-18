@@ -11,6 +11,6 @@
 
         public IEnumerable<EventShortViewModel> Events { get; set; }
 
-        public string EventCategotyId { get; set; }
+        public string EventCategoryId { get; set; }
     }
 }

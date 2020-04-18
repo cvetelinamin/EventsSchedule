@@ -6,6 +6,6 @@
 
     public class IndexInputModel
     {
-        public string EventCategotyId { get; set; }
+        public string EventCategoryId { get; set; }
     }
 }

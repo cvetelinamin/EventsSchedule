@@ -9,6 +9,7 @@
     using EventsSchedule.Services.Data;
     using EventsSchedule.Services.Mapping;
     using EventsSchedule.Web.ViewModels.Reviews;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
@@ -36,6 +37,7 @@
         }
 
         [HttpPost]
+        [Authorize]
         [Route("Reviews/Add")]
         public async Task<IActionResult> Add(ReviewCreateInputModel reviewCreateInputModel)
         {

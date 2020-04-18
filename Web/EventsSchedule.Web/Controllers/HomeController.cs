@@ -33,9 +33,10 @@
 
             var viewModel = new IndexViewModel
             {
+                EventCategoryId = model.EventCategoryId,
                 Categories = categories,
                 Events = this.eventsRepository.AllAsNoTracking()
-                                .Where(e => e.EventCategory.Id == model.EventCategotyId)
+                                .Where(e => e.EventCategory.Id == model.EventCategoryId)
                                 .OrderByDescending(e => e.CreatedOn)
                                 .To<EventShortViewModel>()
                 .ToList(),
