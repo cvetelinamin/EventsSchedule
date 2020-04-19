@@ -36,7 +36,7 @@
 
         public bool IsAccessibleForFree { get; set; }
 
-        public string Address { get; set; }
+        public Address Address { get; set; }
 
         public int MaximumAttendeeCapacity { get; set; }
 

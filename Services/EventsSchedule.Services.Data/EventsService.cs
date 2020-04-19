@@ -72,5 +72,10 @@
 
             return events.OrderByDescending(e => e.CreatedOn);
         }
+
+        public IQueryable<Event> FilterEventsByCity(IQueryable<Event> events, string cityId)
+        {
+            return events.Where(e => e.Address.CityId == cityId);
+        }
     }
 }

@@ -7,5 +7,7 @@
         public string EventCategoryId { get; set; }
 
         public EventsPriceSort Sort { get; set; }
+
+        public string CityId { get; set; }
     }
 }

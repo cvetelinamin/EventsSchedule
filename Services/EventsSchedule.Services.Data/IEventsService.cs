@@ -17,6 +17,8 @@
 
         IQueryable<Event> SortEventsByPrice(IQueryable<Event> events, EventsPriceSort sort);
 
+        IQueryable<Event> FilterEventsByCity(IQueryable<Event> events, string cityId);
+
         //Task<TopEventViewModel> DetailsTopEvent();
 
         //Task<ListTopEvents> GetAll();

@@ -13,17 +13,23 @@
     <a class="btn btn-dark" asp-area="" asp-controller="Events" asp-action="Create" title="Създай своето събитие">Създай свето събитие</a>
 </div>
 
-<form method="post" asp-controller="Home" asp-action="Index" asp-route-eventCategoryId="@Model.EventCategoryId">
+<form method="post" asp-controller="Home" asp-action="Index" asp-route-eventCategoryId="@Model.EventCategoryId" asp-route-cityId="@Model.CityId">
     <input type="hidden" name="SortOrder" value="@Model.Sort">
     <div class="sort-filter">
         <span class="text-uppercase font-weight-bold">Сортирай по:</span>
-        <select class="w-25 p-0 border border-dark name="Sort" id="Sort" onchange="this.form.submit();">
+        <select class="w-25 p-0 border border-dark" name="Sort" id="Sort" onchange="this.form.submit();">
             <option value="1" selected="@(Model.Sort.ToString() == "PriceAscending" ? true : false)">Цена(възх.)</option>
             <option value="2" selected="@(Model.Sort.ToString() == "PriceDescending" ? true : false)">Цена(низх.)</option>
         </select>
     </div>
-    <div>
-        <vc:cities></vc:cities>
+    <div class="sort-filter">
+        <div class="select sort-filter">
+            <label for="CityId">Град:</label>
+            <select asp-for="CityId" class="w-25 p-0 border border-dark" onchange="this.form.submit();">
+                <vc:cities></vc:cities>
+            </select>
+            <span asp-validation-for="CityId" class="text-danger"></span>
+        </div>
     </div>
 </form>
 
