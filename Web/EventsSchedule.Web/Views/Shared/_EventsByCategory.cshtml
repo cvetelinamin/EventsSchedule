@@ -9,9 +9,23 @@
     ViewData["Title"] = "Schedule";
 }
 
-<div class="nav-element">
-    <a class="about-us" asp-area="" asp-controller="Events" asp-action="Create" title="Създай своето събитие">Създай свето събитие</a>
+<div class="nav-element pb-4">
+    <a class="btn btn-dark" asp-area="" asp-controller="Events" asp-action="Create" title="Създай своето събитие">Създай свето събитие</a>
 </div>
+
+<form method="post" asp-controller="Home" asp-action="Index" asp-route-eventCategoryId="@Model.EventCategoryId">
+    <input type="hidden" name="SortOrder" value="@Model.Sort">
+    <div class="sort-filter">
+        <span class="text-uppercase font-weight-bold">Сортирай по:</span>
+        <select class="w-25 p-0 border border-dark name="Sort" id="Sort" onchange="this.form.submit();">
+            <option value="1" selected="@(Model.Sort.ToString() == "PriceAscending" ? true : false)">Цена(възх.)</option>
+            <option value="2" selected="@(Model.Sort.ToString() == "PriceDescending" ? true : false)">Цена(низх.)</option>
+        </select>
+    </div>
+    <div>
+        <vc:cities></vc:cities>
+    </div>
+</form>
 
 <section id="schedule" class="row">
     <div class="title-start schedule-menu col-md-4 col-md-offset-4">

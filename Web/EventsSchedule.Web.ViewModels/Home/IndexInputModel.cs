@@ -1,11 +1,11 @@
 ﻿namespace EventsSchedule.Web.ViewModels.Home
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Text;
+    using EventsSchedule.Data.Models.Enums;
 
     public class IndexInputModel
     {
         public string EventCategoryId { get; set; }
+
+        public EventsPriceSort Sort { get; set; }
     }
 }

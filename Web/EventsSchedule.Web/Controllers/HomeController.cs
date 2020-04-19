@@ -18,28 +18,33 @@
     {
         private readonly ApplicationDbContext dbContext;
         private readonly ICategoriesService categoriesService;
+        private readonly IEventsService eventsService;
         private readonly IDeletableEntityRepository<Event> eventsRepository;
 
-        public HomeController(ApplicationDbContext dbContext, ICategoriesService categoriesService, IDeletableEntityRepository<Event> eventsRepository)
+        public HomeController(ApplicationDbContext dbContext, ICategoriesService categoriesService, IEventsService eventsService, IDeletableEntityRepository<Event> eventsRepository)
         {
             this.dbContext = dbContext;
             this.categoriesService = categoriesService;
+            this.eventsService = eventsService;
             this.eventsRepository = eventsRepository;
         }
 
         public async Task<IActionResult> Index(IndexInputModel model)
         {
             var categories = this.categoriesService.GetAll();
+            var events = this.eventsRepository.AllAsNoTracking()
+                                .Where(e => e.EventCategory.Id == model.EventCategoryId);
+
+            var sortedEvents = this.eventsService.SortEventsByPrice(events, model.Sort)
+                                        .To<EventShortViewModel>()
+                                        .ToList();
 
             var viewModel = new IndexViewModel
             {
                 EventCategoryId = model.EventCategoryId,
+                Sort = model.Sort,
                 Categories = categories,
-                Events = this.eventsRepository.AllAsNoTracking()
-                                .Where(e => e.EventCategory.Id == model.EventCategoryId)
-                                .OrderByDescending(e => e.CreatedOn)
-                                .To<EventShortViewModel>()
-                .ToList(),
+                Events = sortedEvents,
             };
 
             return this.View(viewModel);

@@ -15,6 +15,8 @@
 
         IQueryable<Event> GetEventsByCategoryName(string name);
 
+        IQueryable<Event> SortEventsByPrice(IQueryable<Event> events, EventsPriceSort sort);
+
         //Task<TopEventViewModel> DetailsTopEvent();
 
         //Task<ListTopEvents> GetAll();

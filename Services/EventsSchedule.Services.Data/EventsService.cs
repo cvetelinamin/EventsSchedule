@@ -58,5 +58,19 @@
                                         .Where(e => e.EventCategory.Name == name)
                                         .OrderByDescending(e => e.CreatedOn);
         }
+
+        public IQueryable<Event> SortEventsByPrice(IQueryable<Event> events, EventsPriceSort sort)
+        {
+            if (sort == EventsPriceSort.PriceDescending)
+            {
+                return events.OrderByDescending(e => e.Price);
+            }
+            else if (sort == EventsPriceSort.PriceAscending)
+            {
+                return events.OrderBy(e => e.Price);
+            }
+
+            return events.OrderByDescending(e => e.CreatedOn);
+        }
     }
 }

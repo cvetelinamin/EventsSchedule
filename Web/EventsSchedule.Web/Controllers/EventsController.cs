@@ -8,8 +8,6 @@
     using EventsSchedule.Data.Models;
     using EventsSchedule.Services.Data;
     using EventsSchedule.Services.Mapping;
-    using EventsSchedule.Web.ViewModels;
-    using EventsSchedule.Web.ViewModels.Categories;
     using EventsSchedule.Web.ViewModels.Events;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
