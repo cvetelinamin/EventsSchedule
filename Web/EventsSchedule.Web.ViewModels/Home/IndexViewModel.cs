@@ -14,8 +14,10 @@
 
         public string EventCategoryId { get; set; }
 
-        public EventsPriceSort Sort { get; set; }
+        public EventsPriceSort PriceSort { get; set; }
 
         public string CityId { get; set; }
+
+        public TypicalAgeRange TypicalAgeRangeSort { get; set; }
     }
 }

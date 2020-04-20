@@ -35,11 +35,16 @@
             var events = this.eventsRepository.AllAsNoTracking()
                                 .Where(e => e.EventCategory.Id == model.EventCategoryId);
 
-            var sortedEvents = this.eventsService.SortEventsByPrice(events, model.Sort);
+            var sortedEvents = this.eventsService.SortEventsByPrice(events, model.PriceSort);
 
             if (model.CityId != null)
             {
                 sortedEvents = this.eventsService.FilterEventsByCity(sortedEvents, model.CityId);
+            }
+
+            if (model.TypicalAgeRangeSort != 0)
+            {
+                sortedEvents = this.eventsService.FilterEventsByAudienceAge(sortedEvents, model.TypicalAgeRangeSort);
             }
 
             var eventsForView = sortedEvents.To<EventShortViewModel>().ToList();
@@ -47,10 +52,11 @@
             var viewModel = new IndexViewModel
             {
                 EventCategoryId = model.EventCategoryId,
-                Sort = model.Sort,
+                PriceSort = model.PriceSort,
                 Categories = categories,
                 Events = eventsForView,
                 CityId = model.CityId,
+                TypicalAgeRangeSort = model.TypicalAgeRangeSort,
             };
 
             return this.View(viewModel);

@@ -19,6 +19,8 @@
 
         IQueryable<Event> FilterEventsByCity(IQueryable<Event> events, string cityId);
 
+        IQueryable<Event> FilterEventsByAudienceAge(IQueryable<Event> events, TypicalAgeRange typicalAgeRange);
+
         //Task<TopEventViewModel> DetailsTopEvent();
 
         //Task<ListTopEvents> GetAll();

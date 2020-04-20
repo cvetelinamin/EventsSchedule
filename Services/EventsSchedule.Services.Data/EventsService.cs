@@ -77,5 +77,10 @@
         {
             return events.Where(e => e.Address.CityId == cityId);
         }
+
+        public IQueryable<Event> FilterEventsByAudienceAge(IQueryable<Event> events, TypicalAgeRange typicalAgeRange)
+        {
+            return events.Where(e => e.AgeRange == typicalAgeRange);
+        }
     }
 }
