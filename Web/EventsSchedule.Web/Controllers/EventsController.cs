@@ -8,12 +8,13 @@
     using EventsSchedule.Data.Models;
     using EventsSchedule.Services.Data;
     using EventsSchedule.Services.Mapping;
+    using EventsSchedule.Web.ViewModels;
     using EventsSchedule.Web.ViewModels.Events;
+    using EventsSchedule.Web.ViewModels.Organizers;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
-    [Authorize]
     public class EventsController : Controller
     {
         private readonly ApplicationDbContext dbContext;
@@ -49,7 +50,7 @@
 
         [HttpPost]
         [Authorize]
-        public async Task<IActionResult> Create(CreateEventInputModel model)
+        public async Task<IActionResult> Create(CreateEventModel model)
         {
             if (!this.ModelState.IsValid)
             {
@@ -57,17 +58,14 @@
             }
 
             var user = this.userManager.GetUserId(this.User);
-            var organizerInputModel = model.OrganizerInputModel;
-            var addressInputModel = model.AdressInputModel;
-            var eventInputModel = model.EventInputModel;
 
-            string pictureUrl = this.cloudinaryService.UploadPicture(eventInputModel.Image, eventInputModel.Title);
+            string pictureUrl = this.cloudinaryService.UploadPicture(model.Image, model.Title);
 
-            var organizer = await this.organizersService.CreateOrganizer(organizerInputModel.Name, organizerInputModel.ContactName, organizerInputModel.WebSite, organizerInputModel.Description);
+            var organizer = await this.organizersService.CreateOrganizer(model.Name, model.ContactName, model.WebSite, model.Description);
 
-            var address = await this.addressesService.CreateAddress(addressInputModel.CityId, addressInputModel.Street, addressInputModel.AdditionalInformation);
+            var address = await this.addressesService.CreateAddress(model.CityId, model.Street, model.AdditionalInformation);
 
-            var inputEvent = await this.eventsService.CreatEvent(eventInputModel.Title, eventInputModel.Performer, eventInputModel.DoorTime, eventInputModel.EndTime, eventInputModel.Duration, eventInputModel.Description, eventInputModel.EventSchedule, eventInputModel.MaximumAttendeeCapacity, eventInputModel.IsAccessibleForFree, eventInputModel.Price, eventInputModel.Status, eventInputModel.AgeRange, eventInputModel.CategoryId, user, organizer, address, pictureUrl);
+            var inputEvent = await this.eventsService.CreatEvent(model.Title, model.Performer, model.DoorTime, model.EndTime, model.Duration, model.Description, model.EventSchedule, model.MaximumAttendeeCapacity, model.IsAccessibleForFree, model.Price, model.Status, model.AgeRange, model.CategoryId, user, organizer, address, pictureUrl);
 
             await this.dbContext.Events.AddAsync(inputEvent);
 
@@ -80,7 +78,7 @@
             await this.dbContext.UsersEvents.AddAsync(eventuser);
             await this.dbContext.SaveChangesAsync();
 
-            return this.RedirectToAction("EventById", "Events", new { id = inputEvent.Id });
+            return this.RedirectToAction("EventById", "Events", new { eventId = inputEvent.Id });
         }
 
         public IActionResult EventById(string eventId)

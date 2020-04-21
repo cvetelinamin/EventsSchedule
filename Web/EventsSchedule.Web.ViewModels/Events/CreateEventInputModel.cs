@@ -3,12 +3,12 @@
     using EventsSchedule.Web.ViewModels.Addresses;
     using EventsSchedule.Web.ViewModels.Organizers;
 
-    public class CreateEventInputModel
-    {
-        public EventInputModel EventInputModel { get; set; }
+    public class Createmodel
+    { 
+    //    public model model { get; set; }
 
-        public OrganizerInputModel OrganizerInputModel { get; set; }
+    //    public OrganizerInputModel OrganizerInputModel { get; set; }
 
-        public AddressInputModel AdressInputModel { get; set; }
+    //    public AddressInputModel AdressInputModel { get; set; }
     }
 }

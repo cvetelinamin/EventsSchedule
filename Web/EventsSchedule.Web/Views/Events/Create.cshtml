@@ -1,4 +1,4 @@
-﻿@model EventsSchedule.Web.ViewModels.Events.CreateEventInputModel
+﻿@model EventsSchedule.Web.ViewModels.CreateEventModel
 @using EventsSchedule.Data.Models.Enums
 
 @{
@@ -13,10 +13,10 @@
     <div asp-validation-summary="All"></div>
     <div class="row">
         <div class="col">
-            <div class="col-md-6">
+            <div class="col-md-6" enctype="multipart/form-data">
                 <partial name="_AddEvent" />        
             </div>
-            <div class="col-md-6 d-flex flex-column">
+            <div class="col-md-6 d-flex flex-column" enctype="multipart/form-data">
                     <partial name="_AddOrganizer" />
                     <partial name="_AddAddress" />
             </div>
