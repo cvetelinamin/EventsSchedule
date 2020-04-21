@@ -1,5 +1,6 @@
 ﻿namespace EventsSchedule.Web.Controllers
 {
+    using System;
     using System.Diagnostics;
     using System.Linq;
     using System.Threading.Tasks;
@@ -16,6 +17,8 @@
 
     public class HomeController : BaseController
     {
+        private const int ItemsPerPage = 2;
+
         private readonly ApplicationDbContext dbContext;
         private readonly ICategoriesService categoriesService;
         private readonly IEventsService eventsService;
@@ -29,34 +32,25 @@
             this.eventsRepository = eventsRepository;
         }
 
-        public async Task<IActionResult> Index(IndexInputModel model)
+        public async Task<IActionResult> Index(IndexInputModel model, int page = 1)
         {
             var categories = this.categoriesService.GetAll();
-            var events = this.eventsRepository.AllAsNoTracking()
-                                .Where(e => e.EventCategory.Id == model.EventCategoryId);
+            var events = this.eventsService.GetEvents<EventShortViewModel>(model.EventCategoryId, model.PriceSort, model.CityId, model.TypicalAgeRangeSort);
 
-            var sortedEvents = this.eventsService.SortEventsByPrice(events, model.PriceSort);
+            var count = events.Count();
 
-            if (model.CityId != null)
-            {
-                sortedEvents = this.eventsService.FilterEventsByCity(sortedEvents, model.CityId);
-            }
-
-            if (model.TypicalAgeRangeSort != 0)
-            {
-                sortedEvents = this.eventsService.FilterEventsByAudienceAge(sortedEvents, model.TypicalAgeRangeSort);
-            }
-
-            var eventsForView = sortedEvents.To<EventShortViewModel>().ToList();
+            var eventsPerPage = this.eventsService.GetEventsPerPage<EventShortViewModel>(events, ItemsPerPage, (page - 1) * ItemsPerPage);
 
             var viewModel = new IndexViewModel
             {
                 EventCategoryId = model.EventCategoryId,
                 PriceSort = model.PriceSort,
                 Categories = categories,
-                Events = eventsForView,
+                Events = eventsPerPage,
                 CityId = model.CityId,
                 TypicalAgeRangeSort = model.TypicalAgeRangeSort,
+                CurrentPage = page,
+                PagesCount = (int)Math.Ceiling((double)count / ItemsPerPage),
             };
 
             return this.View(viewModel);

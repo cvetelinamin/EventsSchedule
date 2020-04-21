@@ -22,11 +22,12 @@
         private readonly IOrganizersService organizersService;
         private readonly IAddressesService addressesService;
         private readonly ICityService cityService;
+        private readonly ICloudinaryService cloudinaryService;
         private readonly ICategoriesService categoryService;
         private readonly IDeletableEntityRepository<Event> eventRepository;
         private readonly IDeletableEntityRepository<EventCategory> categoriesRepository;
 
-        public EventsController(ApplicationDbContext dbContext, UserManager<ApplicationUser> userManager, IEventsService eventsService, IOrganizersService organizersService, IAddressesService addressesService, ICityService cityService, ICategoriesService categoryService, IDeletableEntityRepository<Event> eventRepository, IDeletableEntityRepository<EventCategory> categoriesRepository)
+        public EventsController(ApplicationDbContext dbContext, UserManager<ApplicationUser> userManager, IEventsService eventsService, IOrganizersService organizersService, IAddressesService addressesService, ICityService cityService, ICloudinaryService cloudinaryService, ICategoriesService categoryService, IDeletableEntityRepository<Event> eventRepository, IDeletableEntityRepository<EventCategory> categoriesRepository)
         {
             this.dbContext = dbContext;
             this.userManager = userManager;
@@ -34,6 +35,7 @@
             this.organizersService = organizersService;
             this.addressesService = addressesService;
             this.cityService = cityService;
+            this.cloudinaryService = cloudinaryService;
             this.categoryService = categoryService;
             this.eventRepository = eventRepository;
             this.categoriesRepository = categoriesRepository;
@@ -59,11 +61,13 @@
             var addressInputModel = model.AdressInputModel;
             var eventInputModel = model.EventInputModel;
 
+            string pictureUrl = this.cloudinaryService.UploadPicture(eventInputModel.Image, eventInputModel.Title);
+
             var organizer = await this.organizersService.CreateOrganizer(organizerInputModel.Name, organizerInputModel.ContactName, organizerInputModel.WebSite, organizerInputModel.Description);
 
             var address = await this.addressesService.CreateAddress(addressInputModel.CityId, addressInputModel.Street, addressInputModel.AdditionalInformation);
 
-            var inputEvent = await this.eventsService.CreatEvent(eventInputModel.Title, eventInputModel.Performer, eventInputModel.DoorTime, eventInputModel.EndTime, eventInputModel.Duration, eventInputModel.Description, eventInputModel.EventSchedule, eventInputModel.MaximumAttendeeCapacity, eventInputModel.IsAccessibleForFree, eventInputModel.Price, eventInputModel.Status, eventInputModel.AgeRange, eventInputModel.CategoryId, user, organizer, address);
+            var inputEvent = await this.eventsService.CreatEvent(eventInputModel.Title, eventInputModel.Performer, eventInputModel.DoorTime, eventInputModel.EndTime, eventInputModel.Duration, eventInputModel.Description, eventInputModel.EventSchedule, eventInputModel.MaximumAttendeeCapacity, eventInputModel.IsAccessibleForFree, eventInputModel.Price, eventInputModel.Status, eventInputModel.AgeRange, eventInputModel.CategoryId, user, organizer, address, pictureUrl);
 
             await this.dbContext.Events.AddAsync(inputEvent);
 

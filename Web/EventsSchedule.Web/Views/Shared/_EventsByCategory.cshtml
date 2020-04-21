@@ -13,7 +13,7 @@
     <a class="btn btn-dark" asp-area="" asp-controller="Events" asp-action="Create" title="Създай своето събитие">Създай свето събитие</a>
 </div>
 
-<form method="post" asp-controller="Home" asp-action="Index" asp-route-eventCategoryId="@Model.EventCategoryId" asp-route-cityId="@Model.CityId"asp-route-typicalAgeRangeSort="@Model.TypicalAgeRangeSort">
+<form method="post" asp-controller="Home" asp-action="Index" asp-route-eventCategoryId="@Model.EventCategoryId" asp-route-cityId="@Model.CityId" asp-route-typicalAgeRangeSort="@Model.TypicalAgeRangeSort" asp-route-page="@Model.CurrentPage">
     <input type="hidden" name="SortOrder" value="@Model.PriceSort">
     <div class="row">
         <div class="sort-filter col">
@@ -35,6 +35,7 @@
         <div class="sort-filter col">
             <span class="text-uppercase font-weight-bold">Възраст:</span>
             <select class="w-75 p-0 border border-dark form-control" name="TypicalAgeRangeSort" id="Sort" onchange="this.form.submit();">
+                <option selected disabled>Избери възрастова категория</option>
                 <option value="1" selected="@(Model.TypicalAgeRangeSort.ToString() == "BabiesAndTodlers" ? true : false)">Бебета и деца до 7 години</option>
                 <option value="2" selected="@(Model.TypicalAgeRangeSort.ToString() == "StudentsPrimarySchool" ? true : false)">Ученици основно училище</option>
                 <option value="3" selected="@(Model.TypicalAgeRangeSort.ToString() == "StudentsHighSchool" ? true : false)">Гимназисти и студенти</option>
@@ -130,4 +131,41 @@
 </section>
 
 
+<nav style="margin-bottom = 2em;" aria-label="...">
+    <ul class="pagination justify-content-center">
+        @if (this.Model.CurrentPage == 1)
+        {
+            <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1">Previous</a>
+            </li>
+        }
+        else
+        {
+            <li class="page-item">
+                <a class="page-link" asp-controller="Home" asp-action="Index" asp-route-eventCategoryId="@Model.EventCategoryId" asp-route-cityId="@Model.CityId" asp-route-typicalAgeRangeSort="@Model.TypicalAgeRangeSort" asp-route-page="@(this.Model.CurrentPage - 1)" tabindex="-1">Previous</a>
+            </li>
+        }
 
+        @for (int i = 1; i <= this.Model.PagesCount; i++)
+        {
+            var active = i == this.Model.CurrentPage ? "active" : string.Empty;
+
+            <li class="page-item @active">
+                <a class="page-link" asp-controller="Home" asp-action="Index" asp-route-page="@i" asp-route-eventCategoryId="@Model.EventCategoryId" asp-route-cityId="@Model.CityId" asp-route-typicalAgeRangeSort="@Model.TypicalAgeRangeSort">@i</a>
+            </li>
+        }
+
+        @if (this.Model.CurrentPage == this.Model.PagesCount)
+        {
+            <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1">Next</a>
+            </li>
+        }
+        else
+        {
+            <li class="page-item">
+                <a class="page-link" asp-controller="Home" asp-action="Index" asp-route-page="@(this.Model.CurrentPage + 1)" tabindex="-1" asp-route-eventCategoryId="@Model.EventCategoryId" asp-route-cityId="@Model.CityId" asp-route-typicalAgeRangeSort="@Model.TypicalAgeRangeSort">Next</a>
+            </li>
+        }
+    </ul>
+</nav>

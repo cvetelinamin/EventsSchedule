@@ -73,6 +73,8 @@
 
         public TypicalAgeRange AgeRange { get; set; }
 
+        public string Image { get; set; }
+
         public ICollection<UserEvent> Audience { get; set; }
 
         public ICollection<Review> Reviews { get; set; }

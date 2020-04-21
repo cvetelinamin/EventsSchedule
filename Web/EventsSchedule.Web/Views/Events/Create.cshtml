@@ -8,19 +8,17 @@
 
 <h1>Създай своето събитие</h1>
 <div class="row">
-    <h2 class="col-sm-4">Данни за събитието</h2>
-    <h2 class="col-sm-6">Информация за организатора</h2>
 </div>
 <form asp-controller="Events" asp-action="Create" method="post" enctype="multipart/form-data">
     <div asp-validation-summary="All"></div>
     <div class="row">
         <div class="col">
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <partial name="_AddEvent" />        
             </div>
-            <div>
-                <partial name="_AddOrganizer" />
-                <partial name="_AddAddress" />
+            <div class="col-md-6 d-flex flex-column">
+                    <partial name="_AddOrganizer" />
+                    <partial name="_AddAddress" />
             </div>
         </div>
     </div>

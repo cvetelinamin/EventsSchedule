@@ -50,6 +50,8 @@
 
         public int AudienceCount { get; set; }
 
+        public string Image { get; set; }
+
         public string NewDescription
         {
             get

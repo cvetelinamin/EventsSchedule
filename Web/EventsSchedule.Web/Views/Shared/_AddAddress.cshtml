@@ -1,9 +1,10 @@
 ﻿@model EventsSchedule.Web.ViewModels.Addresses.AddressInputModel
 
-<div class="col-sm-4">
+<h2 class="p-2">Адрес на събитието</h2>
+<div class="w-100">
     <div class="select form-group">
-        <label for="CityId">City</label>
-        <select asp-for="CityId" data-placeholder="Choose City" class="custom-select-lg">
+        <label for="CityId">Град</label>
+        <select asp-for="CityId" data-placeholder="Choose City" class="custom-select-lg form-control border border-dark">
             <vc:cities></vc:cities>
         </select>
         <span asp-validation-for="CityId" class="text-danger"></span>

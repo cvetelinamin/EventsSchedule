@@ -1,6 +1,7 @@
 ﻿namespace EventsSchedule.Services.Data
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -20,7 +21,7 @@
             this.eventsRepository = eventsRepository;
         }
 
-        public async Task<Event> CreatEvent(string title, string performer, DateTime doorTime, DateTime endTime, int duration, string description, string schedule, int maxCapacity, bool isFree, decimal price, EventStatusType status, TypicalAgeRange ageRange, string categoryId, string userId, Organizer organizer, Address address)
+        public async Task<Event> CreatEvent(string title, string performer, DateTime doorTime, DateTime endTime, int duration, string description, string schedule, int maxCapacity, bool isFree, decimal price, EventStatusType status, TypicalAgeRange ageRange, string categoryId, string userId, Organizer organizer, Address address, string pictureUrl)
         {
             var eventToCreate = new Event
             {
@@ -40,6 +41,7 @@
                 AgeRange = ageRange,
                 Address = address,
                 EventCategoryId = categoryId,
+                Image = pictureUrl,
             };
 
             return eventToCreate;
@@ -81,6 +83,38 @@
         public IQueryable<Event> FilterEventsByAudienceAge(IQueryable<Event> events, TypicalAgeRange typicalAgeRange)
         {
             return events.Where(e => e.AgeRange == typicalAgeRange);
+        }
+
+        public IEnumerable<T> GetEvents<T>(string categoryId, EventsPriceSort priceSort, string cityId, TypicalAgeRange typicalAgeRange)
+        {
+            var events = this.eventsRepository.AllAsNoTracking()
+                                .Where(e => e.EventCategory.Id == categoryId);
+
+            var sortedEvents = this.SortEventsByPrice(events, priceSort);
+
+            if (cityId != null)
+            {
+                sortedEvents = this.FilterEventsByCity(sortedEvents, cityId);
+            }
+
+            if (typicalAgeRange != 0)
+            {
+                sortedEvents = this.FilterEventsByAudienceAge(sortedEvents, typicalAgeRange);
+            }
+
+            return sortedEvents.To<T>().ToList();
+        }
+
+        public IEnumerable<T> GetEventsPerPage<T>(IEnumerable<T> events, int? take = null, int skip = 0)
+        {
+            var query = events.Skip(skip);
+
+            if (take.HasValue)
+            {
+                query = query.Take(take.Value);
+            }
+
+            return query;
         }
     }
 }

@@ -11,5 +11,9 @@
         public string CityId { get; set; }
 
         public TypicalAgeRange TypicalAgeRangeSort { get; set; }
+
+        public int? PagesCount { get; set; }
+
+        public int? CurrentPage { get; set; }
     }
 }
