@@ -2,9 +2,14 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    public class OrganizerEditModel
+    using EventsSchedule.Data.Models;
+    using EventsSchedule.Services.Mapping;
+
+    public class OrganizerEditModel : IMapTo<Organizer>, IMapFrom<Organizer>
     {
         public string Id { get; set; }
+
+        public string EventId { get; set; }
 
         [Required]
         [StringLength(50, MinimumLength = 3)]

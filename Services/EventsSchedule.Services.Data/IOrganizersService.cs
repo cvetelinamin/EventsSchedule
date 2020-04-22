@@ -7,5 +7,7 @@
     public interface IOrganizersService
     {
         Task<Organizer> CreateOrganizer(string name, string contactName, string webSite, string description);
+
+        T GetById<T>(string id);
     }
 }

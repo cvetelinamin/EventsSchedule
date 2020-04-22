@@ -4,7 +4,8 @@
     ViewData["Title"] = "EditOrganizer";
 }
 
-<div class="col-md-6 d-flex flex-column" enctype="multipart/form-data">
+<form method="post" asp-area="Administration" asp-controller="Organizers" asp-action="EditOrganizer" asp-route-eventId="@Model.EventId" asp-route-organizerId="@Model.Id" enctype="multipart/form-data">
+    <input type="hidden" name="Id" value="@Model.Id" />
     <h2 class="p-2">Информация за организатора</h2>
     <div class="w-100">
         <div class="form-group">
@@ -27,5 +28,6 @@
             <input asp-for="WebSite" class="form-control" />
             <span asp-validation-for="WebSite" class="text-danger"></span>
         </div>
+        <button type="submit" class="btn btn-primary">Промени събитие</button>
     </div>
-</div>
+</form>

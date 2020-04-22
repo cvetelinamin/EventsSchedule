@@ -2,6 +2,8 @@
 {
     using EventsSchedule.Data.Common.Repositories;
     using EventsSchedule.Data.Models;
+    using EventsSchedule.Services.Mapping;
+    using System.Linq;
     using System.Threading.Tasks;
 
     public class OrganizersService : IOrganizersService
@@ -22,6 +24,14 @@
                  WebSite = webSite,
                  Description = description,
             };
+
+            return organizer;
+        }
+
+        public T GetById<T>(string id)
+        {
+            var organizer = this.organizerRepository.AllAsNoTracking().Where(x => x.Id == id)
+                .To<T>().FirstOrDefault();
 
             return organizer;
         }
