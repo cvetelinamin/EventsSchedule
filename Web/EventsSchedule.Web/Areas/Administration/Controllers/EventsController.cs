@@ -15,16 +15,18 @@
         private readonly ApplicationDbContext dbContext;
         private readonly IDeletableEntityRepository<Event> eventsRepository;
         private readonly IEventsService eventsService;
+        private readonly ICloudinaryService cloudinaryService;
 
-        public EventsController(ApplicationDbContext dbContext, IDeletableEntityRepository<Event> eventsRepository, IEventsService eventsService)
+        public EventsController(ApplicationDbContext dbContext, IDeletableEntityRepository<Event> eventsRepository, IEventsService eventsService, ICloudinaryService cloudinaryService)
         {
             this.dbContext = dbContext;
             this.eventsRepository = eventsRepository;
             this.eventsService = eventsService;
+            this.cloudinaryService = cloudinaryService;
         }
 
-        [HttpGet("/Administration/Events/Edit")]
-        public async Task<IActionResult> Edit(string eventId)
+        [HttpGet("/Administration/Events/EditEvent")]
+        public async Task<IActionResult> EditEvent(string eventId)
         {
             var eventViewModel = this.eventsService.GetById<EventsEditViewModel>(eventId);
 
@@ -36,27 +38,20 @@
             return this.View(eventViewModel);
         }
 
-        //[HttpPost("/Administration/Events/Edit")]
-        //public async Task<IActionResult> Edit(EventsEditViewModel eventEditViewModel)
-        //{
-        //    if (!this.ModelState.IsValid)
-        //    {
-        //        return this.View(eventEditViewModel);
-        //    }
+        [HttpPost("/Administration/Events/EditEvent")]
+        public async Task<IActionResult> EditEvent(EventsEditViewModel eventEditViewModel, string eventId)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View(eventEditViewModel);
+            }
 
-        //    var newsToEdit = this.eventsRepository.AllWithDeleted().Where(n => n.Id == eventEditViewModel.Id).FirstOrDefault();
+            var eventToEdit = this.eventsRepository.AllWithDeleted().Where(n => n.Id == eventEditViewModel.Id).FirstOrDefault();
 
-        //    newsToEdit.Title = newsEditViewModel.Title;
-        //    newsToEdit.Content = newsEditViewModel.Content;
-        //    newsToEdit.ModifiedOn = DateTime.UtcNow;
+            await this.eventsService.EditEvent(eventEditViewModel, eventToEdit);
 
-        //    this.newsRepository.Update(newsToEdit);
-        //    await this.newsRepository.SaveChangesAsync();
-
-        //    var newsId = newsToEdit.Id;
-
-        //    return this.RedirectToAction("NewsDetails", "News", new { newsId, Area = "User" });
-        //}
+            return this.RedirectToAction("EventById", "Еvents", new { eventId, Area = "User" });
+        }
 
         public async Task<IActionResult> Delete(string eventId)
         {

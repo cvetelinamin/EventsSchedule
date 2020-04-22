@@ -7,6 +7,7 @@
 
     using EventsSchedule.Data.Models;
     using EventsSchedule.Data.Models.Enums;
+    using EventsSchedule.Web.ViewModels.Events;
 
     public interface IEventsService
     {
@@ -25,6 +26,8 @@
         IEnumerable<T> GetEvents<T>(string categoryId, EventsPriceSort priceSort, string cityId, TypicalAgeRange typicalAgeRange);
 
         IEnumerable<T> GetEventsPerPage<T>(IEnumerable<T> events, int? take = null, int skip = 0);
+
+        Task EditEvent(EventsEditViewModel eventEditViewModel, Event eventToEdit);
         //Task<TopEventViewModel> DetailsTopEvent();
 
         //Task<ListTopEvents> GetAll();

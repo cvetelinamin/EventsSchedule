@@ -1,0 +1,32 @@
+﻿@model EventsSchedule.Web.ViewModels.Addresses.AddressEditModel
+
+@{
+    ViewData["Title"] = "EditAddress";
+}
+
+<form method="post" asp-area="Administration" asp-controller="Addresses" asp-action="EditAddress" asp-route-eventId="@Model.EventId" asp-route-addressId="@Model.Id" enctype="multipart/form-data">
+    <div class="col-md-6 d-flex flex-column" enctype="multipart/form-data">
+        <input type="hidden" name="Id" value="@Model.Id" />
+        <h2 class="p-2">Адрес на събитието</h2>
+        <div class="w-100">
+            <div class="select form-group">
+                <label for="CityId">Град</label>
+                <select asp-for="CityId" data-placeholder="Choose City" class="custom-select-lg form-control border border-dark">
+                    <vc:cities></vc:cities>
+                </select>
+                <span asp-validation-for="CityId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Street"></label>
+                <input asp-for="Street" class="form-control" />
+                <span asp-validation-for="Street" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AdditionalInformation"></label>
+                <input asp-for="AdditionalInformation" class="form-control" />
+                <span asp-validation-for="AdditionalInformation" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Промени събитие</button>
+</form>

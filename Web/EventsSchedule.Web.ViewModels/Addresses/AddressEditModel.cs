@@ -2,8 +2,15 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    public class AddressInputModel
+    using EventsSchedule.Data.Models;
+    using EventsSchedule.Services.Mapping;
+
+    public class AddressEditModel : IMapTo<Address>, IMapFrom<Address>
     {
+        public string Id { get; set; }
+
+        public string EventId { get; set; }
+
         [Required]
         [Display(Name = "Град")]
         public string CityId { get; set; }

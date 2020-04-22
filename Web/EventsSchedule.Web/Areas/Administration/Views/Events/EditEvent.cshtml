@@ -1,0 +1,111 @@
+﻿@model EventsSchedule.Web.ViewModels.Events.EventsEditViewModel
+@using EventsSchedule.Data.Models.Enums
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="/lib/tinymce/tinymce.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    tinymce.init({
+        selector: "textarea",
+        plugins: [
+            "image paste table link code media"
+        ]
+    });
+</script>
+
+<div class="row">
+</div>
+<form method="post" asp-area="Administration" asp-controller="Events" asp-action="EditEvent" asp-route-eventId="@Model.Id" enctype="multipart/form-data">
+    <input type="hidden" name="Id" value="@Model.Id" />
+    <div asp-validation-summary="All"></div>
+    <div class="row">
+        <div class="col">
+            <div class="col-md-6" enctype="multipart/form-data">
+                <h2 class="p-2">Данни за събитието</h2>
+                <div class="form-group">
+                    <label asp-for="Title"></label>
+                    <input asp-for="Title" class="form-control" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Performer"></label>
+                    <input asp-for="Performer" class="form-control" />
+                    <span asp-validation-for="Performer" class="text-danger"></span>
+                </div>
+                <div class="select form-group">
+                    <label for="CategoryId">Category</label>
+                    <select asp-for="CategoryId" class="custom-select-lg border border-dark">
+                        <vc:categories></vc:categories>
+                    </select>
+                    <span asp-validation-for="CategoryId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DoorTime"></label>
+                    <input asp-for="DoorTime" class="form-control" />
+                    <span asp-validation-for="DoorTime" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="EndTime"></label>
+                    <input asp-for="EndTime" class="form-control" />
+                    <span asp-validation-for="EndTime" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Duration"></label>
+                    <input asp-for="Duration" class="form-control" />
+                    <span asp-validation-for="Duration" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="EventSchedule"></label>
+                    <textarea asp-for="EventSchedule" class="form-control"></textarea>
+                    <span asp-validation-for="EventSchedule" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Status"></label>
+                    <select class="border border-dark form-control" asp-for="Status" asp-items="Html.GetEnumSelectList<EventStatusType>()">
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="IsAccessibleForFree"></label>
+                    <input asp-for="IsAccessibleForFree" class="form-control" />
+                    <span asp-validation-for="IsAccessibleForFree" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="MaximumAttendeeCapacity"></label>
+                    <input asp-for="MaximumAttendeeCapacity" class="form-control" />
+                    <span asp-validation-for="MaximumAttendeeCapacity" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Price"></label>
+                    <input asp-for="Price" class="form-control" />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Description"></label>
+                    <textarea asp-for="Description" class="form-control"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="AgeRange"></label>
+                    <select class="border border-dark form-control" asp-for="AgeRange" asp-items="Html.GetEnumSelectList<TypicalAgeRange>()">
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Image" class="control-label"></label>
+                    <input type="file"
+                           class="form-control text-primary text-center"
+                           id="image"
+                           placeholder="Снимка"
+                           asp-for="Image">
+                    <span asp-validation-for="Image" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Промени събитие</button>
+</form>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

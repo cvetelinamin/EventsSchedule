@@ -2,8 +2,10 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    public class OrganizerInputModel
+    public class OrganizerEditModel
     {
+        public string Id { get; set; }
+
         [Required]
         [StringLength(50, MinimumLength = 3)]
         [Display(Name = "Име")]

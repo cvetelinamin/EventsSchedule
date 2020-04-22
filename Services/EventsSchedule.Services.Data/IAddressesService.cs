@@ -7,5 +7,7 @@
     public interface IAddressesService
     {
         Task<Address> CreateAddress(string cityId, string street, string additionalInformation);
+
+        T GetById<T>(string id);
     }
 }

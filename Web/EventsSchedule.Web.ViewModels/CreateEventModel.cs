@@ -10,7 +10,7 @@
     using EventsSchedule.Web.ViewModels.Organizers;
     using Microsoft.AspNetCore.Http;
 
-    public class CreateEventModel : IMapTo<OrganizerInputModel>, IMapFrom<OrganizerInputModel>
+    public class CreateEventModel : IMapTo<OrganizerEditModel>, IMapFrom<OrganizerEditModel>
     {
         public IQueryable<CategoriesViewModel> Categories { get; set; }
 

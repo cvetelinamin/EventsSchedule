@@ -1,9 +1,11 @@
 ﻿namespace EventsSchedule.Services.Data
 {
+    using System.Linq;
     using System.Threading.Tasks;
 
     using EventsSchedule.Data.Common.Repositories;
     using EventsSchedule.Data.Models;
+    using EventsSchedule.Services.Mapping;
 
     public class AddressesService : IAddressesService
     {
@@ -25,6 +27,13 @@
                  AdditionalInformation = additionalInformation,
             };
 
+            return address;
+        }
+
+        public T GetById<T>(string id)
+        {
+            var address = this.addressesRepository.AllAsNoTracking().Where(x => x.Id == id)
+                .To<T>().FirstOrDefault();
             return address;
         }
     }

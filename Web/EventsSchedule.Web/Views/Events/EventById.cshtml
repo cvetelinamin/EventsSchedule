@@ -42,7 +42,9 @@
         @if (this.User.IsInRole("Administrator"))
         {
             <div class="px-4 pt-3">
-                <a asp-area="Administration" asp-controller="Events" asp-action="Edit" asp-route-eventId="@Model.Id" class="btn btn-primary">Промени</a>
+                <a asp-area="Administration" asp-controller="Events" asp-action="EditEvent" asp-route-eventId="@Model.Id" class="btn btn-primary">Промени данни за събитието</a>
+                <a asp-area="Administration" asp-controller="Addresses" asp-action="EditAddress" asp-route-eventId="@Model.Id" asp-route-addressId="@Model.Address.Id" class="btn btn-primary">Промени данни за адреса</a>
+                <a asp-area="Administration" asp-controller="Organizers" asp-action="EditOrganizer" asp-route-eventId="@Model.Id" asp-route-organizerId="@Model.Organizer.Id" class="btn btn-primary">Промени данни за организатора</a>
                 <a asp-area="Administration" asp-controller="Events" asp-action="Delete" asp-route-eventId="@Model.Id" class="btn btn-primary">Изтрий</a>
             </div>
         }

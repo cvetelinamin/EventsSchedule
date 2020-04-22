@@ -9,16 +9,19 @@
     using EventsSchedule.Data.Models;
     using EventsSchedule.Data.Models.Enums;
     using EventsSchedule.Services.Mapping;
+    using EventsSchedule.Web.ViewModels.Events;
 
     public class EventsService : IEventsService
     {
         private readonly ICategoriesService categoryService;
         private readonly IDeletableEntityRepository<Event> eventsRepository;
+        private readonly ICloudinaryService cloudinaryService;
 
-        public EventsService(ICategoriesService categoryService, IDeletableEntityRepository<Event> eventsRepository)
+        public EventsService(ICategoriesService categoryService, IDeletableEntityRepository<Event> eventsRepository, ICloudinaryService cloudinaryService)
         {
             this.categoryService = categoryService;
             this.eventsRepository = eventsRepository;
+            this.cloudinaryService = cloudinaryService;
         }
 
         public async Task<Event> CreatEvent(string title, string performer, DateTime doorTime, DateTime endTime, int duration, string description, string schedule, int maxCapacity, bool isFree, decimal price, EventStatusType status, TypicalAgeRange ageRange, string categoryId, string userId, Organizer organizer, Address address, string pictureUrl)
@@ -115,6 +118,33 @@
             }
 
             return query;
+        }
+
+        public async Task EditEvent(EventsEditViewModel eventEditViewModel, Event eventToEdit)
+        {
+            string pictureUrl = this.cloudinaryService.UploadPicture(eventEditViewModel.Image, eventEditViewModel.Title);
+
+            eventToEdit.DoorTime = eventEditViewModel.DoorTime;
+            eventToEdit.Duration = eventEditViewModel.Duration;
+            eventToEdit.EndTime = eventEditViewModel.EndTime;
+            eventToEdit.EventCategoryId = eventEditViewModel.CategoryId;
+            eventToEdit.EventSchedule = eventEditViewModel.EventSchedule;
+
+            if (eventEditViewModel.Image != null)
+            {
+                eventToEdit.Image = pictureUrl;
+            }
+
+            eventToEdit.IsAccessibleForFree = eventEditViewModel.IsAccessibleForFree;
+            eventToEdit.MaximumAttendeeCapacity = eventEditViewModel.MaximumAttendeeCapacity;
+            eventToEdit.ModifiedOn = DateTime.UtcNow;
+            eventToEdit.Performer = eventEditViewModel.Performer;
+            eventToEdit.Price = eventEditViewModel.Price;
+            eventToEdit.Status = eventEditViewModel.Status;
+            eventToEdit.Title = eventEditViewModel.Title;
+
+            this.eventsRepository.Update(eventToEdit);
+            await this.eventsRepository.SaveChangesAsync();
         }
     }
 }
