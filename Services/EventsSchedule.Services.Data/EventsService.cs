@@ -57,37 +57,6 @@
             return eventDetails;
         }
 
-        public IQueryable<Event> GetEventsByCategoryName(string name)
-        {
-            return this.eventsRepository.AllAsNoTracking()
-                                        .Where(e => e.EventCategory.Name == name)
-                                        .OrderByDescending(e => e.CreatedOn);
-        }
-
-        public IQueryable<Event> SortEventsByPrice(IQueryable<Event> events, EventsPriceSort sort)
-        {
-            if (sort == EventsPriceSort.PriceDescending)
-            {
-                return events.OrderByDescending(e => e.Price);
-            }
-            else if (sort == EventsPriceSort.PriceAscending)
-            {
-                return events.OrderBy(e => e.Price);
-            }
-
-            return events.OrderByDescending(e => e.CreatedOn);
-        }
-
-        public IQueryable<Event> FilterEventsByCity(IQueryable<Event> events, string cityId)
-        {
-            return events.Where(e => e.Address.CityId == cityId);
-        }
-
-        public IQueryable<Event> FilterEventsByAudienceAge(IQueryable<Event> events, TypicalAgeRange typicalAgeRange)
-        {
-            return events.Where(e => e.AgeRange == typicalAgeRange);
-        }
-
         public IEnumerable<T> GetEvents<T>(string categoryId, EventsPriceSort priceSort, string cityId, TypicalAgeRange typicalAgeRange)
         {
             var events = this.eventsRepository.AllAsNoTracking()
@@ -146,5 +115,45 @@
             this.eventsRepository.Update(eventToEdit);
             await this.eventsRepository.SaveChangesAsync();
         }
+
+        public IQueryable<Event> GetEventsByCategoryName(string name)
+        {
+            return this.eventsRepository.AllAsNoTracking()
+                                        .Where(e => e.EventCategory.Name == name)
+                                        .OrderByDescending(e => e.CreatedOn);
+        }
+
+        private IQueryable<Event> SortEventsByPrice(IQueryable<Event> events, EventsPriceSort sort)
+        {
+            if (sort == EventsPriceSort.PriceDescending)
+            {
+                return events.OrderByDescending(e => e.Price);
+            }
+            else if (sort == EventsPriceSort.PriceAscending)
+            {
+                return events.OrderBy(e => e.Price);
+            }
+
+            return events.OrderByDescending(e => e.CreatedOn);
+        }
+
+        private IQueryable<Event> FilterEventsByCity(IQueryable<Event> events, string cityId)
+        {
+            return events.Where(e => e.Address.CityId == cityId);
+        }
+
+        private IQueryable<Event> FilterEventsByAudienceAge(IQueryable<Event> events, TypicalAgeRange typicalAgeRange)
+        {
+            return events.Where(e => e.AgeRange == typicalAgeRange);
+        }
+
+        //private IQueryable<Event> GetEventsBySearchString(IQueryable<Event> events, string searchString)
+        //{
+        //    var searchStringSplit = searchString.Split(new string[] { ",", " " }, StringSplitOptions.RemoveEmptyEntries).ToList();
+
+        //    var sortedEvents = events.Where(e => searchStringSplit.All(s => e.Performer.ToLower().Contains(s.ToLower())));
+
+        //    return sortedEvents;
+        //}
     }
 }

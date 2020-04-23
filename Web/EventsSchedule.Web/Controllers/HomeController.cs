@@ -9,7 +9,6 @@
     using EventsSchedule.Data.Common.Repositories;
     using EventsSchedule.Data.Models;
     using EventsSchedule.Services.Data;
-    using EventsSchedule.Services.Mapping;
     using EventsSchedule.Web.ViewModels;
     using EventsSchedule.Web.ViewModels.Events;
     using EventsSchedule.Web.ViewModels.Home;
@@ -51,6 +50,7 @@
                 TypicalAgeRangeSort = model.TypicalAgeRangeSort,
                 CurrentPage = page,
                 PagesCount = (int)Math.Ceiling((double)count / ItemsPerPage),
+                SearchString = model.SearchString,
             };
 
             return this.View(viewModel);

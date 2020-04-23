@@ -1,8 +1,9 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
-
-namespace EventsSchedule.Data.Migrations
+﻿namespace EventsSchedule.Data.Migrations
 {
+    using System;
+
+    using Microsoft.EntityFrameworkCore.Migrations;
+
     public partial class AddedBlogsTable : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -43,7 +44,7 @@ namespace EventsSchedule.Data.Migrations
                     DeletedOn = table.Column<DateTime>(nullable: true),
                     Title = table.Column<string>(maxLength: 150, nullable: false),
                     Content = table.Column<string>(maxLength: 5000, nullable: false),
-                    ApplicationUserId = table.Column<string>(nullable: false)
+                    ApplicationUserId = table.Column<string>(nullable: false),
                 },
                 constraints: table =>
                 {

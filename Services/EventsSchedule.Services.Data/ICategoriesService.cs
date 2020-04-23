@@ -1,7 +1,6 @@
 ﻿namespace EventsSchedule.Services.Data
 {
     using System.Collections.Generic;
-    using System.Linq;
     using System.Threading.Tasks;
 
     using EventsSchedule.Data.Models;
@@ -12,19 +11,9 @@
 
         Task<IEnumerable<string>> GetAllTitlesAsync();
 
-        // Task<CreateCategoryModel> GetByIdAsync(int id);
-
         Task<EventCategory> CreateAsync(string name);
 
         ICollection<EventCategory> GetAll();
-
-       // Task<bool> EditAsync(CreateCategoryModel categoryServiceModel);
-
-        // Task<bool> DeleteByIdAsync(int id);
-
-        // Task SetCategoryToRecipeAsync(string categoryTitle, Recipe recipe);
-
-        // IQueryable<CreateCategoryModel> GetAll();
 
         Task<string> GetIdByTitleAsync(string categoryTitle);
     }

@@ -11,7 +11,6 @@
     using EventsSchedule.Data.Seeding;
     using EventsSchedule.Services.Data;
     using EventsSchedule.Services.Mapping;
-    using EventsSchedule.Services.Messaging;
     using EventsSchedule.Web.ViewModels;
 
     using Microsoft.AspNetCore.Builder;

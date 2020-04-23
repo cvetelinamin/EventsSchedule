@@ -5,6 +5,7 @@
     using System.IO;
     using System.Threading.Tasks;
 
+    using CommandLine;
     using EventsSchedule.Data;
     using EventsSchedule.Data.Common;
     using EventsSchedule.Data.Common.Repositories;
@@ -13,9 +14,6 @@
     using EventsSchedule.Data.Seeding;
     using EventsSchedule.Services.Data;
     using EventsSchedule.Services.Messaging;
-
-    using CommandLine;
-
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;

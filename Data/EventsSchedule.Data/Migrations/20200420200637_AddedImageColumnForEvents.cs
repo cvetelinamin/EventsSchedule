@@ -1,7 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
-
-namespace EventsSchedule.Data.Migrations
+﻿namespace EventsSchedule.Data.Migrations
 {
+    using Microsoft.EntityFrameworkCore.Migrations;
+
     public partial class AddedImageColumnForEvents : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)

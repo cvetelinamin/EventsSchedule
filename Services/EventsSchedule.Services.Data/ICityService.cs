@@ -3,7 +3,6 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-
     public interface ICityService
     {
         Task<IEnumerable<string>> GetAllCitiesAsync();

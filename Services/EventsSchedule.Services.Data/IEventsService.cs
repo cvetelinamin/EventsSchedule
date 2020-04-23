@@ -17,19 +17,10 @@
 
         IQueryable<Event> GetEventsByCategoryName(string name);
 
-        IQueryable<Event> SortEventsByPrice(IQueryable<Event> events, EventsPriceSort sort);
-
-        IQueryable<Event> FilterEventsByCity(IQueryable<Event> events, string cityId);
-
-        IQueryable<Event> FilterEventsByAudienceAge(IQueryable<Event> events, TypicalAgeRange typicalAgeRange);
-
         IEnumerable<T> GetEvents<T>(string categoryId, EventsPriceSort priceSort, string cityId, TypicalAgeRange typicalAgeRange);
 
         IEnumerable<T> GetEventsPerPage<T>(IEnumerable<T> events, int? take = null, int skip = 0);
 
         Task EditEvent(EventsEditViewModel eventEditViewModel, Event eventToEdit);
-        //Task<TopEventViewModel> DetailsTopEvent();
-
-        //Task<ListTopEvents> GetAll();
     }
 }
