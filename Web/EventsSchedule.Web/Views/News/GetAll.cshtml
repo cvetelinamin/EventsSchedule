@@ -3,14 +3,6 @@
     ViewData["Title"] = "GetAll";
 }
 
-@if (this.User.IsInRole("Administrator"))
-{
-    <div class="btn btn-primary text-white mb-2">
-        <a class="about-us" asp-area="Administration" asp-controller="News" asp-action="Create" title="Създай статия">Създай свето събитие</a>
-    </div>
-
-}
-
 @foreach (var news in this.Model.News)
 {
     <div class="card bg-dark text-white" style="height: 40vh; margin-bottom: 2em; overflow: hidden;">

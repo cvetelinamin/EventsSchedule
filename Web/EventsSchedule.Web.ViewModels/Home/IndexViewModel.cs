@@ -12,6 +12,8 @@
 
         public IEnumerable<EventShortViewModel> Events { get; set; }
 
+        public IEnumerable<EventIndexViewModel> TopEvents { get; set; }
+
         public string EventCategoryId { get; set; }
 
         public EventsPriceSort PriceSort { get; set; }

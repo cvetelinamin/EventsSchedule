@@ -26,10 +26,10 @@
 
         public string Description { get; set; }
 
-        public Address Address { get; set; }
+        public string AddressCityName { get; set; }
 
         public string SanitizedDescription => new HtmlSanitizer().Sanitize(this.Description);
 
-        public string ShortDescription => this.SanitizedDescription.Length > 100 ? this.SanitizedDescription.Substring(0, 100) + "..." : this.SanitizedDescription;
+        public string ShortDescription => this.SanitizedDescription.Length > 150 ? this.SanitizedDescription.Substring(0, 150) + "..." : this.SanitizedDescription;
     }
 }

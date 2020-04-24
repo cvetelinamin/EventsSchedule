@@ -33,7 +33,9 @@
 
         public async Task<IActionResult> Index(IndexInputModel model, int page = 1)
         {
+        //    var topEvents = this.eventsService.GetTopEvents<EventIndexViewModel>();
             var categories = this.categoriesService.GetAll();
+
             var events = this.eventsService.GetEvents<EventShortViewModel>(model.EventCategoryId, model.PriceSort, model.CityId, model.TypicalAgeRangeSort);
 
             var count = events.Count();
@@ -43,6 +45,7 @@
             var viewModel = new IndexViewModel
             {
                 EventCategoryId = model.EventCategoryId,
+                //TopEvents = topEvents,
                 PriceSort = model.PriceSort,
                 Categories = categories,
                 Events = eventsPerPage,

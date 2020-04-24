@@ -22,5 +22,7 @@
         IEnumerable<T> GetEventsPerPage<T>(IEnumerable<T> events, int? take = null, int skip = 0);
 
         Task EditEvent(EventsEditViewModel eventEditViewModel, Event eventToEdit);
+
+        //IEnumerable<T> GetTopEvents<T>();
     }
 }
