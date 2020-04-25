@@ -62,7 +62,7 @@
             this.organizersRepository.Update(organizerToChange);
             await this.organizersRepository.SaveChangesAsync();
 
-            return this.RedirectToAction("EventById", "Еvents", new { eventId, Area = "User" });
+            return this.Redirect($"/Events/EventById?eventId={eventId}");
         }
     }
 }

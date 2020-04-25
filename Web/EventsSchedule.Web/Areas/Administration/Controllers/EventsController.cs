@@ -50,7 +50,7 @@
 
             await this.eventsService.EditEvent(eventEditViewModel, eventToEdit);
 
-            return this.RedirectToAction("EventById", "Еvents", new { eventId, Area = "User" });
+            return this.Redirect($"/Events/EventById?eventId={eventId}");
         }
 
         public async Task<IActionResult> Delete(string eventId)

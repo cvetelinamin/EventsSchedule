@@ -61,7 +61,7 @@
             this.addressesRepository.Update(addressToChange);
             await this.addressesRepository.SaveChangesAsync();
 
-            return this.RedirectToAction("EventById", "Еvents", new { eventId, Area = "User" });
+            return this.Redirect($"/Events/EventById?eventId={eventId}");
         }
     }
 }

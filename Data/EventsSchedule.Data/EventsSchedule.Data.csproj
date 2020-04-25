@@ -11,6 +11,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20200425203350_ChangedParameterInEvents.cs" />
+    <Compile Remove="Migrations\20200425203350_ChangedParameterInEvents.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <AdditionalFiles Include="..\..\stylecop.json" />
   </ItemGroup>
 

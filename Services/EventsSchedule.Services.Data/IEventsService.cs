@@ -23,6 +23,6 @@
 
         Task EditEvent(EventsEditViewModel eventEditViewModel, Event eventToEdit);
 
-        //IEnumerable<T> GetTopEvents<T>();
+        IEnumerable<T> GetTopEvents<T>();
     }
 }

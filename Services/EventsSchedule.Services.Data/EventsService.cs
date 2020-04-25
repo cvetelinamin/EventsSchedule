@@ -77,24 +77,12 @@
             return sortedEvents.To<T>().ToList();
         }
 
-        //public IEnumerable<T> GetTopEvents<T>()
-        //{
-        //    Dictionary<Event, double> listEvents = new Dictionary<Event, double>();
+        public IEnumerable<T> GetTopEvents<T>()
+        {
+            var events = this.eventsRepository.AllAsNoTracking().OrderByDescending(e => e.Reviews.Average(r => r.Rating)).Take(3);
 
-        //    var events = this.eventsRepository.AllAsNoTracking();
-
-        //    foreach (var theEvent in events)
-        //    {
-        //        var reviews = theEvent.Reviews.Sum(r => r.Rating);
-        //        double averageReviews = reviews / theEvent.Reviews.Count;
-
-        //        listEvents.Add(theEvent, averageReviews);
-        //    }
-
-        //    var topEvents = listEvents.OrderByDescending(e => e.Value).Select(e => e.Key);
-
-        //    return topEvents.To<T>().ToList();
-        //}
+            return events.To<T>().ToList();
+        }
 
         public IQueryable GetAll()
         {

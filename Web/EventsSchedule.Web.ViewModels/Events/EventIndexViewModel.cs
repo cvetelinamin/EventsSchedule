@@ -1,6 +1,8 @@
 ﻿namespace EventsSchedule.Web.ViewModels.Events
 {
-    using AngleSharp.Dom.Events;
+    using System;
+
+    using EventsSchedule.Data.Models;
     using EventsSchedule.Services.Mapping;
     using Ganss.XSS;
 
@@ -13,6 +15,10 @@
         public string Performer { get; set; }
 
         public string Description { get; set; }
+
+        public string Image { get; set; }
+
+        public DateTime DoorTime { get; set; }
 
         public string SanitizedDescription => new HtmlSanitizer().Sanitize(this.Description);
 
