@@ -1,4 +1,4 @@
-﻿namespace EventsSchedule.Web.ViewModels
+﻿namespace EventsSchedule.Web.ViewModels.Events
 {
     using System;
     using System.ComponentModel.DataAnnotations;

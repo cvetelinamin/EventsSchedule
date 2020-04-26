@@ -12,13 +12,9 @@
 
         public string Title { get; set; }
 
-        public string Performer { get; set; }
-
         public string Description { get; set; }
 
         public string Image { get; set; }
-
-        public DateTime DoorTime { get; set; }
 
         public string SanitizedDescription => new HtmlSanitizer().Sanitize(this.Description);
 

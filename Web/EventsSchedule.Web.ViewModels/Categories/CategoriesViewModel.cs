@@ -1,5 +1,7 @@
 ﻿namespace EventsSchedule.Web.ViewModels.Categories
 {
+    using System.ComponentModel.DataAnnotations;
+
     using EventsSchedule.Data.Models;
     using EventsSchedule.Services.Mapping;
 
@@ -7,6 +9,7 @@
     {
         public string Id { get; set; }
 
+        [Display(Name="Име")]
         public string Name { get; set; }
     }
 }

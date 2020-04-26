@@ -1,13 +1,10 @@
 ﻿namespace EventsSchedule.Web.Controllers
 {
     using System;
-    using System.Linq;
     using System.Threading.Tasks;
 
-    using EventsSchedule.Data;
     using EventsSchedule.Data.Models;
     using EventsSchedule.Services.Data;
-    using EventsSchedule.Services.Mapping;
     using EventsSchedule.Web.ViewModels.Reviews;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
@@ -17,17 +14,13 @@
     {
         private const int ItemsPerPage = 3;
 
-        private readonly IEventsService eventsService;
         private readonly UserManager<ApplicationUser> userManager;
         private readonly IReviewsService reviewsService;
-        private readonly ApplicationDbContext dbContext;
 
-        public ReviewsController(IEventsService eventsService, UserManager<ApplicationUser> userManager, IReviewsService reviewsService, ApplicationDbContext dbContext)
+        public ReviewsController(UserManager<ApplicationUser> userManager, IReviewsService reviewsService)
         {
-            this.eventsService = eventsService;
             this.userManager = userManager;
             this.reviewsService = reviewsService;
-            this.dbContext = dbContext;
         }
 
         [Route("Reviews/Add")]

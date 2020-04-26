@@ -10,7 +10,6 @@
     using EventsSchedule.Services.Mapping;
     using EventsSchedule.Web.ViewModels;
     using EventsSchedule.Web.ViewModels.Events;
-    using EventsSchedule.Web.ViewModels.Organizers;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
@@ -22,24 +21,18 @@
         private readonly IEventsService eventsService;
         private readonly IOrganizersService organizersService;
         private readonly IAddressesService addressesService;
-        private readonly ICityService cityService;
         private readonly ICloudinaryService cloudinaryService;
-        private readonly ICategoriesService categoryService;
         private readonly IDeletableEntityRepository<Event> eventRepository;
-        private readonly IDeletableEntityRepository<EventCategory> categoriesRepository;
 
-        public EventsController(ApplicationDbContext dbContext, UserManager<ApplicationUser> userManager, IEventsService eventsService, IOrganizersService organizersService, IAddressesService addressesService, ICityService cityService, ICloudinaryService cloudinaryService, ICategoriesService categoryService, IDeletableEntityRepository<Event> eventRepository, IDeletableEntityRepository<EventCategory> categoriesRepository)
+        public EventsController(ApplicationDbContext dbContext, UserManager<ApplicationUser> userManager, IEventsService eventsService, IOrganizersService organizersService, IAddressesService addressesService, ICloudinaryService cloudinaryService, IDeletableEntityRepository<Event> eventRepository)
         {
             this.dbContext = dbContext;
             this.userManager = userManager;
             this.eventsService = eventsService;
             this.organizersService = organizersService;
             this.addressesService = addressesService;
-            this.cityService = cityService;
             this.cloudinaryService = cloudinaryService;
-            this.categoryService = categoryService;
             this.eventRepository = eventRepository;
-            this.categoriesRepository = categoriesRepository;
         }
 
         [Authorize]

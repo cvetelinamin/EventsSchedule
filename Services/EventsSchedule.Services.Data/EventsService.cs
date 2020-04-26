@@ -158,14 +158,5 @@
         {
             return events.Where(e => e.AgeRange == typicalAgeRange);
         }
-
-        //private IQueryable<Event> GetEventsBySearchString(IQueryable<Event> events, string searchString)
-        //{
-        //    var searchStringSplit = searchString.Split(new string[] { ",", " " }, StringSplitOptions.RemoveEmptyEntries).ToList();
-
-        //    var sortedEvents = events.Where(e => searchStringSplit.All(s => e.Performer.ToLower().Contains(s.ToLower())));
-
-        //    return sortedEvents;
-        //}
     }
 }

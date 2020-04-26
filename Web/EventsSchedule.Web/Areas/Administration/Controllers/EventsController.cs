@@ -3,7 +3,6 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    using EventsSchedule.Data;
     using EventsSchedule.Data.Common.Repositories;
     using EventsSchedule.Data.Models;
     using EventsSchedule.Services.Data;
@@ -12,17 +11,13 @@
 
     public class EventsController : AdministrationController
     {
-        private readonly ApplicationDbContext dbContext;
         private readonly IDeletableEntityRepository<Event> eventsRepository;
         private readonly IEventsService eventsService;
-        private readonly ICloudinaryService cloudinaryService;
 
-        public EventsController(ApplicationDbContext dbContext, IDeletableEntityRepository<Event> eventsRepository, IEventsService eventsService, ICloudinaryService cloudinaryService)
+        public EventsController(IDeletableEntityRepository<Event> eventsRepository, IEventsService eventsService)
         {
-            this.dbContext = dbContext;
             this.eventsRepository = eventsRepository;
             this.eventsService = eventsService;
-            this.cloudinaryService = cloudinaryService;
         }
 
         [HttpGet("/Administration/Events/EditEvent")]
