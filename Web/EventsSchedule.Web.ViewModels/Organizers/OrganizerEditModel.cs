@@ -2,6 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
 
+    using EventsSchedule.Data.Common;
     using EventsSchedule.Data.Models;
     using EventsSchedule.Services.Mapping;
 
@@ -12,17 +13,17 @@
         public string EventId { get; set; }
 
         [Required]
-        [StringLength(50, MinimumLength = 3)]
+        [StringLength(AttributesConstraints.OrganizerNameMaxLenght, MinimumLength = AttributesConstraints.OrganizerNameMinLenght)]
         [Display(Name = "Име")]
         public string Name { get; set; }
 
         [Required]
-        [StringLength(100, MinimumLength = 3)]
+        [StringLength(AttributesConstraints.OrganizerContactNameMaxLenght, MinimumLength = AttributesConstraints.OrganizerContactNameMinLenght)]
         [Display(Name = "Лице за контакт")]
         public string ContactName { get; set; }
 
         [Required]
-        [StringLength(1000, MinimumLength = 50)]
+        [StringLength(AttributesConstraints.OrganizerDescriptionMaxLenght, MinimumLength = AttributesConstraints.OrganizerDescriptionMinLenght)]
         [Display(Name = "Описание")]
         public string Description { get; set; }
 

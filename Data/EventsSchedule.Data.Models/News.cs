@@ -3,21 +3,22 @@
     using System;
     using System.ComponentModel.DataAnnotations;
 
+    using EventsSchedule.Data.Common;
     using EventsSchedule.Data.Common.Models;
 
-    public class Blog : BaseDeletableModel<string>
+    public class News : BaseDeletableModel<string>
     {
-        public Blog()
+        public News()
         {
             this.Id = Guid.NewGuid().ToString();
         }
 
         [Required]
-        [StringLength(150, MinimumLength = 5)]
+        [StringLength(AttributesConstraints.NewsTitleMaxLenght, MinimumLength = AttributesConstraints.NewsTitleMinLenght)]
         public string Title { get; set; }
 
         [Required]
-        [StringLength(5000, MinimumLength = 5)]
+        [StringLength(AttributesConstraints.NewsContentMaxLenght, MinimumLength = AttributesConstraints.NewsContentMinLenght)]
         public string Content { get; set; }
 
         public string Image { get; set; }

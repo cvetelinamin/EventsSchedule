@@ -4,7 +4,7 @@ namespace EventsSchedule.Data.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-
+    using EventsSchedule.Data.Common;
     using EventsSchedule.Data.Common.Models;
     using EventsSchedule.Data.Models.Enums;
     using Microsoft.AspNetCore.Identity;
@@ -22,15 +22,16 @@ namespace EventsSchedule.Data.Models
         }
 
         [Required]
-        [MaxLength(20)]
+        [MaxLength(AttributesConstraints.FirstNameMaxLenght)]
         public string FirstName { get; set; }
 
         [Required]
-        [MaxLength(20)]
+        [MaxLength(AttributesConstraints.LastNameMaxLenght)]
         public string LastName { get; set; }
 
         public Gender Gender { get; set; }
 
+        [Range(AttributesConstraints.UserMinAge, AttributesConstraints.UserMaxAge)]
         public int Age { get; set; }
 
         [Required]

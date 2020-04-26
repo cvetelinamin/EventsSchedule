@@ -58,7 +58,7 @@
 
             var address = await this.addressesService.CreateAddress(model.CityId, model.Street, model.AdditionalInformation);
 
-            var inputEvent = await this.eventsService.CreatEvent(model.Title, model.Performer, model.DoorTime, model.EndTime, model.Duration, model.Description, model.EventSchedule, model.MaximumAttendeeCapacity, model.IsAccessibleForFree, model.Price, model.Status, model.AgeRange, model.CategoryId, user, organizer, address, pictureUrl);
+            var inputEvent = await this.eventsService.CreatEvent(model.Title, model.Performer, model.DoorTime, model.EndTime, model.Description, model.MaximumAttendeeCapacity, model.IsAccessibleForFree, model.Price, model.Status, model.AgeRange, model.CategoryId, user, organizer, address, pictureUrl);
 
             await this.dbContext.Events.AddAsync(inputEvent);
 

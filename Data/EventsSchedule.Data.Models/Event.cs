@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
+    using EventsSchedule.Data.Common;
     using EventsSchedule.Data.Common.Models;
     using EventsSchedule.Data.Models.Enums;
 
@@ -17,13 +18,11 @@
         }
 
         [Required]
-        [StringLength(100, MinimumLength = 3)]
-
+        [StringLength(AttributesConstraints.EventTitleMaxLenght, MinimumLength = AttributesConstraints.EventTitleMinLenght)]
         public string Title { get; set; }
 
         [Required]
-        [StringLength(100, MinimumLength = 3)]
-
+        [StringLength(AttributesConstraints.EventPerformerMaxLenght, MinimumLength = AttributesConstraints.EventPerformerMinLenght)]
         public string Performer { get; set; }
 
         [Required]
@@ -40,14 +39,7 @@
 
         public DateTime DoorTime { get; set; }
 
-        public int Duration { get; set; }
-
         public DateTime EndTime { get; set; }
-
-        [Required]
-        [StringLength(1000, MinimumLength = 3)]
-
-        public string EventSchedule { get; set; }
 
         public EventStatusType Status { get; set; }
 
@@ -58,13 +50,14 @@
 
         public Address Address { get; set; }
 
+        [Range(AttributesConstraints.EventMinCapacity, AttributesConstraints.EventMaxCapacity)]
         public int MaximumAttendeeCapacity { get; set; }
 
+        [Range(AttributesConstraints.EventMinPrice, AttributesConstraints.EventMaxPrice)]
         public decimal Price { get; set; }
 
         [Required]
-        [StringLength(1500, MinimumLength = 3)]
-
+        [StringLength(AttributesConstraints.EventDescriptionMaxLenght, MinimumLength = AttributesConstraints.EventDescriptionMinLenght)]
         public string Description { get; set; }
 
         public string CreatorId { get; set; }

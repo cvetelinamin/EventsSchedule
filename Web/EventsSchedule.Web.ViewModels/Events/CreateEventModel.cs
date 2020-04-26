@@ -4,6 +4,7 @@
     using System.ComponentModel.DataAnnotations;
     using System.Linq;
 
+    using EventsSchedule.Data.Common;
     using EventsSchedule.Data.Models.Enums;
     using EventsSchedule.Services.Mapping;
     using EventsSchedule.Web.ViewModels.Categories;
@@ -15,12 +16,12 @@
         public IQueryable<CategoriesViewModel> Categories { get; set; }
 
         [Required]
-        [StringLength(100, MinimumLength = 3)]
+        [StringLength(AttributesConstraints.EventTitleMaxLenght, MinimumLength = AttributesConstraints.EventTitleMinLenght)]
         [Display(Name = "Заглавие")]
         public string Title { get; set; }
 
         [Required]
-        [StringLength(100, MinimumLength = 3)]
+        [StringLength(AttributesConstraints.EventPerformerMaxLenght, MinimumLength = AttributesConstraints.EventPerformerMinLenght)]
         [Display(Name = "Изпълнител")]
         public string Performer { get; set; }
 
@@ -31,17 +32,8 @@
         [Display(Name = "Начало")]
         public DateTime DoorTime { get; set; }
 
-        [Display(Name = "Продължителност")]
-        [Range(30, 300)]
-        public int Duration { get; set; }
-
         [Display(Name = "Край")]
         public DateTime EndTime { get; set; }
-
-        [Required]
-        [MaxLength(1000)]
-        [Display(Name = "График на събитието")]
-        public string EventSchedule { get; set; }
 
         [Display(Name = "Статус")]
         public EventStatusType Status { get; set; }
@@ -49,17 +41,17 @@
         [Display(Name = "Вход свободен")]
         public bool IsAccessibleForFree { get; set; }
 
-        [Range(0, 50000)]
+        [Range(AttributesConstraints.EventMinCapacity, AttributesConstraints.EventMaxCapacity)]
         [Display(Name = "Капацитет")]
         public int MaximumAttendeeCapacity { get; set; }
 
-        [Range(0, 10000)]
+        [Range(AttributesConstraints.EventMinPrice, AttributesConstraints.EventMaxPrice)]
         [Display(Name = "Цена")]
         public decimal Price { get; set; }
 
         [Required]
-        [MaxLength(1500)]
-        [Display(Name = "Допълнително описание")]
+        [StringLength(AttributesConstraints.EventDescriptionMaxLenght, MinimumLength = AttributesConstraints.EventDescriptionMinLenght)]
+        [Display(Name = "Описание на събитието")]
         public string Description { get; set; }
 
         [Display(Name = "Възраст")]
@@ -69,17 +61,17 @@
         public IFormFile Image { get; set; }
 
         [Required]
-        [StringLength(50, MinimumLength = 3)]
+        [StringLength(AttributesConstraints.OrganizerNameMaxLenght, MinimumLength = AttributesConstraints.OrganizerNameMinLenght)]
         [Display(Name = "Име")]
         public string Name { get; set; }
 
         [Required]
-        [StringLength(100, MinimumLength = 3)]
+        [StringLength(AttributesConstraints.OrganizerContactNameMaxLenght, MinimumLength = AttributesConstraints.OrganizerContactNameMinLenght)]
         [Display(Name = "Лице за контакт")]
         public string ContactName { get; set; }
 
         [Required]
-        [StringLength(1000, MinimumLength = 50)]
+        [StringLength(AttributesConstraints.OrganizerDescriptionMaxLenght, MinimumLength = AttributesConstraints.OrganizerDescriptionMinLenght)]
         [Display(Name = "Описание")]
         public string OrganizerDescription { get; set; }
 
@@ -91,7 +83,7 @@
         public string CityId { get; set; }
 
         [Required]
-        [StringLength(100, MinimumLength = 3)]
+        [StringLength(AttributesConstraints.StreetMaxLenght, MinimumLength = AttributesConstraints.StreetMinLenght)]
         [Display(Name = "Улица №")]
         public string Street { get; set; }
 

@@ -2,7 +2,7 @@
 {
     using System;
     using System.ComponentModel.DataAnnotations;
-
+    using EventsSchedule.Data.Common;
     using EventsSchedule.Data.Common.Models;
 
     public class Review : BaseDeletableModel<string>
@@ -17,11 +17,11 @@
 
         public ApplicationUser ApplicationUser { get; set; }
 
-        [Range(0, 5)]
+        [Range(AttributesConstraints.MinRaiting, AttributesConstraints.MaxRaiting)]
         public int Rating { get; set; }
 
         [Required]
-        [StringLength(250, MinimumLength = 5)]
+        [StringLength(AttributesConstraints.CommentMaxLenght, MinimumLength = AttributesConstraints.CommentMinLenght)]
         public string Comment { get; set; }
 
         [Required]

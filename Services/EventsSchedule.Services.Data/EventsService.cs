@@ -24,7 +24,7 @@
             this.cloudinaryService = cloudinaryService;
         }
 
-        public async Task<Event> CreatEvent(string title, string performer, DateTime doorTime, DateTime endTime, int duration, string description, string schedule, int maxCapacity, bool isFree, decimal price, EventStatusType status, TypicalAgeRange ageRange, string categoryId, string userId, Organizer organizer, Address address, string pictureUrl)
+        public async Task<Event> CreatEvent(string title, string performer, DateTime doorTime, DateTime endTime, string description, int maxCapacity, bool isFree, decimal price, EventStatusType status, TypicalAgeRange ageRange, string categoryId, string userId, Organizer organizer, Address address, string pictureUrl)
         {
             var eventToCreate = new Event
             {
@@ -32,9 +32,7 @@
                 Performer = performer,
                 DoorTime = doorTime,
                 EndTime = endTime,
-                Duration = duration,
                 Description = description,
-                EventSchedule = schedule,
                 MaximumAttendeeCapacity = maxCapacity,
                 IsAccessibleForFree = isFree,
                 Price = price,
@@ -106,10 +104,8 @@
             string pictureUrl = this.cloudinaryService.UploadPicture(eventEditViewModel.Image, eventEditViewModel.Title);
 
             eventToEdit.DoorTime = eventEditViewModel.DoorTime;
-            eventToEdit.Duration = eventEditViewModel.Duration;
             eventToEdit.EndTime = eventEditViewModel.EndTime;
             eventToEdit.EventCategoryId = eventEditViewModel.CategoryId;
-            eventToEdit.EventSchedule = eventEditViewModel.EventSchedule;
             eventToEdit.Description = eventEditViewModel.Description;
 
             if (eventEditViewModel.Image != null)

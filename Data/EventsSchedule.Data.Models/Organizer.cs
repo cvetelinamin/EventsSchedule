@@ -3,8 +3,8 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using System.Text;
 
+    using EventsSchedule.Data.Common;
     using EventsSchedule.Data.Common.Models;
 
     public class Organizer : BaseDeletableModel<string>
@@ -16,15 +16,15 @@
         }
 
         [Required]
-        [StringLength(50, MinimumLength = 5)]
+        [StringLength(AttributesConstraints.OrganizerNameMaxLenght, MinimumLength = AttributesConstraints.OrganizerNameMinLenght)]
         public string Name { get; set; }
 
         [Required]
-        [StringLength(100, MinimumLength = 5)]
+        [StringLength(AttributesConstraints.OrganizerContactNameMaxLenght, MinimumLength = AttributesConstraints.OrganizerContactNameMinLenght)]
         public string ContactName { get; set; }
 
         [Required]
-        [StringLength(1000, MinimumLength = 5)]
+        [StringLength(AttributesConstraints.OrganizerDescriptionMaxLenght, MinimumLength = AttributesConstraints.OrganizerDescriptionMinLenght)]
         public string Description { get; set; }
 
         public string WebSite { get; set; }

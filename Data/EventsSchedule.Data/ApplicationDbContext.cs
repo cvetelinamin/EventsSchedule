@@ -30,7 +30,7 @@
 
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
-        public DbSet<Blog> Blogs { get; set; }
+        public DbSet<News> News { get; set; }
 
         public DbSet<City> Cities { get; set; }
 

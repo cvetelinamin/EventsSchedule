@@ -5,7 +5,7 @@
     using EventsSchedule.Data.Models;
     using EventsSchedule.Services.Mapping;
 
-    public class NewsShortViewModel : IMapTo<Blog>, IMapFrom<Blog>
+    public class NewsShortViewModel : IMapTo<News>, IMapFrom<News>
     {
         public string Id { get; set; }
 

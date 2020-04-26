@@ -11,7 +11,7 @@
 
     public interface IEventsService
     {
-        Task<Event> CreatEvent(string title, string performer, DateTime doorTime, DateTime endTime, int duration, string description, string schedule, int maxCapacity, bool isFree, decimal price, EventStatusType status, TypicalAgeRange ageRange, string category, string userId, Organizer organizer, Address address, string pictureUrl);
+        Task<Event> CreatEvent(string title, string performer, DateTime doorTime, DateTime endTime, string description, int maxCapacity, bool isFree, decimal price, EventStatusType status, TypicalAgeRange ageRange, string category, string userId, Organizer organizer, Address address, string pictureUrl);
 
         T GetById<T>(string id);
 

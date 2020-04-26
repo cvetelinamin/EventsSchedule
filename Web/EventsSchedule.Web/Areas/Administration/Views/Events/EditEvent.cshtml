@@ -53,16 +53,6 @@
                     <span asp-validation-for="EndTime" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="Duration"></label>
-                    <input asp-for="Duration" class="form-control" />
-                    <span asp-validation-for="Duration" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="EventSchedule"></label>
-                    <textarea asp-for="EventSchedule" class="form-control"></textarea>
-                    <span asp-validation-for="EventSchedule" class="text-danger"></span>
-                </div>
-                <div class="form-group">
                     <label asp-for="Status"></label>
                     <select class="border border-dark form-control" asp-for="Status" asp-items="Html.GetEnumSelectList<EventStatusType>()">
                     </select>

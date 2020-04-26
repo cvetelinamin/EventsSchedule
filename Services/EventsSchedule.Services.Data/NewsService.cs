@@ -10,16 +10,16 @@
 
     public class NewsService : INewsService
     {
-        private readonly IDeletableEntityRepository<Blog> newsRepository;
+        private readonly IDeletableEntityRepository<News> newsRepository;
 
-        public NewsService(IDeletableEntityRepository<Blog> newsRepository)
+        public NewsService(IDeletableEntityRepository<News> newsRepository)
         {
             this.newsRepository = newsRepository;
         }
 
         public async Task<string> CreateAsync(string title, string content, string imageUrl, string userId)
         {
-            var blog = new Blog
+            var blog = new News
             {
                 ApplicationUserId = userId,
                 Title = title,

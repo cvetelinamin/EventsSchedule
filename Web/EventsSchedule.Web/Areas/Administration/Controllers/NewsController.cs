@@ -18,10 +18,10 @@
         private readonly ApplicationDbContext dbContext;
         private readonly UserManager<ApplicationUser> userManager;
         private readonly INewsService newsService;
-        private readonly IDeletableEntityRepository<Blog> newsRepository;
+        private readonly IDeletableEntityRepository<News> newsRepository;
         private readonly ICloudinaryService cloudinaryService;
 
-        public NewsController(ApplicationDbContext dbContext, UserManager<ApplicationUser> userManager, INewsService newsService, IDeletableEntityRepository<Blog> newsRepository, ICloudinaryService cloudinaryService)
+        public NewsController(ApplicationDbContext dbContext, UserManager<ApplicationUser> userManager, INewsService newsService, IDeletableEntityRepository<News> newsRepository, ICloudinaryService cloudinaryService)
         {
             this.dbContext = dbContext;
             this.userManager = userManager;
@@ -56,7 +56,7 @@
         [HttpGet("/Administration/News/Edit")]
         public async Task<IActionResult> Edit(string newsId)
         {
-            var newsViewModel = this.dbContext.Blogs.To<NewsEditViewModel>().FirstOrDefault(n => n.Id == newsId);
+            var newsViewModel = this.dbContext.News.To<NewsEditViewModel>().FirstOrDefault(n => n.Id == newsId);
 
             if (newsViewModel == null)
             {

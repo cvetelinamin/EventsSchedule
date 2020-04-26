@@ -5,6 +5,7 @@
     using System.Linq;
 
     using AutoMapper;
+    using EventsSchedule.Data.Common;
     using EventsSchedule.Data.Models;
     using EventsSchedule.Data.Models.Enums;
     using EventsSchedule.Services.Mapping;
@@ -18,12 +19,12 @@
         public IQueryable<CategoriesViewModel> Categories { get; set; }
 
         [Required]
-        [StringLength(100, MinimumLength = 3)]
+        [StringLength(AttributesConstraints.EventTitleMaxLenght, MinimumLength = AttributesConstraints.EventTitleMinLenght)]
         [Display(Name = "Заглавие")]
         public string Title { get; set; }
 
         [Required]
-        [StringLength(100, MinimumLength = 3)]
+        [StringLength(AttributesConstraints.EventPerformerMaxLenght, MinimumLength = AttributesConstraints.EventPerformerMinLenght)]
         [Display(Name = "Изпълнител")]
         public string Performer { get; set; }
 
@@ -34,17 +35,8 @@
         [Display(Name = "Начало")]
         public DateTime DoorTime { get; set; }
 
-        [Display(Name = "Продължителност")]
-        [Range(30, 300)]
-        public int Duration { get; set; }
-
         [Display(Name = "Край")]
         public DateTime EndTime { get; set; }
-
-        [Required]
-        [MaxLength(1000)]
-        [Display(Name = "График на събитието")]
-        public string EventSchedule { get; set; }
 
         [Display(Name = "Статус")]
         public EventStatusType Status { get; set; }
@@ -52,17 +44,17 @@
         [Display(Name = "Вход свободен")]
         public bool IsAccessibleForFree { get; set; }
 
-        [Range(0, 50000)]
+        [Range(AttributesConstraints.EventMinCapacity, AttributesConstraints.EventMaxCapacity)]
         [Display(Name = "Капацитет")]
         public int MaximumAttendeeCapacity { get; set; }
 
-        [Range(0, 10000)]
+        [Range(AttributesConstraints.EventMinPrice, AttributesConstraints.EventMaxPrice)]
         [Display(Name = "Цена")]
         public decimal Price { get; set; }
 
         [Required]
-        [MaxLength(1500)]
-        [Display(Name = "Допълнително описание")]
+        [StringLength(AttributesConstraints.EventDescriptionMaxLenght, MinimumLength = AttributesConstraints.EventDescriptionMinLenght)]
+        [Display(Name = "Описание на събитието")]
         public string Description { get; set; }
 
         [Display(Name = "Възраст")]

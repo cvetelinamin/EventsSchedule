@@ -2,6 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
 
+    using EventsSchedule.Data.Common;
     using EventsSchedule.Data.Models;
     using EventsSchedule.Services.Mapping;
 
@@ -16,7 +17,7 @@
         public string CityId { get; set; }
 
         [Required]
-        [StringLength(100, MinimumLength = 3)]
+        [StringLength(AttributesConstraints.StreetMaxLenght, MinimumLength = AttributesConstraints.StreetMinLenght)]
         [Display(Name = "Улица №")]
         public string Street { get; set; }
 

@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Text;
-
+    using EventsSchedule.Data.Common;
     using EventsSchedule.Data.Common.Models;
 
     public class Address : BaseDeletableModel<string>
@@ -20,7 +20,7 @@
         public City City { get; set; }
 
         [Required]
-        [StringLength(50, MinimumLength = 3)]
+        [StringLength(AttributesConstraints.StreetMaxLenght, MinimumLength = AttributesConstraints.StreetMinLenght)]
         public string Street { get; set; }
 
         public string AdditionalInformation { get; set; }

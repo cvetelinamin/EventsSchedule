@@ -6,7 +6,7 @@
     using EventsSchedule.Services.Mapping;
     using Ganss.XSS;
 
-    public class NewsViewModel : IMapFrom<Blog>, IMapTo<Blog>
+    public class NewsViewModel : IMapFrom<News>, IMapTo<News>
     {
         public string Id { get; set; }
 

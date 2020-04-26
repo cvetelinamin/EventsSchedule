@@ -3,8 +3,8 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using System.Text;
 
+    using EventsSchedule.Data.Common;
     using EventsSchedule.Data.Common.Models;
 
     public class City : BaseDeletableModel<string>
@@ -16,7 +16,7 @@
         }
 
         [Required]
-        [StringLength(50, MinimumLength = 3)]
+        [StringLength(AttributesConstraints.CityNameMaxLenght, MinimumLength = AttributesConstraints.CityNameMinLenght)]
         public string Name { get; set; }
 
         public ICollection<Address> Addresses { get; set; }
