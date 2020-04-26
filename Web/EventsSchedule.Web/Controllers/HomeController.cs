@@ -53,7 +53,6 @@
                 TypicalAgeRangeSort = model.TypicalAgeRangeSort,
                 CurrentPage = page,
                 PagesCount = (int)Math.Ceiling((double)count / ItemsPerPage),
-                SearchString = model.SearchString,
             };
 
             return this.View(viewModel);

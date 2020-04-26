@@ -37,7 +37,11 @@
 
         public bool IsAccessibleForFree { get; set; }
 
-        public Address Address { get; set; }
+        public string AddressCityName { get; set; }
+
+        public string AddressStreet { get; set; }
+
+        public string AddressId { get; set; }
 
         public int MaximumAttendeeCapacity { get; set; }
 
@@ -62,6 +66,9 @@
                 return description;
             }
         }
+
+        public string SanitizedDescription => new HtmlSanitizer().Sanitize(this.Description);
+
         public IEnumerable<EventReviewViewModel> Reviews { get; set; }
 
         public void CreateMappings(IProfileExpression configuration)

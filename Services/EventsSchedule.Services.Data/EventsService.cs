@@ -110,6 +110,7 @@
             eventToEdit.EndTime = eventEditViewModel.EndTime;
             eventToEdit.EventCategoryId = eventEditViewModel.CategoryId;
             eventToEdit.EventSchedule = eventEditViewModel.EventSchedule;
+            eventToEdit.Description = eventEditViewModel.Description;
 
             if (eventEditViewModel.Image != null)
             {

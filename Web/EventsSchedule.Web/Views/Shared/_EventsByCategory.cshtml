@@ -2,21 +2,18 @@
 @using EventsSchedule.Web.ViewModels.Events
 
 @{
-    int countTopEvents = 0;
-}
-
-@{
     ViewData["Title"] = "Schedule";
 }
+
 <div class="title-start schedule-menu mt-5">
     <h2 class="sub-text text-center">Провери детайлите по всяко събитие</h2>
 </div>
-<form method="post" asp-controller="Home" asp-action="Index" asp-route-eventCategoryId="@Model.EventCategoryId" asp-route-cityId="@Model.CityId" asp-route-typicalAgeRangeSort="@Model.TypicalAgeRangeSort" asp-route-page="@Model.CurrentPage">
-    <input type="hidden" name="SortOrder" value="@Model.PriceSort">
+<form method="post" asp-controller="Home" asp-action="Index" asp-route-eventCategoryId="@Model.EventCategoryId" asp-route-priceSort="@Model.PriceSort" asp-route-cityId="@Model.CityId" asp-route-typicalAgeRangeSort="@Model.TypicalAgeRangeSort" asp-route-page="@Model.CurrentPage">
     <div class="row">
         <div class="sort-filter col">
-            <span class="text-uppercase font-weight-bold">Сортирай по:</span>
-            <select class="w-75 p-0 border border-dark form-control" name="Sort" id="Sort" onchange="this.form.submit();">
+            <span class="text-uppercase font-weight-bold">Избери:</span>
+            <select class="w-75 p-0 border border-dark form-control" name="PriceSort" id="Sort" onchange="this.form.submit();">
+                <option selected disabled>Избери</option>
                 <option value="1" selected="@(Model.PriceSort.ToString() == "PriceAscending" ? true : false)">Цена(възх.)</option>
                 <option value="2" selected="@(Model.PriceSort.ToString() == "PriceDescending" ? true : false)">Цена(низх.)</option>
             </select>

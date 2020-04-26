@@ -3,12 +3,11 @@
     <div id="menu">
         <form method="post" asp-controller="Home" asp-action="Index">
             <input type="hidden" name="EventCategoryId" value="@Model.EventCategoryId">
+            <input type="hidden" name="PriceSort" value="@Model.PriceSort">
             <input type="hidden" name="CityId" value="@Model.CityId">
             <input type="hidden" name="TypicalAgeRangeSort" value="@Model.TypicalAgeRangeSort">
-            <input type="hidden" name="TypicalAgeRangeSort" value="@Model.SearchString">
         </form>
     </div>
-
 
     @if (Model.EventCategoryId == null)
     {
@@ -20,7 +19,7 @@
                 <div class="carousel-item active">
                     <img style="width: 100%; height: auto; overflow: hidden;" src="@topEvents[0].Image" alt="...">
                     <div class="carousel-caption d-none d-md-block">
-                        <a style="color: white;" class="display-1 bold" asp-controller="Events" asp-action="EventById" asp-route-eventId="@topEvents[0].Id">
+                        <a style="color: white;" class="display-1" asp-controller="Events" asp-action="EventById" asp-route-eventId="@topEvents[0].Id">
                             @topEvents[0].Title
                         </a>
                         <p>@Html.Raw(topEvents[0].ShortDescription)</p>
@@ -29,7 +28,7 @@
                 <div class="carousel-item">
                     <img style="width: 100%; height: auto; overflow: hidden;" src="@topEvents[1].Image" alt="...">
                     <div class="carousel-caption d-none d-md-block">
-                        <a style="color: white;" class="display-1 bold" asp-controller="Events" asp-action="EventById" asp-route-eventId="@topEvents[1].Id">
+                        <a style="color: white;" class="display-1" asp-controller="Events" asp-action="EventById" asp-route-eventId="@topEvents[1].Id">
                             @topEvents[1].Title
                         </a>
                         <p>@Html.Raw(topEvents[1].ShortDescription)</p>
@@ -38,7 +37,7 @@
                 <div class="carousel-item">
                     <img style="width: 100%; height: auto; overflow: hidden;" src="@topEvents[2].Image" alt="...">
                     <div class="carousel-caption d-none d-md-block">
-                        <a style="color: white;" class="display-1 bold" asp-controller="Events" asp-action="EventById" asp-route-eventId="@topEvents[2].Id">
+                        <a style="color: white;" class="display-1" asp-controller="Events" asp-action="EventById" asp-route-eventId="@topEvents[2].Id">
                             @topEvents[2].Title
                         </a>
                         <p>@Html.Raw(topEvents[2].ShortDescription)</p>
