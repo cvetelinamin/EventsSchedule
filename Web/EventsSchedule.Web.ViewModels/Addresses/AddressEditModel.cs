@@ -12,12 +12,12 @@
 
         public string EventId { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = AttributesErrorMessages.RequiredErrorMessage)]
         [Display(Name = "Град")]
         public string CityId { get; set; }
 
-        [Required]
-        [StringLength(AttributesConstraints.StreetMaxLenght, MinimumLength = AttributesConstraints.StreetMinLenght)]
+        [Required(ErrorMessage = AttributesErrorMessages.RequiredErrorMessage)]
+        [StringLength(AttributesConstraints.StreetMaxLenght, MinimumLength = AttributesConstraints.StreetMinLenght, ErrorMessage = AttributesErrorMessages.StringLengthErrorMessage)]
         [Display(Name = "Улица №")]
         public string Street { get; set; }
 

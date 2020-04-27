@@ -15,16 +15,16 @@
             this.Events = new HashSet<Event>();
         }
 
-        [Required]
-        [StringLength(AttributesConstraints.OrganizerNameMaxLenght, MinimumLength = AttributesConstraints.OrganizerNameMinLenght)]
+        [Required(ErrorMessage = AttributesErrorMessages.RequiredErrorMessage)]
+        [StringLength(AttributesConstraints.OrganizerNameMaxLenght, MinimumLength = AttributesConstraints.OrganizerNameMinLenght, ErrorMessage = AttributesErrorMessages.StringLengthErrorMessage)]
         public string Name { get; set; }
 
-        [Required]
-        [StringLength(AttributesConstraints.OrganizerContactNameMaxLenght, MinimumLength = AttributesConstraints.OrganizerContactNameMinLenght)]
+        [Required(ErrorMessage = AttributesErrorMessages.RequiredErrorMessage)]
+        [StringLength(AttributesConstraints.OrganizerContactNameMaxLenght, MinimumLength = AttributesConstraints.OrganizerContactNameMinLenght, ErrorMessage = AttributesErrorMessages.StringLengthErrorMessage)]
         public string ContactName { get; set; }
 
-        [Required]
-        [StringLength(AttributesConstraints.OrganizerDescriptionMaxLenght, MinimumLength = AttributesConstraints.OrganizerDescriptionMinLenght)]
+        [Required(ErrorMessage = AttributesErrorMessages.RequiredErrorMessage)]
+        [StringLength(AttributesConstraints.OrganizerDescriptionMaxLenght, MinimumLength = AttributesConstraints.OrganizerDescriptionMinLenght, ErrorMessage = AttributesErrorMessages.StringLengthErrorMessage)]
         public string Description { get; set; }
 
         public string WebSite { get; set; }

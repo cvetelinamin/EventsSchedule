@@ -15,17 +15,17 @@
     {
         public IQueryable<CategoriesViewModel> Categories { get; set; }
 
-        [Required]
-        [StringLength(AttributesConstraints.EventTitleMaxLenght, MinimumLength = AttributesConstraints.EventTitleMinLenght)]
+        [Required(ErrorMessage = AttributesErrorMessages.RequiredErrorMessage)]
+        [StringLength(AttributesConstraints.EventTitleMaxLenght, MinimumLength = AttributesConstraints.EventTitleMinLenght, ErrorMessage = AttributesErrorMessages.StringLengthErrorMessage)]
         [Display(Name = "Заглавие")]
         public string Title { get; set; }
 
-        [Required]
-        [StringLength(AttributesConstraints.EventPerformerMaxLenght, MinimumLength = AttributesConstraints.EventPerformerMinLenght)]
+        [Required(ErrorMessage = AttributesErrorMessages.RequiredErrorMessage)]
+        [StringLength(AttributesConstraints.EventPerformerMaxLenght, MinimumLength = AttributesConstraints.EventPerformerMinLenght, ErrorMessage = AttributesErrorMessages.StringLengthErrorMessage)]
         [Display(Name = "Изпълнител")]
         public string Performer { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = AttributesErrorMessages.RequiredErrorMessage)]
         [Display(Name = "Категория")]
         public string CategoryId { get; set; }
 
@@ -41,16 +41,16 @@
         [Display(Name = "Вход свободен")]
         public bool IsAccessibleForFree { get; set; }
 
-        [Range(AttributesConstraints.EventMinCapacity, AttributesConstraints.EventMaxCapacity)]
+        [Range(AttributesConstraints.EventMinCapacity, AttributesConstraints.EventMaxCapacity, ErrorMessage = AttributesErrorMessages.CapacityErrorMessage)]
         [Display(Name = "Капацитет")]
         public int MaximumAttendeeCapacity { get; set; }
 
-        [Range(AttributesConstraints.EventMinPrice, AttributesConstraints.EventMaxPrice)]
+        [Range(AttributesConstraints.EventMinPrice, AttributesConstraints.EventMaxPrice, ErrorMessage = AttributesErrorMessages.PriceErrorMessage)]
         [Display(Name = "Цена")]
         public decimal Price { get; set; }
 
-        [Required]
-        [StringLength(AttributesConstraints.EventDescriptionMaxLenght, MinimumLength = AttributesConstraints.EventDescriptionMinLenght)]
+        [Required(ErrorMessage = AttributesErrorMessages.RequiredErrorMessage)]
+        [StringLength(AttributesConstraints.EventDescriptionMaxLenght, MinimumLength = AttributesConstraints.EventDescriptionMinLenght, ErrorMessage = AttributesErrorMessages.StringLengthErrorMessage)]
         [Display(Name = "Описание на събитието")]
         public string Description { get; set; }
 
@@ -60,18 +60,18 @@
         [Display(Name = "Снимка")]
         public IFormFile Image { get; set; }
 
-        [Required]
-        [StringLength(AttributesConstraints.OrganizerNameMaxLenght, MinimumLength = AttributesConstraints.OrganizerNameMinLenght)]
+        [Required(ErrorMessage = AttributesErrorMessages.RequiredErrorMessage)]
+        [StringLength(AttributesConstraints.OrganizerNameMaxLenght, MinimumLength = AttributesConstraints.OrganizerNameMinLenght, ErrorMessage = AttributesErrorMessages.StringLengthErrorMessage)]
         [Display(Name = "Име")]
         public string Name { get; set; }
 
-        [Required]
-        [StringLength(AttributesConstraints.OrganizerContactNameMaxLenght, MinimumLength = AttributesConstraints.OrganizerContactNameMinLenght)]
+        [Required(ErrorMessage = AttributesErrorMessages.RequiredErrorMessage)]
+        [StringLength(AttributesConstraints.OrganizerContactNameMaxLenght, MinimumLength = AttributesConstraints.OrganizerContactNameMinLenght, ErrorMessage = AttributesErrorMessages.StringLengthErrorMessage)]
         [Display(Name = "Лице за контакт")]
         public string ContactName { get; set; }
 
-        [Required]
-        [StringLength(AttributesConstraints.OrganizerDescriptionMaxLenght, MinimumLength = AttributesConstraints.OrganizerDescriptionMinLenght)]
+        [Required(ErrorMessage = AttributesErrorMessages.RequiredErrorMessage)]
+        [StringLength(AttributesConstraints.OrganizerDescriptionMaxLenght, MinimumLength = AttributesConstraints.OrganizerDescriptionMinLenght, ErrorMessage = AttributesErrorMessages.StringLengthErrorMessage)]
         [Display(Name = "Описание")]
         public string OrganizerDescription { get; set; }
 
@@ -82,8 +82,8 @@
         [Display(Name = "Град")]
         public string CityId { get; set; }
 
-        [Required]
-        [StringLength(AttributesConstraints.StreetMaxLenght, MinimumLength = AttributesConstraints.StreetMinLenght)]
+        [Required(ErrorMessage = AttributesErrorMessages.RequiredErrorMessage)]
+        [StringLength(AttributesConstraints.StreetMaxLenght, MinimumLength = AttributesConstraints.StreetMinLenght, ErrorMessage = AttributesErrorMessages.StringLengthErrorMessage)]
         [Display(Name = "Улица №")]
         public string Street { get; set; }
 

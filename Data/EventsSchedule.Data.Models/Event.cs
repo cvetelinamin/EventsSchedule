@@ -17,12 +17,12 @@
             this.Reviews = new HashSet<Review>();
         }
 
-        [Required]
-        [StringLength(AttributesConstraints.EventTitleMaxLenght, MinimumLength = AttributesConstraints.EventTitleMinLenght)]
+        [Required(ErrorMessage = AttributesErrorMessages.RequiredErrorMessage)]
+        [StringLength(AttributesConstraints.EventTitleMaxLenght, MinimumLength = AttributesConstraints.EventTitleMinLenght, ErrorMessage = AttributesErrorMessages.StringLengthErrorMessage)]
         public string Title { get; set; }
 
-        [Required]
-        [StringLength(AttributesConstraints.EventPerformerMaxLenght, MinimumLength = AttributesConstraints.EventPerformerMinLenght)]
+        [Required(ErrorMessage = AttributesErrorMessages.RequiredErrorMessage)]
+        [StringLength(AttributesConstraints.EventPerformerMaxLenght, MinimumLength = AttributesConstraints.EventPerformerMinLenght, ErrorMessage = AttributesErrorMessages.StringLengthErrorMessage)]
         public string Performer { get; set; }
 
         [Required]
@@ -50,14 +50,14 @@
 
         public Address Address { get; set; }
 
-        [Range(AttributesConstraints.EventMinCapacity, AttributesConstraints.EventMaxCapacity)]
+        [Range(AttributesConstraints.EventMinCapacity, AttributesConstraints.EventMaxCapacity, ErrorMessage = AttributesErrorMessages.CapacityErrorMessage)]
         public int MaximumAttendeeCapacity { get; set; }
 
-        [Range(AttributesConstraints.EventMinPrice, AttributesConstraints.EventMaxPrice)]
+        [Range(AttributesConstraints.EventMinPrice, AttributesConstraints.EventMaxPrice, ErrorMessage = AttributesErrorMessages.PriceErrorMessage)]
         public decimal Price { get; set; }
 
-        [Required]
-        [StringLength(AttributesConstraints.EventDescriptionMaxLenght, MinimumLength = AttributesConstraints.EventDescriptionMinLenght)]
+        [Required(ErrorMessage = AttributesErrorMessages.RequiredErrorMessage)]
+        [StringLength(AttributesConstraints.EventDescriptionMaxLenght, MinimumLength = AttributesConstraints.EventDescriptionMinLenght, ErrorMessage = AttributesErrorMessages.StringLengthErrorMessage)]
         public string Description { get; set; }
 
         public string CreatorId { get; set; }

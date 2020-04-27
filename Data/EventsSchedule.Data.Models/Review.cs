@@ -17,11 +17,11 @@
 
         public ApplicationUser ApplicationUser { get; set; }
 
-        [Range(AttributesConstraints.MinRaiting, AttributesConstraints.MaxRaiting)]
+        [Range(AttributesConstraints.MinRaiting, AttributesConstraints.MaxRaiting, ErrorMessage = AttributesErrorMessages.RaitingErrorMessage)]
         public int Rating { get; set; }
 
-        [Required]
-        [StringLength(AttributesConstraints.CommentMaxLenght, MinimumLength = AttributesConstraints.CommentMinLenght)]
+        [Required(ErrorMessage = AttributesErrorMessages.RequiredErrorMessage)]
+        [StringLength(AttributesConstraints.CommentMaxLenght, MinimumLength = AttributesConstraints.CommentMinLenght, ErrorMessage = AttributesErrorMessages.StringLengthErrorMessage)]
         public string Comment { get; set; }
 
         [Required]

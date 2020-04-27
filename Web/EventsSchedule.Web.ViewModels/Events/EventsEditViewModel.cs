@@ -18,13 +18,13 @@
 
         public IQueryable<CategoriesViewModel> Categories { get; set; }
 
-        [Required]
-        [StringLength(AttributesConstraints.EventTitleMaxLenght, MinimumLength = AttributesConstraints.EventTitleMinLenght)]
+        [Required(ErrorMessage = AttributesErrorMessages.RequiredErrorMessage)]
+        [StringLength(AttributesConstraints.EventTitleMaxLenght, MinimumLength = AttributesConstraints.EventTitleMinLenght, ErrorMessage = AttributesErrorMessages.StringLengthErrorMessage)]
         [Display(Name = "Заглавие")]
         public string Title { get; set; }
 
         [Required]
-        [StringLength(AttributesConstraints.EventPerformerMaxLenght, MinimumLength = AttributesConstraints.EventPerformerMinLenght)]
+        [StringLength(AttributesConstraints.EventPerformerMaxLenght, MinimumLength = AttributesConstraints.EventPerformerMinLenght, ErrorMessage = AttributesErrorMessages.StringLengthErrorMessage)]
         [Display(Name = "Изпълнител")]
         public string Performer { get; set; }
 
@@ -44,16 +44,16 @@
         [Display(Name = "Вход свободен")]
         public bool IsAccessibleForFree { get; set; }
 
-        [Range(AttributesConstraints.EventMinCapacity, AttributesConstraints.EventMaxCapacity)]
+        [Range(AttributesConstraints.EventMinCapacity, AttributesConstraints.EventMaxCapacity, ErrorMessage = AttributesErrorMessages.CapacityErrorMessage)]
         [Display(Name = "Капацитет")]
         public int MaximumAttendeeCapacity { get; set; }
 
-        [Range(AttributesConstraints.EventMinPrice, AttributesConstraints.EventMaxPrice)]
+        [Range(AttributesConstraints.EventMinPrice, AttributesConstraints.EventMaxPrice, ErrorMessage = AttributesErrorMessages.PriceErrorMessage)]
         [Display(Name = "Цена")]
         public decimal Price { get; set; }
 
         [Required]
-        [StringLength(AttributesConstraints.EventDescriptionMaxLenght, MinimumLength = AttributesConstraints.EventDescriptionMinLenght)]
+        [StringLength(AttributesConstraints.EventDescriptionMaxLenght, MinimumLength = AttributesConstraints.EventDescriptionMinLenght, ErrorMessage = AttributesErrorMessages.StringLengthErrorMessage)]
         [Display(Name = "Описание на събитието")]
         public string Description { get; set; }
 

@@ -9,12 +9,12 @@
 
     public class ReviewCreateInputModel : IMapTo<Review>, IMapFrom<Review>
     {
-        [Range(AttributesConstraints.MinRaiting, AttributesConstraints.MaxRaiting)]
+        [Range(AttributesConstraints.MinRaiting, AttributesConstraints.MaxRaiting, ErrorMessage = AttributesErrorMessages.RaitingErrorMessage)]
         [Display(Name = "Оценка")]
         public int Rating { get; set; }
 
-        [Required]
-        [StringLength(AttributesConstraints.CommentMaxLenght, MinimumLength = AttributesConstraints.CommentMinLenght)]
+        [Required(ErrorMessage = AttributesErrorMessages.RequiredErrorMessage)]
+        [StringLength(AttributesConstraints.CommentMaxLenght, MinimumLength = AttributesConstraints.CommentMinLenght, ErrorMessage = AttributesErrorMessages.StringLengthErrorMessage)]
         [Display(Name = "Коментар")]
         public string Comment { get; set; }
 

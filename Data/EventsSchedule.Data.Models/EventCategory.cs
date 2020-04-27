@@ -13,8 +13,8 @@
             this.Id = Guid.NewGuid().ToString();
         }
 
-        [Required]
-        [StringLength(AttributesConstraints.CategoryNameMaxLenght, MinimumLength = AttributesConstraints.CategoryNameMinLenght)]
+        [Required(ErrorMessage = AttributesErrorMessages.RequiredErrorMessage)]
+        [StringLength(AttributesConstraints.CategoryNameMaxLenght, MinimumLength = AttributesConstraints.CategoryNameMinLenght, ErrorMessage = AttributesErrorMessages.StringLengthErrorMessage)]
         public string Name { get; set; }
     }
 }

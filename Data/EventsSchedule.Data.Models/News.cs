@@ -13,12 +13,12 @@
             this.Id = Guid.NewGuid().ToString();
         }
 
-        [Required]
-        [StringLength(AttributesConstraints.NewsTitleMaxLenght, MinimumLength = AttributesConstraints.NewsTitleMinLenght)]
+        [Required(ErrorMessage = AttributesErrorMessages.RequiredErrorMessage)]
+        [StringLength(AttributesConstraints.NewsTitleMaxLenght, MinimumLength = AttributesConstraints.NewsTitleMinLenght, ErrorMessage = AttributesErrorMessages.StringLengthErrorMessage)]
         public string Title { get; set; }
 
-        [Required]
-        [StringLength(AttributesConstraints.NewsContentMaxLenght, MinimumLength = AttributesConstraints.NewsContentMinLenght)]
+        [Required(ErrorMessage = AttributesErrorMessages.RequiredErrorMessage)]
+        [StringLength(AttributesConstraints.NewsContentMaxLenght, MinimumLength = AttributesConstraints.NewsContentMinLenght, ErrorMessage = AttributesErrorMessages.StringLengthErrorMessage)]
         public string Content { get; set; }
 
         public string Image { get; set; }

@@ -4,6 +4,7 @@ namespace EventsSchedule.Data.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+
     using EventsSchedule.Data.Common;
     using EventsSchedule.Data.Common.Models;
     using EventsSchedule.Data.Models.Enums;
@@ -21,20 +22,20 @@ namespace EventsSchedule.Data.Models
             this.Reviews = new HashSet<Review>();
         }
 
-        [Required]
+        [Required(ErrorMessage = AttributesErrorMessages.RequiredErrorMessage)]
         [MaxLength(AttributesConstraints.FirstNameMaxLenght)]
         public string FirstName { get; set; }
 
-        [Required]
-        [MaxLength(AttributesConstraints.LastNameMaxLenght)]
+        [Required(ErrorMessage = AttributesErrorMessages.RequiredErrorMessage)]
+        [MaxLength(AttributesConstraints.LastNameMaxLenght, ErrorMessage = AttributesErrorMessages.StringMaxLenght)]
         public string LastName { get; set; }
 
         public Gender Gender { get; set; }
 
-        [Range(AttributesConstraints.UserMinAge, AttributesConstraints.UserMaxAge)]
+        [Range(AttributesConstraints.UserMinAge, AttributesConstraints.UserMaxAge, ErrorMessage = AttributesErrorMessages.AgeErrorMessage)]
         public int Age { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = AttributesErrorMessages.RequiredErrorMessage)]
         public string City { get; set; }
 
         public bool HaveChildren { get; set; }
