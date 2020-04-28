@@ -24,7 +24,7 @@
         }
 
         [HttpGet("/Administration/Addresses/EditAddress")]
-        public async Task<IActionResult> EditAddress(string eventId, string addressId)
+        public IActionResult EditAddress(string eventId, string addressId)
         {
             var eventToChange = this.eventsRepository.AllAsNoTracking().Where(e => e.Id == eventId).FirstOrDefault();
 

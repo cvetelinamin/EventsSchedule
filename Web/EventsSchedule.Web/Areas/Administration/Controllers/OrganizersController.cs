@@ -24,7 +24,7 @@
         }
 
         [HttpGet("/Administration/Organizers/EditOrganizer")]
-        public async Task<IActionResult> EditOrganizer(string eventId, string organizerId)
+        public IActionResult EditOrganizer(string eventId, string organizerId)
         {
             var eventToChange = this.eventsRepository.AllAsNoTracking().Where(e => e.Id == eventId).FirstOrDefault();
 

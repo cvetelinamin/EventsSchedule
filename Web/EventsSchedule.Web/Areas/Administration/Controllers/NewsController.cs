@@ -54,7 +54,7 @@
         }
 
         [HttpGet("/Administration/News/Edit")]
-        public async Task<IActionResult> Edit(string newsId)
+        public IActionResult Edit(string newsId)
         {
             var newsViewModel = this.dbContext.News.To<NewsEditViewModel>().FirstOrDefault(n => n.Id == newsId);
 

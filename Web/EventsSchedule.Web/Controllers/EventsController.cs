@@ -8,7 +8,6 @@
     using EventsSchedule.Data.Models;
     using EventsSchedule.Services.Data;
     using EventsSchedule.Services.Mapping;
-    using EventsSchedule.Web.ViewModels;
     using EventsSchedule.Web.ViewModels.Events;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
@@ -36,7 +35,7 @@
         }
 
         [Authorize]
-        public async Task<IActionResult> Create()
+        public IActionResult Create()
         {
             return this.View();
         }
@@ -54,11 +53,11 @@
 
             string pictureUrl = this.cloudinaryService.UploadPicture(model.Image, model.Title);
 
-            var organizer = await this.organizersService.CreateOrganizer(model.Name, model.ContactName, model.WebSite, model.Description);
+            var organizer = this.organizersService.CreateOrganizer(model.Name, model.ContactName, model.WebSite, model.Description);
 
-            var address = await this.addressesService.CreateAddress(model.CityId, model.Street, model.AdditionalInformation);
+            var address = this.addressesService.CreateAddress(model.CityId, model.Street, model.AdditionalInformation);
 
-            var inputEvent = await this.eventsService.CreatEvent(model.Title, model.Performer, model.DoorTime, model.EndTime, model.Description, model.MaximumAttendeeCapacity, model.IsAccessibleForFree, model.Price, model.Status, model.AgeRange, model.CategoryId, user, organizer, address, pictureUrl);
+            var inputEvent = this.eventsService.CreatEvent(model.Title, model.Performer, model.DoorTime, model.EndTime, model.Description, model.MaximumAttendeeCapacity, model.IsAccessibleForFree, model.Price, model.Status, model.AgeRange, model.CategoryId, user, organizer, address, pictureUrl);
 
             await this.dbContext.Events.AddAsync(inputEvent);
 
@@ -85,7 +84,7 @@
             return this.View(eventViewModel);
         }
 
-        public async Task<IActionResult> EventsByCategory(string id)
+        public IActionResult EventsByCategory(string id)
         {
             var viewModel = new ListEventsByCategory
             {

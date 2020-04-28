@@ -49,7 +49,7 @@
         }
 
         [Route("Reviews/ListAllReviews/{eventId}/{page}")]
-        public async Task<IActionResult> ListAllReviews([FromRoute]string eventId, int page = 1)
+        public IActionResult ListAllReviews([FromRoute]string eventId, int page = 1)
         {
             var count = this.reviewsService.GetCountByEventId(eventId);
 

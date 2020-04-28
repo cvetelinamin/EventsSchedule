@@ -5,6 +5,8 @@
 
     public interface ICityService
     {
+        Task CreateAllAsync(string[] cityNames);
+
         Task<IEnumerable<string>> GetAllCitiesAsync();
 
         Task<string> GetIdByTitleAsync(string cityName);

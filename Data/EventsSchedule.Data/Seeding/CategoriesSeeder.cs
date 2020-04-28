@@ -27,7 +27,10 @@
 
             foreach (var title in categoryTitles)
             {
-                await dbContext.EventCategories.AddAsync(new EventCategory { Name = title });
+                if (title.Length >= 3 && title.Length <= 100)
+                {
+                    await dbContext.EventCategories.AddAsync(new EventCategory { Name = title });
+                }
             }
         }
     }

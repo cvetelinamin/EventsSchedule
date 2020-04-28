@@ -2,6 +2,7 @@
 {
     using System;
     using System.ComponentModel.DataAnnotations;
+
     using EventsSchedule.Data.Common;
     using EventsSchedule.Data.Common.Models;
 

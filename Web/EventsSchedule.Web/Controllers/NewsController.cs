@@ -1,7 +1,6 @@
 ﻿namespace EventsSchedule.Web.Controllers
 {
     using System;
-    using System.Threading.Tasks;
 
     using EventsSchedule.Services.Data;
     using EventsSchedule.Web.ViewModels.News;
@@ -18,7 +17,7 @@
             this.newsService = newsService;
         }
 
-        public async Task<IActionResult> NewsDetails(string newsId)
+        public IActionResult NewsDetails(string newsId)
         {
             var viewModel = this.newsService.GetById<NewsViewModel>(newsId);
 
@@ -30,7 +29,7 @@
             return this.View(viewModel);
         }
 
-        public async Task<IActionResult> GetAll(int page = 1)
+        public IActionResult GetAll(int page = 1)
         {
             var count = this.newsService.CountNews();
 

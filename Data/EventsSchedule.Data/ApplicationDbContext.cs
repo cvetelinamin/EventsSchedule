@@ -108,7 +108,6 @@
                 .WithMany(o => o.Events)
                 .IsRequired()
                 .OnDelete(DeleteBehavior.NoAction);
-
         }
 
         private static void SetIsDeletedQueryFilter<T>(ModelBuilder builder)

@@ -20,6 +20,21 @@
             this.cityRepository = cityRepository;
         }
 
+        public async Task CreateAllAsync(string[] cityNames)
+        {
+            foreach (var name in cityNames)
+            {
+                var city = new City
+                {
+                    Name = name,
+                };
+
+                await this.cityRepository.AddAsync(city);
+            }
+
+            var result = await this.cityRepository.SaveChangesAsync();
+        }
+
         public async Task<IEnumerable<string>> GetAllCitiesAsync()
         {
             return await this.cityRepository

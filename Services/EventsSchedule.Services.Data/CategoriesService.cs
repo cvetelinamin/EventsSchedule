@@ -20,21 +20,22 @@
             this.categoryRepository = categoryRepository;
         }
 
-        public async Task<bool> CreateAllAsync(string[] categoryTitles)
+        public async Task CreateAllAsync(string[] categoryTitles)
         {
             foreach (var categoryTitle in categoryTitles)
             {
-                var category = new EventCategory
+                if (categoryTitle.Length >= 3 || categoryTitle.Length >= 100)
                 {
-                    Name = categoryTitle,
-                };
+                    var category = new EventCategory
+                    {
+                        Name = categoryTitle,
+                    };
 
-                await this.categoryRepository.AddAsync(category);
+                    await this.categoryRepository.AddAsync(category);
+                }
             }
 
             var result = await this.categoryRepository.SaveChangesAsync();
-
-            return result > 0;
         }
 
         public async Task<EventCategory> CreateAsync(string name)

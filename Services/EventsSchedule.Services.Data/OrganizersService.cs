@@ -1,7 +1,6 @@
 ﻿namespace EventsSchedule.Services.Data
 {
     using System.Linq;
-    using System.Threading.Tasks;
 
     using EventsSchedule.Data.Common.Repositories;
     using EventsSchedule.Data.Models;
@@ -16,7 +15,7 @@
             this.organizerRepository = organizerRepository;
         }
 
-        public async Task<Organizer> CreateOrganizer(string name, string contactName, string webSite, string description)
+        public Organizer CreateOrganizer(string name, string contactName, string webSite, string description)
         {
             var organizer = new Organizer
             {

@@ -21,7 +21,7 @@
         }
 
         [HttpGet("/Administration/Events/EditEvent")]
-        public async Task<IActionResult> EditEvent(string eventId)
+        public IActionResult EditEvent(string eventId)
         {
             var eventViewModel = this.eventsService.GetById<EventsEditViewModel>(eventId);
 

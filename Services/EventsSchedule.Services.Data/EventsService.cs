@@ -24,7 +24,7 @@
             this.cloudinaryService = cloudinaryService;
         }
 
-        public async Task<Event> CreatEvent(string title, string performer, DateTime doorTime, DateTime endTime, string description, int maxCapacity, bool isFree, decimal price, EventStatusType status, TypicalAgeRange ageRange, string categoryId, string userId, Organizer organizer, Address address, string pictureUrl)
+        public Event CreatEvent(string title, string performer, DateTime doorTime, DateTime endTime, string description, int maxCapacity, bool isFree, decimal price, EventStatusType status, TypicalAgeRange ageRange, string categoryId, string userId, Organizer organizer, Address address, string pictureUrl)
         {
             var eventToCreate = new Event
             {

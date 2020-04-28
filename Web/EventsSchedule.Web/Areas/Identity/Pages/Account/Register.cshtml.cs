@@ -100,7 +100,8 @@
             if (this.ModelState.IsValid)
             {
                 var isRoot = !this.userManager.Users.Any();
-                var user = new ApplicationUser {
+                var user = new ApplicationUser
+                {
                                                         UserName = this.Input.Email,
                                                         Email = this.Input.Email,
                                                         FirstName = this.Input.FirstName,

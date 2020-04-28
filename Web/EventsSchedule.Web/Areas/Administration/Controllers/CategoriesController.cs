@@ -4,7 +4,9 @@
     using System.Threading.Tasks;
 
     using EventsSchedule.Data;
+    using EventsSchedule.Data.Common;
     using EventsSchedule.Data.Models;
+    using EventsSchedule.Services.Data;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
 
@@ -12,16 +14,19 @@
     public class CategoriesController : Controller
     {
         private readonly ApplicationDbContext dbContext;
+        private readonly ICategoriesService categoriesService;
 
-        public CategoriesController(ApplicationDbContext context)
+        public CategoriesController(ApplicationDbContext context, ICategoriesService categoriesService)
         {
             this.dbContext = context;
+            this.categoriesService = categoriesService;
         }
 
         // GET: Administration/Categories
         public async Task<IActionResult> Index()
         {
-            return this.View(await this.dbContext.EventCategories.ToListAsync());
+            var categories = this.categoriesService.GetAll();
+            return this.View(categories);
         }
 
         // GET: Administration/Categories/Details/5
@@ -55,15 +60,19 @@
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Name,IsDeleted,DeletedOn,Id,CreatedOn,ModifiedOn")] EventCategory eventCategory)
         {
-            if (eventCategory.Name.Length < 5)
+            if (eventCategory.Name.Length < AttributesConstraints.CategoryNameMinLenght || eventCategory.Name.Length > AttributesConstraints.CategoryNameMaxLenght)
+            {
+                return this.View(eventCategory);
+            }
+
+            if (string.IsNullOrEmpty(eventCategory.Name))
             {
                 return this.View(eventCategory);
             }
 
             if (this.ModelState.IsValid)
             {
-                this.dbContext.Add(eventCategory);
-                await this.dbContext.SaveChangesAsync();
+                var category = await this.categoriesService.CreateAsync(eventCategory.Name);
                 return this.RedirectToAction(nameof(this.Index));
             }
 
@@ -88,8 +97,7 @@
         }
 
         // POST: Administration/Categories/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(string id, [Bind("Name,IsDeleted,DeletedOn,Id,CreatedOn,ModifiedOn")] EventCategory eventCategory)
@@ -143,7 +151,8 @@
         }
 
         // POST: Administration/Categories/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
+        [ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {

@@ -1,7 +1,6 @@
 ﻿namespace EventsSchedule.Services.Data
 {
     using System.Linq;
-    using System.Threading.Tasks;
 
     using EventsSchedule.Data.Common.Repositories;
     using EventsSchedule.Data.Models;
@@ -10,15 +9,13 @@
     public class AddressesService : IAddressesService
     {
         private readonly IDeletableEntityRepository<Address> addressesRepository;
-        private readonly ICityService cityService;
 
-        public AddressesService(IDeletableEntityRepository<Address> addressesRepository, ICityService cityService)
+        public AddressesService(IDeletableEntityRepository<Address> addressesRepository)
         {
             this.addressesRepository = addressesRepository;
-            this.cityService = cityService;
         }
 
-        public async Task<Address> CreateAddress(string cityId, string street, string additionalInformation)
+        public Address CreateAddress(string cityId, string street, string additionalInformation)
         {
             var address = new Address
             {
