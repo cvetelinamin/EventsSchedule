@@ -13,6 +13,8 @@
   <ItemGroup>
     <Compile Remove="Migrations\20200425203350_ChangedParameterInEvents.cs" />
     <Compile Remove="Migrations\20200425203350_ChangedParameterInEvents.Designer.cs" />
+    <Compile Remove="Migrations\20200426220056_RenamedTableBlogsAndREmovedColumnsFromEvents.cs" />
+    <Compile Remove="Migrations\20200426220056_RenamedTableBlogsAndREmovedColumnsFromEvents.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
