@@ -48,6 +48,16 @@
             return eventToCreate;
         }
 
+        public Event Create(Event eventInput, string userId, Organizer organizer, Address address, string pictureUrl)
+        {
+            eventInput.CreatorId = userId;
+            eventInput.Organizer = organizer;
+            eventInput.Address = address;
+            eventInput.Image = pictureUrl;
+
+            return eventInput;
+        }
+
         public T GetById<T>(string id)
         {
             var eventDetails = this.eventsRepository.AllAsNoTracking().Where(x => x.Id == id)

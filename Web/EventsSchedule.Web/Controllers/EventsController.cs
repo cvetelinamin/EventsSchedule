@@ -42,7 +42,7 @@
 
         [HttpPost]
         [Authorize]
-        public async Task<IActionResult> Create(CreateEventModel model)
+        public async Task<IActionResult> Create(CreateEventInputModel model)
         {
             if (!this.ModelState.IsValid)
             {
@@ -52,12 +52,11 @@
             var user = this.userManager.GetUserId(this.User);
 
             string pictureUrl = this.cloudinaryService.UploadPicture(model.Image, model.Title);
+            Organizer organizer = AutoMapperConfig.MapperInstance.Map<Organizer>(model);
 
-            var organizer = this.organizersService.CreateOrganizer(model.Name, model.ContactName, model.WebSite, model.Description);
+            Address address = AutoMapperConfig.MapperInstance.Map<Address>(model);
 
-            var address = this.addressesService.CreateAddress(model.CityId, model.Street, model.AdditionalInformation);
-
-            var inputEvent = this.eventsService.CreatEvent(model.Title, model.Performer, model.DoorTime, model.EndTime, model.Description, model.MaximumAttendeeCapacity, model.IsAccessibleForFree, model.Price, model.Status, model.AgeRange, model.CategoryId, user, organizer, address, pictureUrl);
+            Event inputEvent = this.GetEventByInput(model, user, pictureUrl, organizer, address);
 
             await this.dbContext.Events.AddAsync(inputEvent);
 
@@ -96,6 +95,17 @@
             };
 
             return this.View(viewModel);
+        }
+
+        private Event GetEventByInput(CreateEventInputModel model, string user, string pictureUrl, Organizer organizer, Address address)
+        {
+            var eventMap = AutoMapperConfig.MapperInstance.Map<Event>(model);
+            eventMap.Address = address;
+            eventMap.CreatorId = user;
+            eventMap.Image = pictureUrl;
+            eventMap.Organizer = organizer;
+
+            return eventMap;
         }
     }
 }

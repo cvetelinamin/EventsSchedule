@@ -15,19 +15,6 @@
             this.organizerRepository = organizerRepository;
         }
 
-        public Organizer CreateOrganizer(string name, string contactName, string webSite, string description)
-        {
-            var organizer = new Organizer
-            {
-                 Name = name,
-                 ContactName = contactName,
-                 WebSite = webSite,
-                 Description = description,
-            };
-
-            return organizer;
-        }
-
         public T GetById<T>(string id)
         {
             var organizer = this.organizerRepository.AllAsNoTracking().Where(x => x.Id == id)
